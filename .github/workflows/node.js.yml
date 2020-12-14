@@ -20,6 +20,7 @@ jobs:
       env: # Or as an environment variable
         DOCKER_USER: ${{ secrets.DOCKER_USER}}
         DOCKER_PASS: ${{secrets.DOCKER_PASS}}
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
       run: |
         sh portafolio/build.sh;
     - name: Deploy
