@@ -13,18 +13,7 @@ function Profile(props) {
   return (
     <div className="center-v">
       <Container className="center-h">
-        <Row>          
-          <Col sm="6">
-            <Card className="center-h">
-              <CardImg className="profile" top width="100%" src="https://res.cloudinary.com/dd7jrtxu5/image/upload/Keyci/image_tofyzu.jpg" alt="Card image cap" />
-              <CardBody>
-                <CardTitle tag="h5">Keyci Padilla</CardTitle>
-                <CardSubtitle tag="h6" className="mb-2 text-muted">UX/UI Designer</CardSubtitle>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                <Button color="link" tag={Link} to="/keycipadilla">ver mas</Button>
-              </CardBody>
-            </Card>
-          </Col>
+        <Row>
           <Col sm="6">
             <Card className="center-h">
               <CardImg className="profile" top width="10%" src="https://res.cloudinary.com/dd7jrtxu5/image/upload/v1607886191/Alex/imagen_cjbso3.jpg" alt="Card image cap" />

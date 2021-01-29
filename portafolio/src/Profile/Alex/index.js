@@ -18,7 +18,7 @@ export class Alex extends Component {
                       </div>
                   </Col>
                   <Col xs="9">
-                      <h3>Historia y formacion Profecional</h3>
+                      <h3>Historia y formación Profesional</h3>
                       <p>
                         Nacìo el 22 de noviembre de 1996, en San Pedro Sula, Cortes, Honduras.
                         Hijo de Jose Anael Diaz Guevara y Mirian Suyapa Sierra Villamil.
@@ -26,7 +26,7 @@ export class Alex extends Component {
                       <p>
                         Realizo sus estudios en la escuela Dionisio de Herrera, en el colegio
                         Jose Trinidad Reyes reciviendo asi el <a TARGET="_blank" href="titulo.pdf">
-                        Titulo</a> de BTP en Informatica. En la fecha 03/2019, inicio 
+                        Título</a> de BTP en Informatica. En la fecha 03/2019, inicio 
                         los <a href="#">Cursos</a> por parte del convenio de la Asosiacion Hondureña 
                         de Maquiladores
                         (<a TARGET="_blank" href="http://www.ahm-honduras.com/">AHM</a>) y la 
