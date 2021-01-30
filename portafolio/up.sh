@@ -1,7 +1,6 @@
-sudo su
 cd /home/ubuntu/portafolio
-git pull
+sudo git pull
 cd portafolio
-rm -r build
-npm install
-npm run build
+sudo rm -r build
+sudo npm install
+sudo npm run build
