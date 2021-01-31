@@ -16,10 +16,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Build
+      env: # Or as an environment variable
+        DOCKER_USER: ${{ secrets.DOCKER_USER}}
+        DOCKER_PASS: ${{secrets.DOCKER_PASS}}
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      run: |
+        sh portafolio/build.sh;
     - name: Deploy
       env: # Or as an environment variable
         key: ${{ secrets.DEPLOY_KEY }}
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        DOCKER_USER: ${{ secrets.DOCKER_USER}}
+        DOCKER_PASS: ${{secrets.DOCKER_PASS}}
       run: |
         sh portafolio/deploy.sh;
