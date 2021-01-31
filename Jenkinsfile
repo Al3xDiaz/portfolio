@@ -8,6 +8,7 @@ pipeline {
     stage('Install dependencies') {
       steps {
         sh 'echo Install dependencies...'
+        sh 'echo Install dependencies succefull!!!'
       }
     }
     stage('Run tests') {
