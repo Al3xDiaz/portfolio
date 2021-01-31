@@ -24,32 +24,32 @@ export class NavMenu extends Component {
 
     render() {
         const desarrollador = [
-            { cmp: "/alexdiaz/Comentar", titulo: "Comentarios" },
-            { url: "https://github.com/Al3xDiaz/portafolio/", titulo: "Documentacion" },
+            { cmp: "/Comentar", titulo: "Comentarios" },
+            { url: "https://github.com/al3xdiaz/portafolio/", titulo: "Documentacion" },
             { titulo: "cuentas", h:true },
-            { url: "https://www.linkedin.com/in/al3xdiaz/", titulo: "linkedin" },
-            { url: "https://github.com/Al3xDiaz", titulo: "github" }
+            { url: "https://www.linkedin.com/in/al3xdiaz", titulo: "linkedin" },
+            { url: "https://github.com/al3xdiaz", titulo: "github" }
         ];
         const componentes = [
-            { cmp: "/alexdiaz/contador", titulo: "Contador" },
-            { cmp: "/alexdiaz/usuarios", titulo: "Usuarios" },
-            { cmp: "/alexdiaz/fetch-data", titulo: "Pronostico" },
-            { cmp: "/alexdiaz/TablasEjemplo", titulo: "tabla" },
+            { cmp: "/contador", titulo: "Contador" },
+            { cmp: "/usuarios", titulo: "Usuarios" },
+            { cmp: "/fetch-data", titulo: "Pronostico" },
+            { cmp: "/TablasEjemplo", titulo: "tabla" },
         ];
         const juegos = [
-            { cmp: "/alexdiaz/EquisCero", titulo: "juego X0" },
-            { cmp: "/alexdiaz/Parejas", titulo: "Encuentra parejas" },
+            { cmp: "/EquisCero", titulo: "juego X0" },
+            { cmp: "/Parejas", titulo: "Encuentra parejas" },
         ];
     return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
-            <NavbarBrand tag={Link} to="/alexdiaz">Alex Diaz</NavbarBrand>
+            <NavbarBrand tag={Link} to="/">Alex Diaz</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/alexdiaz">inicio</NavLink>
+                  <NavLink tag={Link} className="text-dark" to="/">inicio</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink ><Ddl title="Componentes" links={componentes} /></NavLink>

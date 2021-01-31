@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
-import '../../css/imagenes.css'
-import imagen from '../../Utilidades/imagen.jpg';
-import Layout from '../../components/Layout'
+import './css/imagenes.css'
+import imagen from './Utilidades/imagen.jpg';
+import Layout from './components/Layout'
 
 export class Alex extends Component {
   static displayName = Alex.name;

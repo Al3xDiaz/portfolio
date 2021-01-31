@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import Profile from './Profile/index'
-import Alex from './Profile/Alex/index'
+import Profile from './home'
 import { Usuarios } from './components/Usuarios';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
@@ -18,15 +17,14 @@ export default class App extends Component {
     return (
       <div>
         <Route exact path='/' component={Profile} />
-        <Route exact path='/alexdiaz' component={Alex} />
-        <Route path='/alexdiaz/contador' component={Counter} />
-        <Route path='/alexdiaz/usuarios' component={Usuarios} />
-        <Route path='/alexdiaz/fetch-data' component={FetchData} />
-        <Route path='/alexdiaz/comentarios' component={Comentarios} />
-        <Route path='/alexdiaz/comentar' component={Comentar} />
-        <Route path='/alexdiaz/TablasEjemplo' component={TablasEjemplo} />
-        <Route path='/alexdiaz/EquisCero' component={EquisCero} />
-        <Route path='/alexdiaz/Parejas' component={Parejas} />
+        <Route path='/contador' component={Counter} />
+        <Route path='/usuarios' component={Usuarios} />
+        <Route path='/fetch-data' component={FetchData} />
+        <Route path='/comentarios' component={Comentarios} />
+        <Route path='/comentar' component={Comentar} />
+        <Route path='/TablasEjemplo' component={TablasEjemplo} />
+        <Route path='/EquisCero' component={EquisCero} />
+        <Route path='/Parejas' component={Parejas} />
       </div>
     );
   }
