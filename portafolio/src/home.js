@@ -18,7 +18,7 @@ export class Alex extends Component {
                       </div>
                   </Col>
                   <Col xs="9">
-                      <h3>Historia y formación Profesional</h3>
+                      <h3>Historia y formación Profesional.</h3>
                       <p>
                         Nacìo el 22 de noviembre de 1996, en San Pedro Sula, Cortes, Honduras.
                         Hijo de Jose Anael Diaz Guevara y Mirian Suyapa Sierra Villamil.
