@@ -7,8 +7,7 @@ pipeline {
   stages {
     stage('Run build') {
       steps {
-        sh 'cd portafolio/'
-        sh 'ls'
+        sh 'cd portafolio/portafolio/'
         sh 'docker build --tag portafolio:latest .;'
       }
     }
