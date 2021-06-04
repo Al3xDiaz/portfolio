@@ -23,9 +23,9 @@ export class Comentarios extends Component {
           <tbody>
             {comentarios.map(comentario =>
               <tr key={comentario.Id}>
-                <td>{comentario.Nombre}</td>
-                <td>{comentario.Email}</td>
-                <td>{comentario.Comentario}</td>
+                <td>{comentario.name}</td>
+                <td>{comentario.email}</td>
+                <td>{comentario.commentary}</td>
               </tr>
             )}
           </tbody>
@@ -55,13 +55,13 @@ export class Comentarios extends Component {
   }
     async GetComentarios() {
         this.setState({ comentario: [], loading: true });
-        const response = await fetch('/Usuarios/GetComentarios');
+        const response = await fetch('/api/Usuarios/GetComentarios');
         const data = await response.json();
         this.setState({ comentario: data, loading: false });
     }
     async SetComentarios(form) {
         this.setState({ comentario: [], loading: true });
-        const response = await fetch('/Usuarios/SetComentarios', {
+        const response = await fetch('/api/Usuarios/SetComentarios', {
             method: 'post',
             body: form
         });
