@@ -66,6 +66,6 @@ export class Comentarios extends Component {
             body: form
         });
         const data = await response.json();
-        this.setState({ comentario: data, loading: false });
+        if (data) this.GetComentarios();
     }
 }

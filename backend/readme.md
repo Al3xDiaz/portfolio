@@ -6,7 +6,5 @@
 `pip freeze` \
 Instalar dependencias \
 `pip install -r requirements.txt`
-variable de entorno FLASK_APP
-`export FLASK_APP=main.py`
-start app
-`flask run`
+variable de entorno FLASK_APP & start app
+`export FLASK_APP=main.py && flask run`

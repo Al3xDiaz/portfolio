@@ -1,2 +1,3 @@
 flask
 simplejson
+Flask-PyMongo
