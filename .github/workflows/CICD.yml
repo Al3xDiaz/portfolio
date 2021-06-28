@@ -31,18 +31,16 @@ jobs:
              VERSION=latest
              # Strip git ref prefix from version
              VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-             echo VERSION=$VERSION
              
              # Strip "v" prefix from tag name
              [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-             echo VERSION=$VERSION
              
              # Use Docker `latest` tag convention
              [ "$VERSION" == "main" ] && VERSION=latest
 
              echo VERSION=$VERSION
 
-             echo  "$(cat docker-compose.yml | sed 's/latest/$VERSION/g')" > docker-compose.yml
+             echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g')" > docker-compose.yml
              docker-compose build
 
       - name: Log in to registry
