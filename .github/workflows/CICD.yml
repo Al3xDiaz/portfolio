@@ -32,6 +32,7 @@ jobs:
       - name: Build images
         #run: docker build . --file Dockerfile --tag FRONTEND --label "runnumber=${GITHUB_RUN_ID}"
         run: |
+             echo "" > .env
              export VERSION=latest
              # Strip git ref prefix from version
              VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
