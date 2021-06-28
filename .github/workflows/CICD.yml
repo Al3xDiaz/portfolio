@@ -28,11 +28,14 @@ jobs:
       - name: Build images
         #run: docker build . --file Dockerfile --tag FRONTEND --label "runnumber=${GITHUB_RUN_ID}"
         run: |
+             VERSION=latest
              # Strip git ref prefix from version
              VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+             echo VERSION=$VERSION
              
              # Strip "v" prefix from tag name
              [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+             echo VERSION=$VERSION
              
              # Use Docker `latest` tag convention
              [ "$VERSION" == "main" ] && VERSION=latest
