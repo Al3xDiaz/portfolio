@@ -1,35 +1,37 @@
 version: '3.4'
-
 services:
  frontend:
     container_name: "frontend"
     image: "docker.pkg.github.com/al3xdiaz/portafolio/frontend:latest"
     build:
         context: .
-        dockerfile: frontend/dockerfile
+        dockerfile: frontend/dockerfile.test
+    volumes: 
+        - "./frontend/code:/code"
     ports: 
         - "80:80"
     depends_on: 
         - "backend"
  backend:
+    env_file: ./.env
     container_name: "backend"
     image: "docker.pkg.github.com/al3xdiaz/portafolio/backend:latest"
     build: 
         context: .
-        dockerfile: backend/dockerfile
-    environment: 
-        con_str: "mongodb://db:27017/myDatabase"
-        FLASK_ENV: ${FLASK_ENV}
+        dockerfile: backend/dockerfile.test
+#    environment: 
+#        FLASK_ENV: ${FLASK_ENV}
     volumes: 
         - "./backend/code:/code"
     depends_on: 
         - "db"
  db:
+    env_file: ./.env
     container_name: db
     image: mongo
     #restart: always
     volumes: 
         - ./mongo/data:/data/db
-    environment:
-        MONGO_INITDB_ROOT_USERNAME: ${MONGO_U}
-        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_P}
+#    environment:
+#        MONGO_INITDB_ROOT_USERNAME: ${MONGO_U}
+#        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_P}

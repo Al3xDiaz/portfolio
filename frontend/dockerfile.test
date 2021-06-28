@@ -1,0 +1,10 @@
+FROM node:12.16.1
+WORKDIR /code
+#ENV PATH /code/node_modules/.bin:$PATH
+#COPY frontend/package.json /code
+COPY ["./frontend/package.json", "./frontend/package-lock.json*", "./"]
+RUN npm install
+#COPY ./frontend/code /code
+#EXPOSE 3000
+#CMD ["npm", "run", "start"]
+CMD [ "node", "server.js" ]

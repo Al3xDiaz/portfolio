@@ -10,19 +10,14 @@ import sys
 from pymongo import collection, mongo_client
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = os.environ['con_str']
-#mongo = PyMongo(app,uri=os.environ['con_str'])
+app.config["MONGO_URI"] = os.environ['CON_STR']
 client = MongoClient('db',
-                      username='root',
-                      password='password',
+                      username=os.environ['MONGO_U'],
+                      password=os.environ['MONGO_P'],
                       authSource='admin',
                       authMechanism='SCRAM-SHA-256')
 mongoDB= client["myDatabase"]
 mongoCollection=mongoDB["users"]
-@app.route('/')
-
-def hello():
-        return os.environ['con_str']
 
 @app.route('/Usuarios/GetComentarios')
 def getUsers():
