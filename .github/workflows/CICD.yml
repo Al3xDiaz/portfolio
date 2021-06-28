@@ -15,6 +15,8 @@ on:
 env:
   MONGO_U: "${{ secrets.MONGO_U }}"
   MONGO_P: "${{ secrets.MONGO_P }}"
+  CON_STR: "${{ secrets.CON_STR }}"
+
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
@@ -30,7 +32,7 @@ jobs:
       - name: Build images
         #run: docker build . --file Dockerfile --tag FRONTEND --label "runnumber=${GITHUB_RUN_ID}"
         run: |
-             VERSION=latest
+             export VERSION=latest
              # Strip git ref prefix from version
              VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
              
@@ -43,6 +45,7 @@ jobs:
              echo VERSION=$VERSION
 
              echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g')" > docker-compose.yml
+             echo  "$(cat docker-compose.yml | sed 's/.test/.prod/g')" > docker-compose.yml
              docker-compose build
 
       - name: Log in to registry
