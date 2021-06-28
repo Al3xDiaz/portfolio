@@ -27,8 +27,10 @@ jobs:
 
       - name: Build images
         #run: docker build . --file Dockerfile --tag FRONTEND --label "runnumber=${GITHUB_RUN_ID}"
-        run: docker build ./frontend/ --file Dockerfile --tag frontend --label "runnumber=${GITHUB_RUN_ID}"
-             docker build ./backend/ --file Dockerfile --tag backend --label "runnumber=${GITHUB_RUN_ID}"
+        run: |
+             docker-compose up
+             docker build . --file .frontend/Dockerfile --tag frontend --label "runnumber=${GITHUB_RUN_ID}"
+             docker build . --file .backend/Dockerfile --tag backend --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
         # This is where you will update the PAT to CICD_token
