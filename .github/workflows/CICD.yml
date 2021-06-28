@@ -28,9 +28,19 @@ jobs:
       - name: Build images
         #run: docker build . --file Dockerfile --tag FRONTEND --label "runnumber=${GITHUB_RUN_ID}"
         run: |
-             docker-compose up
-             docker build . --file .frontend/Dockerfile --tag frontend --label "runnumber=${GITHUB_RUN_ID}"
-             docker build . --file .backend/Dockerfile --tag backend --label "runnumber=${GITHUB_RUN_ID}"
+             # Strip git ref prefix from version
+             VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+             
+             # Strip "v" prefix from tag name
+             [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+             
+             # Use Docker `latest` tag convention
+             [ "$VERSION" == "main" ] && VERSION=latest
+
+             echo VERSION=$VERSION
+
+             echo  "$(cat docker-compose.yml | sed 's/latest/$VERSION/g')" > docker-compose.yml
+             docker-compose build
 
       - name: Log in to registry
         # This is where you will update the PAT to CICD_token
@@ -38,25 +48,5 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_FRONTEND=ghcr.io/${{ github.repository_owner }}/FRONTEND
-          IMAGE_BACKEND=ghcr.io/${{ github.repository_owner }}/BACKEND
-          
-          # Change all uppercase to lowercase
-          IMAGE_FRONTEND=$(echo $IMAGE_FRONTEND | tr '[A-Z]' '[a-z]')
-          IMAGE_BACKEND=$(echo $IMAGE_BACKEND | tr '[A-Z]' '[a-z]')
-          
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          
-          # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-          
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "main" ] && VERSION=latest
-          echo IMAGE_FRONTEND=$IMAGE_FRONTEND
-          echo IMAGE_BACKEND=$IMAGE_BACKEND
-          echo VERSION=$VERSION
-          docker tag frontend $IMAGE_FRONTEND:$VERSION
-          docker tag backend $IMAGE_BACKEND:$VERSION
-          docker push $IMAGE_FRONTEND:$VERSION
-          docker push $IMAGE_BACKEND:$VERSION
+          docker push docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
+          docker push docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION
