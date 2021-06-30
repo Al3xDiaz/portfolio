@@ -1,10 +1,10 @@
-name: Demo Push
+name: CI portafolio
 
 on:   
   push:
     # Publish `master` as Docker `latest` image.
     branches:
-      - main
+      - '*'
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -43,20 +43,18 @@ jobs:
 
              echo VERSION=$VERSION
 
-             echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g')" > docker-compose.yml
-             echo  "$(cat docker-compose.yml | sed 's/dockerfile.test/dockerfile.prod/g')" > docker-compose.yml
-             cat docker-compose.yml
+             echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g' | sed 's/dockerfile.test/dockerfile.prod/g')" > docker-compose.yml
              docker-compose build
-             echo VERSION=$VERSION > .env
+             echo VERSION=$VERSION >> .env
 
       - name: Log in to registry
         # This is where you will update the PAT to CICD_token
-        run: echo "${{ secrets.CICD_token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.CICD_token }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: |
           source .env
-          name_frontend=ghcr.io/al3xdiaz/portafolio/frontend:$VERSION
-          name_backend=ghcr.io/al3xdiaz/portafolio/backend:$VERSION
+          name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
+          name_backend=docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION
           docker push $name_frontend
           docker push $name_backend
