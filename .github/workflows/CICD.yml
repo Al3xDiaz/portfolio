@@ -16,7 +16,6 @@ env:
   MONGO_U: "${{ secrets.MONGO_U }}"
   MONGO_P: "${{ secrets.MONGO_P }}"
   CON_STR: "${{ secrets.CON_STR }}"
-  VERSION: ""
 
 jobs:
   # Push image to GitHub Packages.
@@ -47,6 +46,7 @@ jobs:
              echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g')" > docker-compose.yml
              echo  "$(cat docker-compose.yml | sed 's/.test/.prod/g')" > docker-compose.yml
              docker-compose build
+             echo VERSION=$VERSION > .env
 
       - name: Log in to registry
         # This is where you will update the PAT to CICD_token
@@ -54,6 +54,7 @@ jobs:
 
       - name: Push image
         run: |
+          source .env
           name_frontend=ghcr.io/al3xdiaz/portafolio/frontend:$VERSION
           name_backend=ghcr.io/al3xdiaz/portafolio/backend:$VERSION
           echo $name_frontend
