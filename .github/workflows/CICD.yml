@@ -10,8 +10,6 @@ on:
     tags:
       - v*
 
-  # Run tests for any PRs.
-  pull_request:
 env:
   MONGO_U: "${{ secrets.MONGO_U }}"
   MONGO_P: "${{ secrets.MONGO_P }}"
@@ -44,7 +42,7 @@ jobs:
              echo VERSION=$VERSION
 
              echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g' | sed 's/dockerfile.test/dockerfile.prod/g')" > docker-compose.yml
-             docker-compose pull backend && docker-compose pull frontend
+             
              docker-compose build
              echo VERSION=$VERSION >> .env
 
