@@ -55,8 +55,7 @@ jobs:
       - name: Push image
         run: |
           source .env
-          #name_frontend=ghcr.io/al3xdiaz/portafolio/frontend:$VERSION
-          name_frontend=ghcr.io/al3xdiaz/portafolio/frontend:latest
+          name_frontend=ghcr.io/al3xdiaz/portafolio/frontend:$VERSION
           name_backend=ghcr.io/al3xdiaz/portafolio/backend:$VERSION
           docker push $name_frontend
           docker push $name_backend
