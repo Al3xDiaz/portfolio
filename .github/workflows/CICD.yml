@@ -44,9 +44,9 @@ jobs:
              echo VERSION=$VERSION
 
              echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g')" > docker-compose.yml
-             echo  "$(cat docker-compose.yml | sed 's/.test/.prod/g')" > docker-compose.yml
+             echo  "$(cat docker-compose.yml | sed 's/dockerfile.test/dockerfile.prod/g')" > docker-compose.yml
              cat docker-compose.yml
-             #docker-compose build
+             docker-compose build
              echo VERSION=$VERSION > .env
 
       - name: Log in to registry
