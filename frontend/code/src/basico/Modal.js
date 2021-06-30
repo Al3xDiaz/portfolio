@@ -31,7 +31,7 @@ const ModalExample = (props) => {
               <ModalBody>
                 {Cajas.map((item,key) =>
                   <FormGroup key={item.key}>
-                    <Label for={item.Name}>{item.Name}</Label>
+                    <Label for={item.Name}>{item.Label}</Label>
                     <Input type={item.type} id={item.Name} className={item.Name} placeholder={item.placeholder} />
                   </FormGroup>
                 )}

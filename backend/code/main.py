@@ -5,39 +5,53 @@ from flask.json import dumps
 from flask.wrappers import Response
 from flask_pymongo import MongoClient
 import os
-import sys
+#import sys
+#from pymongo import collection, mongo_client
 
-from pymongo import collection, mongo_client
+CON_STR=f"{os.environ['CON_STR']}"
+MONGO_U=f"{os.environ['MONGO_U']}"
+MONGO_P=f"{os.environ['MONGO_P']}"
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = os.environ['CON_STR']
+app.config["MONGO_URI"] = CON_STR
 client = MongoClient('db',
-                      username=os.environ['MONGO_U'],
-                      password=os.environ['MONGO_P'],
+                      username=MONGO_U,
+                      password=MONGO_P,
                       authSource='admin',
                       authMechanism='SCRAM-SHA-256')
 mongoDB= client["myDatabase"]
-mongoCollection=mongoDB["users"]
+mongoCollection=mongoDB["comentarys"]
 
-@app.route('/Usuarios/GetComentarios')
-def getUsers():
+@app.route('/product/<name>')
+def get_product(name):
+  return "The product is " + str(name)
+
+@app.route('/comentarys')
+def getComentarys():
         mongoCursor=mongoCollection.find()
         response=[]
         for item in mongoCursor:
+                item["_id"]=str(item["_id"])
                 response.append(
                         {
+                        "id":str(item["_id"]),
                         "name":item['name'],
                         "email":item['email'],
                         "commentary":item['commentary']
                         })
         return jsonify(response)
 
-@app.route('/Usuarios/SetComentarios', methods=['POST'])
+@app.route('/comentary/<id>')
+def getComentary(id):
+        result=mongoCollection.find_one({"_id":id})
+        return jsonify(result)
+
+@app.route('/comentary', methods=['POST'])
 def setUsers():
         user=  {
-                "name":request.args.get('name'),
-                "email":request.args.get('email'),
-                "commentary":request.args.get('commentary')
+                "name":request.form.get('name'),
+                "email":request.form.get('email'),
+                "commentary":request.form.get('commentary')
                 }
         mongoCollection.insert(user)
         return jsonify(True)

@@ -5,7 +5,7 @@ services:
     image: "docker.pkg.github.com/al3xdiaz/portafolio/frontend:latest"
     build:
         context: .
-        dockerfile: frontend/dockerfile.test
+        dockerfile: frontend/dockerfile.prod
     volumes: 
         - "./frontend/code:/code"
     ports: 
@@ -26,12 +26,11 @@ services:
     depends_on: 
         - "db"
  db:
-    env_file: ./.env
     container_name: db
     image: mongo
     #restart: always
     volumes: 
         - ./mongo/data:/data/db
-#    environment:
-#        MONGO_INITDB_ROOT_USERNAME: ${MONGO_U}
-#        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_P}
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_U}
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_P}
