@@ -55,7 +55,8 @@ jobs:
       - name: Push image
         run: |
           source .env
-          name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
+          #name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
+          name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:latest
           name_backend=docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION
           docker push $name_frontend
           docker push $name_backend
