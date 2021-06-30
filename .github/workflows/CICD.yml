@@ -50,13 +50,13 @@ jobs:
 
       - name: Log in to registry
         # This is where you will update the PAT to CICD_token
-        run: echo "${{ secrets.CICD_token }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.CICD_token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: |
           source .env
-          #name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
-          name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:latest
-          name_backend=docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION
+          #name_frontend=ghcr.io/al3xdiaz/portafolio/frontend:$VERSION
+          name_frontend=ghcr.io/al3xdiaz/portafolio/frontend:latest
+          name_backend=ghcr.io/al3xdiaz/portafolio/backend:$VERSION
           docker push $name_frontend
           docker push $name_backend
