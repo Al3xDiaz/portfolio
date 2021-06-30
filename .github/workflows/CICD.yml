@@ -54,5 +54,5 @@ jobs:
 
       - name: Push image
         run: |
-          docker push "docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION"
-          docker push "docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION"
+          docker push docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
+          docker push docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION
