@@ -4,7 +4,7 @@ on:
   push:
     # Publish `master` as Docker `latest` image.
     branches:
-      - '*'
+      - 'main'
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -44,6 +44,7 @@ jobs:
              echo VERSION=$VERSION
 
              echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g' | sed 's/dockerfile.test/dockerfile.prod/g')" > docker-compose.yml
+             docker-compose pull backend && docker-compose pull frontend
              docker-compose build
              echo VERSION=$VERSION >> .env
 
