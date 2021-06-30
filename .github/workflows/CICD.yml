@@ -57,7 +57,5 @@ jobs:
           source .env
           name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
           name_backend=docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION
-          echo $name_frontend
-          echo $name_backend
           docker push $name_frontend
           docker push $name_backend
