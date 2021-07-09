@@ -1,5 +1,5 @@
 # Portafolio
-este es un repositorio con react js
+este es un repositorio con react js :)
 ## Hosting
 [portafolio](https://alex.coderatbest.com/)
 ## Iniciar el proyecto 
