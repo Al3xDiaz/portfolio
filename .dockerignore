@@ -2,3 +2,5 @@ node_modules
 build
 __pycache__
 *.md
+dockerfile.test
+dockerfile.prod

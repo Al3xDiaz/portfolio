@@ -6,11 +6,12 @@ services:
     build:
         context: .
         dockerfile: frontend/dockerfile.test
-    restart: always
+    #restart: always
     volumes: 
-        - "./frontend/code:/code"
+        - "./frontend/src:/code/src"
+        - "./frontend/public:/code/public"
     ports: 
-        - "80:80"
+        - "80:3000"
     depends_on: 
         - "backend"
  backend:    
@@ -19,6 +20,10 @@ services:
     build: 
         context: .
         dockerfile: backend/dockerfile.test
+    environment: 
+            CON_STR: ${CON_STR}
+            MONGO_U: ${MONGO_U}
+            MONGO_P: ${MONGO_P}
     restart: always
     volumes: 
         - "./backend/code:/code"
