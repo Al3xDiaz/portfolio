@@ -1,22 +1,18 @@
-import './App.css';
+import './components/colors.css';
+import './components/Utils.css';
 import Commentary from './components/commentary';
+import Nav from './components/nav';
 
 function App() {
   return (
     <div>
+      <Nav />
+      <div className="row">
+        <div className="cols-2">
+          <img alt="Alex Diaz" className="profile" src="https://res.cloudinary.com/dd7jrtxu5/image/upload/w_1000,c_fill,ar_1:1,g_auto/v1607886191/Alex/imagen_cjbso3.jpg" />
+        </div>
+      </div>
       <header>
-        <img src="https://res.cloudinary.com/dd7jrtxu5/image/upload/v1607886191/Alex/imagen_cjbso3.jpg" />
-        <p>
-          Edit <code>src/App.js</code> and saved to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
       <Commentary />
     </div>
