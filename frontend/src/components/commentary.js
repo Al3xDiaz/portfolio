@@ -1,20 +1,30 @@
 
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-function commentary() {
-  let editForm = {};
+import React, { useState } from 'react';
+import { Button, FormGroup, Label, Input } from 'reactstrap';
+function Commentary() {
+  const [editForm, setEditForm] = useState({});
   return (
     <div className="commentary">
       <div className="list"></div>
       <div className="form">
-        <Form>
-          <FormGroup>
-            <Label for="exampleEmail">Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-          </FormGroup>
-        </Form>
+        <FormGroup>
+          <Label for="name">Nombre</Label>
+          <Input onChange={(e)=>setEditForm(Object.assign(editForm,{name:e.target.value}))}type="name" name="name" id="name" placeholder="Juan Perez" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="email">Email</Label>
+          <Input onChange={(e)=>setEditForm(Object.assign(editForm,{email:e.target.value}))} type="email" name="email" id="email" placeholder="Juan@example.com" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="comentary">Comentario</Label>
+          <Input onChange={(e)=>setEditForm(Object.assign(editForm,{commentary:e.target.value}))} type="textarea" name="text" id="comentary" />
+        </FormGroup>
+        <FormGroup>
+          <Button onClick={()=>console.log(editForm)}>enviar</Button>
+        </FormGroup>
       </div>
     </div>
   );
 }
 
-export default commentary;
+export default Commentary;

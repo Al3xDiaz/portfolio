@@ -8,7 +8,7 @@ function App() {
     <div>
       <Nav />
       <div className="row">
-        <div className="cols-2">
+        <div className="col-md-2">
           <img alt="Alex Diaz" className="profile" src="https://res.cloudinary.com/dd7jrtxu5/image/upload/w_1000,c_fill,ar_1:1,g_auto/v1607886191/Alex/imagen_cjbso3.jpg" />
         </div>
       </div>
