@@ -4,7 +4,7 @@ from flask import jsonify
 from flask.json import dumps
 from flask.wrappers import Response
 from flask_pymongo import MongoClient
-from datetime import date
+from datetime import datetime
 import os
 #import sys
 #from pymongo import collection, mongo_client
@@ -50,10 +50,12 @@ def getComentary(id):
 
 @app.route('/comentary', methods=['POST'])
 def setUsers():
+        dateTimeObj = datetime.now()
+        timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
         user=  {
                 "name":request.form.get('name'),
                 "email":request.form.get('email'),
-                "date":date.today(),
+                "date":timestampStr,
                 "commentary":request.form.get('commentary')
                 }
         mongoCollection.insert(user)

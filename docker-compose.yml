@@ -16,7 +16,7 @@ services:
     image: "docker.pkg.github.com/al3xdiaz/portafolio/frontend:latest"
     build:
         context: .
-        dockerfile: frontend/dockerfile.prod
+        dockerfile: frontend/dockerfile.test
     #restart: always
     volumes: 
         - "./frontend/src:/code/src"

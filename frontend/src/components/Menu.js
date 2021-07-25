@@ -16,7 +16,7 @@ export function Menu() {
 
   const toggle = () => setIsOpen(!isOpen);
   return (
-    <div>
+    <div className="margin-1">
       <Navbar className="Primary" light expand="md">
         <NavbarBrand className="text-white" href="/">Alex Diaz</NavbarBrand>
         <NavbarToggler onClick={toggle} />

@@ -1,12 +1,11 @@
 .profile{
-    height: 100%;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
 }
 img{
     margin: auto;
-    width: 100%;
+    width: 80%;
 }
 .nav{
     /*border-radius: 5px ;*/
@@ -19,9 +18,6 @@ h1,h2,h3,h4,h5,h6{
 }
 .form{
     margin-left: auto; 
-}
-.form-group{
-    width: 60%;
 }
 .row{
     margin-bottom: 1%;

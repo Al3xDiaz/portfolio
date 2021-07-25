@@ -10,7 +10,7 @@ function App() {
         <div className="row">
           <div className="col-md-3">
             <div className="center">
-              <img alt="Alex Diaz" className="profile" src="https://res.cloudinary.com/dd7jrtxu5/image/upload/w_200,c_fill,ar_1:1,g_auto/v1607886191/Alex/imagen_cjbso3.jpg" />
+              <img alt="Alex Diaz" className="profile" src="https://res.cloudinary.com/dd7jrtxu5/image/upload/c_fill,ar_1:1,g_auto/v1607886191/Alex/imagen_cjbso3.jpg" />
             </div>
           </div>
           <div className="col-md-9">
