@@ -21,7 +21,7 @@ services:
     volumes: 
         - "./frontend/src:/code/src"
         - "./frontend/public:/code/public"
- backend:    
+ backend:
     container_name: "backend"
     image: "docker.pkg.github.com/al3xdiaz/portafolio/backend:latest"
     build: 

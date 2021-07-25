@@ -8,12 +8,14 @@ from datetime import datetime
 import os
 #import sys
 #from pymongo import collection, mongo_client
+#from flask_cors import CORS
 
 CON_STR=f"{os.environ['CON_STR']}"
 MONGO_U=f"{os.environ['MONGO_U']}"
 MONGO_P=f"{os.environ['MONGO_P']}"
 app = Flask(__name__)
 app.config["MONGO_URI"] = CON_STR
+#CORS(app)
 client = MongoClient('db',
                       username=MONGO_U,
                       password=MONGO_P,
@@ -52,11 +54,12 @@ def getComentary(id):
 def setUsers():
         dateTimeObj = datetime.now()
         timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+        content=request.json
         user=  {
-                "name":request.form.get('name'),
-                "email":request.form.get('email'),
+                "name":content["name"],
+                "email":content["email"],
                 "date":timestampStr,
-                "commentary":request.form.get('commentary')
+                "commentary":content["commentary"]
                 }
         mongoCollection.insert(user)
         return jsonify(True)
