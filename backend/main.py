@@ -4,6 +4,7 @@ from flask import jsonify
 from flask.json import dumps
 from flask.wrappers import Response
 from flask_pymongo import MongoClient
+from datetime import date
 import os
 #import sys
 #from pymongo import collection, mongo_client
@@ -11,7 +12,6 @@ import os
 CON_STR=f"{os.environ['CON_STR']}"
 MONGO_U=f"{os.environ['MONGO_U']}"
 MONGO_P=f"{os.environ['MONGO_P']}"
-
 app = Flask(__name__)
 app.config["MONGO_URI"] = CON_STR
 client = MongoClient('db',
@@ -30,6 +30,7 @@ def get_product(name):
 def getComentarys():
         mongoCursor=mongoCollection.find()
         response=[]
+        
         for item in mongoCursor:
                 item["_id"]=str(item["_id"])
                 response.append(
@@ -37,6 +38,7 @@ def getComentarys():
                         "id":str(item["_id"]),
                         "name":item['name'],
                         "email":item['email'],
+                        "date":item['date'],
                         "commentary":item['commentary']
                         })
         return jsonify(response)
@@ -51,6 +53,7 @@ def setUsers():
         user=  {
                 "name":request.form.get('name'),
                 "email":request.form.get('email'),
+                "date":date.today(),
                 "commentary":request.form.get('commentary')
                 }
         mongoCollection.insert(user)
