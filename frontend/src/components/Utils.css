@@ -7,6 +7,22 @@ img{
     margin: auto;
     width: 80%;
 }
+.btn{
+    margin: 1%;
+}
+@media only screen and (max-width: 415px) {
+    .profile{
+        width: 120px;
+    }
+    img{
+        margin: auto;
+        width: 10%;
+    }
+    [class*="col-"] {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
 .nav{
     /*border-radius: 5px ;*/
     width: 100%;
@@ -20,6 +36,7 @@ h1,h2,h3,h4,h5,h6{
     margin-left: auto; 
 }
 .row{
+    margin-right:0px !important;
     margin-bottom: 1%;
 }
 .margin-1{

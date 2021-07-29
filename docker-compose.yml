@@ -12,6 +12,8 @@ services:
         - "80:80"
     restart: always
  frontend:
+    environment: 
+        CHOKIDAR_USEPOLLING: "true"
     container_name: "frontend"
     image: "docker.pkg.github.com/al3xdiaz/portafolio/frontend:latest"
     build:
