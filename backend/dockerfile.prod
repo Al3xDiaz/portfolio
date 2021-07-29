@@ -6,5 +6,5 @@ COPY backend/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 5000
 ENV FLASK_APP=main.py
-COPY ./backend/code/main.py /code/
+COPY ./backend/main.py /code/
 CMD ["flask", "run"]

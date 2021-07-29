@@ -4,4 +4,12 @@ este es un repositorio con react js :)
 [portafolio](https://al.coderatbest.com/)
 ## Iniciar el proyecto 
 en una terminal ejecute \
-`cd portafolio && npm install && REACT_APP_HOST_API="http://$DEPLOY_HOST:5000" npm run start`
+```bash
+#start proyect server test
+#use --build by compile proyect
+$ docker-compose up
+
+#start proyect server production
+#use --build by compile proyect
+$ docker-compose -f docker-compose.prod.yml up -d
+```
