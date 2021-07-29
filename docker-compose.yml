@@ -19,6 +19,7 @@ services:
     build:
         context: .
         dockerfile: frontend/dockerfile.test
+#        dockerfile: frontend/dockerfile.prod
     #restart: always
     volumes: 
         - "./frontend/src:/code/src"
@@ -29,6 +30,7 @@ services:
     build: 
         context: .
         dockerfile: backend/dockerfile.test
+#        dockerfile: backend/dockerfile.prod
     environment: 
             CON_STR: ${CON_STR}
             MONGO_U: ${MONGO_U}
