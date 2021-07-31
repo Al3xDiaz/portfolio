@@ -9,6 +9,11 @@ on:
     # Publish `v1.2.3` tags as releases.
     tags:
       - v*
+
+env:
+  WEBHOOK_ID: ${{ secrets.WEBHOOK_ID }}
+  WEBHOOK_TOKEN: ${{ secrets.WEBHOOK_TOKEN }}
+
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
@@ -21,31 +26,33 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build images
-        #run: docker build . --file Dockerfile --tag FRONTEND --label "runnumber=${GITHUB_RUN_ID}"
-        run: |
-             # Strip git ref prefix from version
-             VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-             
-             # Strip "v" prefix from tag name
-             [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-             
-             # Use Docker `latest` tag convention
-             [ "$VERSION" == "main" ] && VERSION=latest
-
-             echo VERSION=$VERSION
-
-             echo  "$(cat docker-compose.yml | sed 's/latest/'$VERSION'/g' | sed 's/dockerfile.test/dockerfile.prod/g')" > docker-compose.yml
-             
-             docker-compose build
-             echo VERSION=$VERSION >> .env
-
+      - name: Build image
+        run:  docker build . --file frontend/dockerfile.prod --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
-        # This is where you will update the PAT to CICD_token
-        run: echo "${{ secrets.CICD_token }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-
-      - name: Push image
+        # This is where you will update the PAT to GITHUB_TOKEN
+        run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name:  Push image
         run: |
-          source .env
-          name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
-          docker push $name_frontend
+            IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+            
+            # Change all uppercase to lowercase
+            IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+            
+            # Strip git ref prefix from version
+            VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+            
+            # Strip "v" prefix from tag name
+            [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+            
+            # Use Docker `latest` tag convention
+            [ "$VERSION" == "master" ] && VERSION=latest
+            echo IMAGE_ID=$IMAGE_ID
+            echo VERSION=$VERSION
+            docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+            docker push $IMAGE_ID:$VERSION
+      - name: The job has succeeded
+        if: ${{ success() }}
+        run: source webhook.sh true
+      - name: The job has failure
+        if: ${{ failure() }}
+        run: source webhook.sh false
