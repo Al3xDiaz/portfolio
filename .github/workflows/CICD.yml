@@ -28,7 +28,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        run:  docker build . --file frontend/dockerfile.prod --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+        run:  |
+               echo REACT_APP_API_URL="${{ secrets.CICD_TOKEN }}" > .env
+               docker build . --file frontend/dockerfile.prod --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
         # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -46,7 +48,7 @@ jobs:
             [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
             
             # Use Docker `latest` tag convention
-            [ "$VERSION" == "master" ] && VERSION=latest
+            [ "$VERSION" == "main" ] && VERSION=latest
             echo IMAGE_ID=$IMAGE_ID
             echo VERSION=$VERSION
             docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
