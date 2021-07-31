@@ -1,4 +1,0 @@
-flask
-simplejson
-Flask-PyMongo
-#flask-cors
