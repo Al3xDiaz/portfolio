@@ -9,12 +9,6 @@ on:
     # Publish `v1.2.3` tags as releases.
     tags:
       - v*
-
-env:
-  MONGO_U: "${{ secrets.MONGO_U }}"
-  MONGO_P: "${{ secrets.MONGO_P }}"
-  CON_STR: "${{ secrets.CON_STR }}"
-
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
@@ -54,6 +48,4 @@ jobs:
         run: |
           source .env
           name_frontend=docker.pkg.github.com/al3xdiaz/portafolio/frontend:$VERSION
-          name_backend=docker.pkg.github.com/al3xdiaz/portafolio/backend:$VERSION
           docker push $name_frontend
-          docker push $name_backend
