@@ -11,6 +11,7 @@ on:
       - v*
 
 env:
+  IMAGE_NAME: portafolio
   WEBHOOK_ID: ${{ secrets.WEBHOOK_ID }}
   WEBHOOK_TOKEN: ${{ secrets.WEBHOOK_TOKEN }}
 
