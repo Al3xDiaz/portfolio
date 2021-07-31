@@ -57,9 +57,6 @@ function Commentary() {
       </Alert>
       <Row>
         <Col sm={{ size: 9, offset: 3 }}>
-          <div className="list">
-            <ListCommentary items={items} error={error} isLoaded={isLoaded} />
-          </div>
           <div>
             <FormGroup>
               <Label for="name">Nombre</Label>
@@ -76,6 +73,9 @@ function Commentary() {
             <FormGroup>
               <Button onClick={submit}>enviar</Button>
             </FormGroup>
+          </div>
+          <div className="list">
+            <ListCommentary items={items} error={error} isLoaded={isLoaded} />
           </div>
         </Col>
       </Row>
