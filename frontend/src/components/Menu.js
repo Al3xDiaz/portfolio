@@ -23,7 +23,10 @@ export function Menu() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink className="text-white" href="https://github.com/al3xdiaz">GitHub</NavLink>
+              <NavLink className="text-white" href="https://github.com/Al3xDiaz?tab=repositories">Repositorios</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="text-white" href="/Courses">Cursos</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
