@@ -4,7 +4,7 @@ este es un repositorio con react js :)
 [portafolio](https://al.coderatbest.com/)
 ## Iniciar el proyecto 
 en una terminal ejecute \
-```bash
+```sh
 #start proyect server test
 #use --build by compile proyect
 $ docker-compose up
