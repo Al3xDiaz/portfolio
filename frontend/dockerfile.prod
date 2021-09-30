@@ -4,7 +4,7 @@ COPY .env .
 RUN source .env
 ENV PATH /app/node_modules/.bin:$PATH
 COPY frontend/package.json /app
-RUN yarn install
-RUN yarn build
+RUN npm install
 COPY frontend /app
-ENTRYPOINT [ "yarn","start"]
+RUN npm build 
+ENTRYPOINT [ "npm","start"]
