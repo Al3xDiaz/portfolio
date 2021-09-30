@@ -1,8 +1,8 @@
-import ListCommentary from './ListCommentary';
-import { postCommentary, getCommentarys } from '../Request/commentary';
+import ListComentary from './ListComentary';
+import { postComentary, getComentarys } from '../Request/comentary';
 import { Button, FormGroup, Label, Input, Col, Row, Alert } from 'reactstrap';
 import React, { useState, useEffect } from 'react';
-function Commentary() {
+function Comentary() {
   const [editForm, setEditForm] = useState({});
   const [status, setStatus] = useState(null);
 
@@ -17,10 +17,10 @@ function Commentary() {
   }
   function submit() {
     if (!editForm)return;
-    postCommentary(editForm)
+    postComentary(editForm)
       .then(
         () => {
-          getCommentarys()
+          getComentarys()
             .then((data) => {
               setItems(data)
               cleanForm()
@@ -33,7 +33,7 @@ function Commentary() {
         })
   }
   useEffect(() => {
-    getCommentarys()
+    getComentarys()
       .then(
         (result) => {
           setIsLoaded(true);
@@ -67,19 +67,19 @@ function Commentary() {
               <Input onChange={(e) => setEditForm(Object.assign(editForm, { email: e.target.value }))} type="email" name="email" id="email" placeholder="Juan@example.com" />
             </FormGroup>
             <FormGroup>
-              <Label for="commentary">Comentario</Label>
-              <Input onChange={(e) => setEditForm(Object.assign(editForm, { commentary: e.target.value }))} type="textarea" name="text" id="commentary" />
+              <Label for="comentary">Comentario</Label>
+              <Input onChange={(e) => setEditForm(Object.assign(editForm, { comentary: e.target.value }))} type="textarea" name="text" id="comentary" />
             </FormGroup>
             <FormGroup>
               <Button onClick={submit}>enviar</Button>
             </FormGroup>
           </div>
           <div className="list">
-            <ListCommentary items={items} error={error} isLoaded={isLoaded} />
+            <ListComentary items={items} error={error} isLoaded={isLoaded} />
           </div>
         </Col>
       </Row>
     </div>
   );
 }
-export default Commentary;
+export default Comentary;

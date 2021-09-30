@@ -1,6 +1,6 @@
 import '../components/colors.css';
 import '../components/Utils.css';
-import Commentary from '../components/commentary';
+import Comentary from '../components/comentary';
 function Home() {
   return (
     <div>
@@ -50,7 +50,7 @@ function Home() {
           </div>
         </div>
         <h3>Comentarios</h3>
-        <Commentary />
+        <Comentary />
       </div>
     </div>
   );

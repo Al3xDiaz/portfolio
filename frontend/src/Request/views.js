@@ -1,15 +1,15 @@
 import { _get,_post } from "../Utils";
-const API_URL=process.env.REACT_APP_API_URL
+const API_URL=process.env.REACT_APP_API_URL || 'https://coderatbest.com/api'
 
-export async function getCommentarys() {
+export async function getComentarys() {
 const request = await _get({ uri: API_URL+"/comentarys"});
     return request;
 }
-export  const  postCommentary=async(editform)=> {
+export  const  postComentary=async(editform)=> {
     const obj ={
         uri:API_URL+"/comentary",
         data: editform
     }
     const result= await _post(obj)
-    return result;
+    return result; 
 }
