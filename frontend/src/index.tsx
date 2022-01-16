@@ -12,9 +12,12 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      {routes.map((item,index)=>(
+
+      <Route path={routes.path} element={routes.componet} >
+      {routes.childrens?.map((item,index)=>(
         <Route path={item.path} element={item.componet} />
       ))}
+      </Route>
       {/* <Route path="expenses" element={<Expenses />} />
       <Route path="invoices" element={<Invoices />} /> */}
     </Routes>
