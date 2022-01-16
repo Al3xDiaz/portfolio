@@ -15,7 +15,11 @@ ReactDOM.render(
 
       <Route path={routes.path} element={routes.componet} >
       {routes.childrens?.map((item,index)=>(
-        <Route path={item.path} element={item.componet} />
+        <Route path={item.path} element={item.componet} >
+          {item.childrens?.map((childrenItem,i)=>(
+            <Route path={childrenItem.path} element={childrenItem.componet}/>
+          ))}
+        </Route>
       ))}
       </Route>
       {/* <Route path="expenses" element={<Expenses />} />

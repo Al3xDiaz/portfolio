@@ -1,6 +1,3 @@
-import {
-    Route
-  } from "react-router-dom";
 import Home from './components/home/home'
 interface TreeRoutes{
    name:string,
