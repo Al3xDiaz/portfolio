@@ -6,13 +6,14 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import NavBar from './components/navbar/navbar';
 import routes from './routes'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
+    <NavBar title='Alex Diaz' />
     <Routes>
-
       <Route path={routes.path} element={routes.componet} >
       {routes.childrens?.map((item,index)=>(
         <Route path={item.path} element={item.componet} >
