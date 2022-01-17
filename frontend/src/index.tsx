@@ -12,9 +12,10 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
-    <NavBar title='Alex Diaz' />
+    <NavBar menuItems={routes.childrens} title='Alex Diaz' />
     <Routes>
       <Route path={routes.path} element={routes.componet} >
+      </Route>
       {routes.childrens?.map((item,index)=>(
         <Route path={item.path} element={item.componet} >
           {item.childrens?.map((childrenItem,i)=>(
@@ -22,7 +23,6 @@ ReactDOM.render(
           ))}
         </Route>
       ))}
-      </Route>
       {/* <Route path="expenses" element={<Expenses />} />
       <Route path="invoices" element={<Invoices />} /> */}
     </Routes>
