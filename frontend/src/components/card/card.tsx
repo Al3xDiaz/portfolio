@@ -23,7 +23,7 @@ const styles:IStyles={
     card:{
         display:'flex',
         flexDirection:'column',
-        margin:'3vh',
+        margin:'6vh',
         borderRadius:'1vh',
         boxShadow:'1px .91px 15px black',
     },
@@ -39,7 +39,6 @@ const styles:IStyles={
     body:{
         display:'flex',
         padding:'4vh',
-        marginLeft:'3vh',
     }
 }
 export default Card;

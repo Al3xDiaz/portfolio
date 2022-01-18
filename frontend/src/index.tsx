@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {
-  BrowserRouter,
-  Routes,
+  BrowserRouter as Router,
+  Switch,
   Route
 } from "react-router-dom";
 import NavBar from './components/navbar/navbar';
@@ -11,22 +11,22 @@ import routes from './routes'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <NavBar menuItems={routes.childrens} title='Alex Diaz' />
-    <Routes>
-      <Route path={routes.path} element={routes.componet} >
-      </Route>
-      {routes.childrens?.map((item,index)=>(
-        <Route path={item.path} element={item.componet} >
-          {item.childrens?.map((childrenItem,i)=>(
+  <Router>
+    <NavBar menuItems={routes} title='Alex Diaz' />
+    <Switch>
+      {/* <Route exact path={routes.path}>
+        {routes.componet}
+      </Route> */}
+      {routes?.map((item,index)=>(
+        <Route key={index} exact path={item.path}>
+          {item.componet}
+          {/* {item.childrens?.map((childrenItem,i)=>(
             <Route path={childrenItem.path} element={childrenItem.componet}/>
-          ))}
+          ))} */}
         </Route>
       ))}
-      {/* <Route path="expenses" element={<Expenses />} />
-      <Route path="invoices" element={<Invoices />} /> */}
-    </Routes>
-  </BrowserRouter>,
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 

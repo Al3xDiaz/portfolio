@@ -1,8 +1,9 @@
 import React, { useState }  from "react";
 import Menubutton from '../../svgs/menubutton.svg'
 import {TreeRoutes} from '../../routes'
-
-import { FaHome } from 'react-icons/fa';
+import {
+  useHistory,
+} from "react-router-dom";
 interface NavBarProps{
     title:string,
     menuItems?:TreeRoutes[]
@@ -16,31 +17,26 @@ interface IStyles{
   navlink:React.CSSProperties,
 }
 function NavBar(props:NavBarProps) {
+  let history = useHistory();
   const [open, setOpen] = useState(false);
   const closeOpen=()=>{
     setOpen(!open)    
   }
   const toPage=(url:string)=>{
     closeOpen()
-    history.pushState({},'',url)
-    history.go()
+    // history.pushState({},'',url)
+    history.push(url)
+    // history.go(0)
   }
-  const items:TreeRoutes[]=[
-    {
-      path:'/',
-      name:'home',
-      icon:<FaHome />
-    },
-    ... (props.menuItems || [])
-  ]
   return (
     <div>
       {open?(
       <div>
           <div className="primary-color" style={styles.open}>
             <div style={{fontSize:28}}>Menu</div>
-            {items.map((item,i)=>(
-            <div 
+            {props.menuItems?.map((item,i)=>(
+            <div
+            key={i}
             onClick={()=>toPage(item.path)}
             style={styles.navlink}
             >
@@ -84,7 +80,7 @@ const styles:IStyles = {
         top: '-30vw',
     },
     shadow:{
-        height:'99vh',
+        height:'100vh',
         width:'75vw',
         position: 'absolute',
         background:'#000',
