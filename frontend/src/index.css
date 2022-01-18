@@ -32,3 +32,16 @@ code {
 a{
   text-decoration: none;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .container {
+    width: 800px;
+    align-items: center;
+    margin: auto;
+  }
+}

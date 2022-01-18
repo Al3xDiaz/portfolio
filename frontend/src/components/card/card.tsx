@@ -15,7 +15,7 @@ export const CardTitle=(props: ITitleProps)=>{
 }
 export const CardBody=(props: IBodyProps)=>{
     return (
-        <div style={styles.body}>{props.children}</div>
+        <div className="container" style={styles.body}>{props.children}</div>
     )
 }
 
@@ -23,9 +23,10 @@ const styles:IStyles={
     card:{
         display:'flex',
         flexDirection:'column',
-        margin:'6vh',
+        margin:'6vh auto 6vh auto',
         borderRadius:'1vh',
         boxShadow:'1px .91px 15px black',
+        maxWidth:'900px',
     },
     title:{
         display:'flex',

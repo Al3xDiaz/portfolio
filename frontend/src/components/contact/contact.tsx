@@ -8,8 +8,8 @@ const Contact=()=>{
             <Card>
                 <CardTitle>Sugerencias y comentarios</CardTitle>
                 <CardBody>
-                    <Input />
-                    <Input />
+                    <Input id='name'/>
+                    <Input id='email'/>
                 </CardBody>
             </Card>
         </div>
