@@ -1,6 +1,0 @@
-FROM node:14.17.0-alpine
-WORKDIR /code
-# RUN npm install -g --force yarn
-COPY ["tsconfig.json","package.json","yarn.lock", "./"]
-RUN yarn install
-ENTRYPOINT [ "yarn","start"]
