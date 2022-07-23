@@ -6,8 +6,8 @@ body {
 }
 
 :root{
-  --primary: #07838F;
-  --secondary: #115499;
+  --primary: #115499;
+  --secondary: #07838F;
   --tertiary: #EB9009;
   --quaternary: #EB7309;
 }
@@ -26,16 +26,25 @@ body {
 }
 .primary-outline {
   color: var(--primary);
+  background-color: white;
+  border: .3rem solid var(--primary);
 }
 .secondary-outline {
   color: var(--secondary);
+  background-color: white;
+  border: .3rem solid var(--secondary);
 }
 .tertiary-outline {
   color: var(--tertiary);
+  background-color: white;
+  border: .3rem solid var(--tertiary);
 }
 .quaternary-outline {
   color: var(--quaternary);
+  background-color: white;
+  border: .3rem solid var(--quaternary);
 }
+
 
 
 a {
@@ -101,7 +110,6 @@ a {
   margin: 0;
 }
 .footer-content {
-  background-color: var(--secondary);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -111,33 +119,35 @@ a {
 h1 {
   font-size: 2rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   margin: 0;
 }
-h2 {
+
+h2{
   font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   margin: 0;
 }
-h3 {
-  font-size: 1.2rem;
+h3{
+  font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   margin: 0;
 }
-h4 {
+h4{
   font-size: 1rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   margin: 0;
 }
-h5 {
-  font-size: 0.8rem;
+h5{
+  font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   margin: 0;
 }
+
 p {
   font-size: 1rem;
   font-weight: normal;
@@ -149,10 +159,10 @@ p {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
+  justify-content: flex-start; 
 }
 .footer{
-  background-color: var(--primary);
+  background-color: var(--secondary);
   color: white;
   height: 23vh;
   position: relative;
