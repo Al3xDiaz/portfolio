@@ -1,0 +1,17 @@
+.myself{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+}
+.footer{
+    background-color: var(--primary);
+    color: white;
+    height: 23vh;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+    align-items: center;
+  }
