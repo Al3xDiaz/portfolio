@@ -7,6 +7,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import styles from './index.module.css'
+
+
+interface Props {
+  images: string[];
+}
 
 const steps = [
   {
@@ -29,11 +35,9 @@ const steps = [
   },
 ];
 
-export default function Carrusel() {
+export default function Carrusel(props: Props) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = steps.length;
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -54,21 +58,27 @@ export default function Carrusel() {
           bgcolor: 'background.default',
         }}
       >
-        <Typography>{steps[activeStep].label}</Typography>
       </Paper>
-      <Box sx={{  maxWidth: 400, width: '100%', p: 2 }}>
-        {steps[activeStep].description}
-      </Box>
+      <div 
+        className={styles.image} 
+        style={{background:`url(${props.images[activeStep] || ""}) no-repeat center/300px` ,}}
+        >
+          <div 
+            className={styles.background}  
+            style={{background:`#000 url(${props.images[activeStep] || ""}) no-repeat center/100%` ,}}
+          >
+        </div>
+      </div>
       <MobileStepper
         variant="dots"
-        steps={maxSteps}
+        steps={props.images.length}
         position="static"
         activeStep={activeStep}
         nextButton={
           <Button
             size="small"
             onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
+            disabled={activeStep === props.images.length - 1}
           >
             Next
             {theme.direction === 'rtl' ? (

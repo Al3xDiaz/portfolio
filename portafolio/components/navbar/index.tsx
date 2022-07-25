@@ -1,10 +1,14 @@
+import { useContext } from "react"
+import UserContex from "@/context/UserContext"
 import Link from "next/link"
+
 export const Navbar = () => {
+    const {user} = useContext(UserContex)
     return (
         <nav className="navbar">
             <div className="navbar__logo">
                 <Link href="/">
-                    <a>Alex Diaz</a>
+                    <a>{user?.profile.name}</a>
                 </Link>
             </div>
             <menu>

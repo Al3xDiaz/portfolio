@@ -3,8 +3,26 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": [
-        "components/*"
-      ]
+        "components/*",
+      ],
+      "@/models/*": [
+        "models/*",
+      ],
+      "@/context/*":[
+        "context/*"
+      ],
+      "@/services/*":[
+        "services/*"
+      ],
+      "@/reducers/*":[
+        "reducers/*"
+      ],
+      "@/const/*":[
+        "const/*"
+      ],
+      "@/hooks/*":[
+        "hooks/*"
+      ],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

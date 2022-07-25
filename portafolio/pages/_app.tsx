@@ -1,13 +1,18 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from '@/components/layaut'
+import UserContex from '@/context/UserContext'
+import useProfile from '@/hooks/useProfile'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
+  const { state } = useProfile()
   return (
-    <Layout>
-       <Component {...pageProps} />
-    </Layout>
+    <UserContex.Provider value={state}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </UserContex.Provider>
   )
 }
 
-export default MyApp
+export default App
