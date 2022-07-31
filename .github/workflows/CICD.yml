@@ -29,7 +29,7 @@ jobs:
 
       - name: Build image
         run:  |
-                echo REACT_APP_API_URL="${{ secrets.REACT_APP_API_URL }}" > .env            
+                # echo REACT_APP_API_URL="${{ secrets.REACT_APP_API_URL }}" > .env  
                 IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
                 # Change all uppercase to lowercase
                 IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
