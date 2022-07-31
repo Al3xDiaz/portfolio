@@ -1,16 +1,14 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import  Carrusel from '@/components/carrusel'
 import { useContext } from 'react'
 import UserContex from '@/context/UserContext'
 import { TimeLine } from '@/components/timeline'
+import { Comentaries } from '@/components/comentaries'
 
 const Home: NextPage = () => {
   const { user } = useContext(UserContex)
   return (
-    <div className={styles.container}>
+    <div>
       <Carrusel images={user?.profile.images_profile || []}/>
       <TimeLine  data={user?.profile.time_line_profile.map(item=>(
         {
@@ -18,6 +16,7 @@ const Home: NextPage = () => {
           description: item.comment
         }
       ))||[]}/>
+      <Comentaries />
     </div>
   )
 }

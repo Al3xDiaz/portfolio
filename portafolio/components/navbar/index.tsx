@@ -15,17 +15,17 @@ export const Navbar = () => {
                 <Link href="/">
                     <a>Home</a>
                 </Link>
-                <Link href="/cursos">
-                    <a>Courses</a>
+                <Link href="/courses">
+				<a>Courses</a>
                 </Link>
-                <Link href="/habilidades">
-                    <a>Skills</a>
+                <Link href="/skills">
+				<a>Skills</a>
                 </Link>
-                <Link href="/pasatiempos">
-                    <a>Hobbies</a>
+                <Link href="/hobbies">
+				<a>Hobbies</a>
                 </Link>
-                <Link href="/contacto">
-                    <a>Contact</a>
+                <Link href="/contact">
+				<a>Contact</a>
                 </Link>
             </menu>
         </nav>

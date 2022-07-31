@@ -54,7 +54,7 @@ export const Footer = () => {
                     margin: 0px 5px;
                 }
                 footer{
-                    background-color: var(--secondary);
+                    background-color: #000;
                     color: white;
                     height: 23vh;
                     position: relative;

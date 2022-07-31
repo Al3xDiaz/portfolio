@@ -12,7 +12,7 @@ interface TimelineProps {
 
 export const TimeLine = ({data}:TimelineProps) => {
     return (
-        <div>
+        <div className='container'>
             <VerticalTimeline>
                 {data.map((item,index) => (
                     <VerticalTimelineElement

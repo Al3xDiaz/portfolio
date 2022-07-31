@@ -3,7 +3,7 @@ import {IService} from "@/services/iService";
 import axios from "axios";
 
 export class UserService implements IService<IUser> {
-    async list(): Promise<IUser> {
+    async list(): Promise<IUser[]> {
         throw new Error("Method not implemented.");
     }
 
