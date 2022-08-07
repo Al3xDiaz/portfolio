@@ -46,7 +46,7 @@ jobs:
           echo "set docker tag: $DOCKER_TAG"
 
       - name: Build image tag
-        if: github.ref_type == "tag"
+        if: github.ref_type == 'tag'
         run: |
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
