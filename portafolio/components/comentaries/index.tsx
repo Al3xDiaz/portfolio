@@ -12,8 +12,8 @@ export const Comentaries = () => {
                 <div className="col">
                     {
                         comentaries &&
-                        comentaries.map(({content}) => (
-                            <div className="row">
+                        comentaries.map(({content,id}) => (
+                            <div className="row" key={id}>
                                 {/* <Avatar alt="Remy Sharp" src={user?.profile.image}/> */}
                                 <Avatar alt="Remy Sharp" src={user?.profile.image}/>
                                 <div className="comentary">

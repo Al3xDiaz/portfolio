@@ -1,6 +1,6 @@
 version: '3.4'
 services:
- frontend:
+ app:
     image: "ghcr.io/al3xdiaz/portafolio:latest"
     environment: 
         USERNAME: ${USERNAME}
@@ -8,4 +8,4 @@ services:
         context: portafolio
         dockerfile: dockerfile${DOCKERFILE}
     ports: 
-        - "3000:3000"    
+        - "3000:3000"

@@ -1,6 +1,6 @@
 version: '3.4'
 services:
- frontend:
+ app:
     volumes: 
-        - ./portafolio/:/app
+        - ./portafolio/:/app/src/
     restart: unless-stopped

@@ -103,46 +103,12 @@ export default function handler(
     }
     const response: IComentary[] = [
         {
+            id : 1,
             user: userData,
             content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
         },
         {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
-            user: userData,
-            content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
-        },
-        {
+            id : 2,
             user: userData,
             content: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. ",
         },
