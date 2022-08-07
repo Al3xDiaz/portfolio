@@ -39,7 +39,7 @@ jobs:
           GIT_BRANCH_NAME=`git branch | grep "*" | cut -d " " -f 2`
           GIT_TAG=`git describe --tags --abbrev=0` 
 
-          echo "set docker tag"
+          echo "set docker tag: $GIT_BRANCH_NAME"
           [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
 
           echo "build image"
