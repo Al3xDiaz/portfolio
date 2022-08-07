@@ -29,17 +29,17 @@ jobs:
 
       - name: Build image
         run:  |
-                # echo REACT_APP_API_URL="${{ secrets.REACT_APP_API_URL }}" > .env  
-                IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-                # Change all uppercase to lowercase
-                IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+            # echo REACT_APP_API_URL="${{ secrets.REACT_APP_API_URL }}" > .env  
+            IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+            # Change all uppercase to lowercase
+            IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-                GIT_BRANCH_NAME=`git branch | grep "*" | cut -d " " -f 2`
-                GIT_TAG=`git describe --tags --abbrev=0` 
+            GIT_BRANCH_NAME=`git branch | grep "*" | cut -d " " -f 2`
+            GIT_TAG=`git describe --tags --abbrev=0` 
 
-                [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
+            [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
 
-                # docker build . --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --tag $IMAGE_ID:GIT_TAG --label "runnumber=${GITHUB_RUN_ID}"
+            docker build . --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --tag $IMAGE_ID:GIT_TAG --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
         # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
