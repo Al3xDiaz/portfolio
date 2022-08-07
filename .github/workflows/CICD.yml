@@ -14,7 +14,7 @@ env:
   IMAGE_NAME: portafolio
   WEBHOOK_ID: ${{ secrets.WEBHOOK_ID }}
   WEBHOOK_TOKEN: ${{ secrets.WEBHOOK_TOKEN }}
-  OWNER: ${{ github.repository.owner }}
+  OWNER: ${{ github.GIHUB_REPOSITORY_OWNER }}
 
 jobs:
   # Push image to GitHub Packages.
