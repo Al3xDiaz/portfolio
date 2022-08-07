@@ -35,12 +35,12 @@ jobs:
           echo "Change all uppercase to lowercase"
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          echo "get information about the git"
+          echo "get information about the git: $GITHUB_BASE_REF"
           GIT_BRANCH_NAME=`git branch | grep "*" | cut -d " " -f 2`
           GIT_TAG=`git describe --tags --abbrev=0` 
 
-          echo "set docker tag: $GITHUB_BASE_REF"
-          [[ $GITHUB_BASE_REF == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
+          echo "set docker tag: $GIT_BRANCH_NAME"
+          [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
 
           echo "build image"
           docker build . --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --tag $IMAGE_ID:GIT_TAG --label "runnumber=${GITHUB_RUN_ID}"
