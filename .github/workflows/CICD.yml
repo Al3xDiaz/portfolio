@@ -39,7 +39,7 @@ jobs:
           echo "get information about the git: ${{ github.GITHUB_BASE_REF }}"
           GIT_BRANCH_NAME=$(echo ${{ github.GITHUB_BASE_REF }} | tr '[A-Z]' '[a-z]')
           # GIT_TAG=$(echo ${{ github.GITHUB_REF }} | tr '[A-Z]' '[a-z]')
-          GIT_TAG_LATEST=$(git tag -l | tail -n 1)
+          GIT_TAG_LATEST=`echo $(git describe --tags --abbrev=0)`
 
           echo "set docker tag: $GIT_BRANCH_NAME"
           [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
@@ -51,5 +51,5 @@ jobs:
       - name:  Push image
         run: |
             # docker push -a $(docker images | grep "$IMAGE_NAME" | awk '{print $1}' | awk 'NR==1')
-            docker push $IMAGE_ID:$DOCKER_TAG
-            docker push $IMAGE_ID:$GIT_TAG_LATEST
+            docker push ${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+            docker push ${{ env.IMAGE_NAME }}:${{ env.GIT_TAG_LATEST }}
