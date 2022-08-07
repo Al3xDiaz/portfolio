@@ -16,15 +16,15 @@ export const Courses = () => {
             </div>
             <style jsx>{`
                 .container{
-                    display: flex;
-                    width: 100%;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    flex-wrap: wrap;
+                    display: "flex";
+                    width: "100%";
+                    flex-direction: "row";
+                    align-items: "center";
+                    justify-content: "center";
+                    flex-wrap: "wrap";
                 }
                 .container div{
-                    padding: 1rem;
+                    padding: "1rem";
                 }
                 `}</style>
         </div>
