@@ -27,8 +27,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: print context
-        run: echo '${{ toJSON(github) }}'
+      - name: Dump GitHub context
+        id: github_context_step
+        run: |
+          echo '${{ toJSON(github) }}'
+          echo '${{ toJSON(job) }}'
+          echo '${{ toJSON(steps) }}'
+          echo '${{ toJSON(runner) }}'
+          echo '${{ toJSON(strategy) }}'
+          echo '${{ toJSON(matrix) }}'
 
       - name: Build image
         id: build
@@ -39,8 +46,8 @@ jobs:
           echo "Change all uppercase to lowercase"
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          echo "get information about the git: ${{ github.github_head_ref }}"
-          GIT_BRANCH_NAME=$(echo ${{ github.github_head_ref }} | tr '[A-Z]' '[a-z]')
+          echo "get information about the git: ${{ github.ref_name }}"
+          GIT_BRANCH_NAME=$(echo ${{ github.ref_name }} | tr '[A-Z]' '[a-z]')
           GIT_TAG_LATEST=$(echo ${{ github.github_ref }} | tr '[A-Z]' '[a-z]')
           # GIT_TAG_LATEST=$(echo $(git describe --tags --abbrev=0) | tr '[A-Z]' '[a-z]')
           echo "git tag latest: $GIT_TAG_LATEST"
