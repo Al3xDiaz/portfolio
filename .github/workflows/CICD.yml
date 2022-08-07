@@ -36,9 +36,9 @@ jobs:
           echo "Change all uppercase to lowercase"
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          echo "get information about the git: ${{ github.GITHUB_REPOSITORY }}"
-          GIT_BRANCH_NAME=$(echo ${{ github.GITHUB_REPOSITORY }} | tr '[A-Z]' '[a-z]')
-          # GIT_TAG_LATEST=$(echo ${{ github.GITHUB_REF }} | tr '[A-Z]' '[a-z]')
+          echo "get information about the git: ${{ github.github_head_ref }}"
+          GIT_BRANCH_NAME=$(echo ${{ github.github_head_ref }} | tr '[A-Z]' '[a-z]')
+          GIT_TAG_LATEST=$(echo ${{ github.github_ref }} | tr '[A-Z]' '[a-z]')
           # GIT_TAG_LATEST=$(echo $(git describe --tags --abbrev=0) | tr '[A-Z]' '[a-z]')
           echo "git tag latest: $GIT_TAG_LATEST"
 
@@ -49,7 +49,7 @@ jobs:
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry # This is where you will update the PAT to GITHUB_TOKEN
-        run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u al3xdiaz --password-stdin
+        run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
       - name:  Push image
         run: |
             # docker push -a $(docker images | grep "$IMAGE_NAME" | awk '{print $1}' | awk 'NR==1')
