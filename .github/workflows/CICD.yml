@@ -35,9 +35,9 @@ jobs:
           echo "Change all uppercase to lowercase"
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          echo "get information about the git: ${ env.GITHUB_BASE_REF }"
-          GIT_BRANCH_NAME=`git branch | grep "*" | cut -d " " -f 2`
-          GIT_TAG=`git describe --tags --abbrev=0` 
+          echo "get information about the git: ${{ github.GITHUB_BASE_REF }}"
+          GIT_BRANCH_NAME=$(echo ${{ github.GITHUB_BASE_REF }} | tr '[A-Z]' '[a-z]')
+          GIT_TAG=$(echo ${{ github.GITHUB_REF }} | tr '[A-Z]' '[a-z]')
 
           echo "set docker tag: $GIT_BRANCH_NAME"
           [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
