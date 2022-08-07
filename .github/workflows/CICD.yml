@@ -49,16 +49,16 @@ jobs:
         if: github.ref_type == 'tag'
         run: |
           echo "build image"
-          docker build portafolio --file portafolio/dockerfile.prod --tag ${{ env.IMAGE_ID }}:${{ env.GIT_TAG_LATEST }} --label "runnumber=${GITHUB_RUN_ID}"
+          docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
       - name: Build image latest
         run: |
           echo "build image"
-          docker build portafolio --file portafolio/dockerfile.prod --tag ${{ env.IMAGE_ID }}:${{ env.DOCKER_TAG }} --label "runnumber=${GITHUB_RUN_ID}"
+          docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
       - name:  Push image
         run: |
             # docker push -a $(docker images | grep "$IMAGE_NAME" | awk '{print $1}' | awk 'NR==1')
-            docker push ${{ env.IMAGE_ID }}:${{ env.DOCKER_TAG }}
-            docker push ${{ env.IMAGE_ID }}:${{ env.GIT_TAG_LATEST }}
+            docker push $IMAGE_ID:$DOCKER_TAG
+            docker push $IMAGE_ID:$GIT_TAG_LATEST
