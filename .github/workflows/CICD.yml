@@ -38,7 +38,8 @@ jobs:
 
           echo "get information about the git: ${{ github.GITHUB_BASE_REF }}"
           GIT_BRANCH_NAME=$(echo ${{ github.GITHUB_BASE_REF }} | tr '[A-Z]' '[a-z]')
-          GIT_TAG=$(echo ${{ github.GITHUB_REF }} | tr '[A-Z]' '[a-z]')
+          # GIT_TAG=$(echo ${{ github.GITHUB_REF }} | tr '[A-Z]' '[a-z]')
+          GIT_TAG_LATEST=$(git tag -l | tail -n 1)
 
           echo "set docker tag: $GIT_BRANCH_NAME"
           [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable" || DOCKER_TAG="latest"
