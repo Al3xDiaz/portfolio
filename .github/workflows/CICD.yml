@@ -71,4 +71,4 @@ jobs:
             DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
             GIT_TAG_LATEST=${{ steps.build.outputs.git_tag }}
             docker push $IMAGE_ID:$DOCKER_TAG
-            [[ $GIT_TAG_LATEST != "" ]] && docker push $IMAGE_ID:$GIT_TAG_LATEST"
+            [[ $GIT_TAG_LATEST != "" ]] && docker push $IMAGE_ID:$GIT_TAG_LATEST
