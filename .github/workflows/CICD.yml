@@ -56,11 +56,11 @@ jobs:
         if: github.ref_type == 'tag'
         run: |
           echo "build image"
-          TAG=${{needs.set_tags.outputs.image_id}}:${{needs.set_tags.outputs.git_tag_latest}}
+          TAG=${{needs.build-push.outputs.image_id}}:${{needs.build-push.outputs.git_tag_latest}}
           docker build portafolio --file portafolio/dockerfile.prod --tag $TAG--label "runnumber=${GITHUB_RUN_ID}"
       - name: Build image latest
         run: |
-          TAG=${{needs.set_tags.outputs.image_id}}:${{needs.set_tags.outputs.docker_tag}}
+          TAG=${{needs.build-push.outputs.image_id}}:${{needs.build-push.outputs.docker_tag}}
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $TAG --label "runnumber=${GITHUB_RUN_ID}"
 
@@ -69,8 +69,8 @@ jobs:
       - name:  Push image
         run: |
             # docker push -a $(docker images | grep "$IMAGE_NAME" | awk '{print $1}' | awk 'NR==1')
-            IMAGE_ID=${{needs.set_tags.outputs.image_id}}
-            DOCKER_TAG=${{needs.set_tags.outputs.docker_tag}}
-            GIT_TAG_LATEST=${{needs.set_tags.outputs.git_tag_latest}}
+            IMAGE_ID=${{needs.build-push.outputs.image_id}}
+            DOCKER_TAG=${{needs.build-push.outputs.docker_tag}}
+            GIT_TAG_LATEST=${{needs.build-push.outputs.git_tag_latest}}
             docker push $IMAGE_ID:$DOCKER_TAG
             docker push $IMAGE_ID:$GIT_TAG_LATEST
