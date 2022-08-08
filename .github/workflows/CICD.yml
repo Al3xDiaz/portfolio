@@ -48,13 +48,13 @@ jobs:
       - name: Build image tag
         if: github.ref_type == 'tag'
         run: |
-          #print envs
-          echo "these are the envs:"
-          echo "${{ toJSON(env) }}"
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
       - name: Build image latest
         run: |
+          #print envs
+          echo "these are the envs:"
+          echo "${{ toJSON(env) }}"
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --label "runnumber=${GITHUB_RUN_ID}"
 
