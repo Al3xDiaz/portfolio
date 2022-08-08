@@ -57,7 +57,6 @@ jobs:
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
       - name: Build image latest
         run: |
-          echo "${{ toJSON(outputs) }}"
           IMAGE_ID=${{ steps.build.outputs.image_id }}
           DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
           echo "build image"
