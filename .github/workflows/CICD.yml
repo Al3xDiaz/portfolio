@@ -18,19 +18,16 @@ env:
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  build-push:
+  push:
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
-    outputs:
-      image_id: ${{ steps.set_tags.outputs.image_id }}
-      git_tag_latest: ${{ steps.set_tags.outputs.git_tag_latest }}
-      docker_tag: ${{ steps.set_tags.outputs.docker_tag }}
+
     steps:
       - uses: actions/checkout@v2
       - name: Set Tags
-        id: set_tags
+        id: build
         run: |
           echo "Building image..."
           echo REACT_APP_API_URL="${{ secrets.REACT_APP_API_URL }}" > .env 
@@ -48,29 +45,23 @@ jobs:
           [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable"
           echo "set docker tag: $DOCKER_TAG"
 
-          echo "::set-output name=image_id::$IMAGE_ID"
-          echo "::set-output name=git_tag_latest::$GIT_TAG_LATEST"
-          echo "::set-output name=docker_tag::$DOCKER_TAG"
-
       - name: Build image tag
         if: github.ref_type == 'tag'
         run: |
+          #print envs
+          echo "these are the envs:"
+          echo "${{ toJSON(env) }}"
           echo "build image"
-          TAG=${{needs.build-push.outputs.image_id}}:${{needs.build-push.outputs.git_tag_latest}}
-          docker build portafolio --file portafolio/dockerfile.prod --tag $TAG--label "runnumber=${GITHUB_RUN_ID}"
+          docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
       - name: Build image latest
         run: |
-          TAG=${{needs.build-push.outputs.image_id}}:${{needs.build-push.outputs.docker_tag}}
           echo "build image"
-          docker build portafolio --file portafolio/dockerfile.prod --tag $TAG --label "runnumber=${GITHUB_RUN_ID}"
+          docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
       - name:  Push image
         run: |
             # docker push -a $(docker images | grep "$IMAGE_NAME" | awk '{print $1}' | awk 'NR==1')
-            IMAGE_ID=${{needs.build-push.outputs.image_id}}
-            DOCKER_TAG=${{needs.build-push.outputs.docker_tag}}
-            GIT_TAG_LATEST=${{needs.build-push.outputs.git_tag_latest}}
             docker push $IMAGE_ID:$DOCKER_TAG
             docker push $IMAGE_ID:$GIT_TAG_LATEST
