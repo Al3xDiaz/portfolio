@@ -55,7 +55,7 @@ jobs:
         run: |
           #print envs
           echo "these are the previous step envs"
-          echo "${{ steps.generate_number.outputs.random_number }}"
+          echo "${{ steps.build.outputs.random_number }}"
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --label "runnumber=${GITHUB_RUN_ID}"
 
