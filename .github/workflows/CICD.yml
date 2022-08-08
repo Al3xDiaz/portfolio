@@ -44,7 +44,9 @@ jobs:
           DOCKER_TAG="latest"
           [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable"
           echo "set docker tag: $DOCKER_TAG"
-          echo "::set-output name=random_number::$(($RANDOM % 2))"
+          echo "::set-output name=image_id::$IMAGE_ID"
+          echo "::set-output name=docker_tag::$DOCKER_TAG"
+          echo "::set-output name=git_tag::$GIT_TAG_LATEST"
 
       - name: Build image tag
         if: github.ref_type == 'tag'
@@ -55,7 +57,8 @@ jobs:
         run: |
           #print envs
           echo "these are the previous step envs"
-          echo "${{ steps.build.outputs.random_number }}"
+          echo "${{ toJSON(steps.build.outputs) }}"
+          echo "${{ toJSON(steps.build.env) }}"
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --label "runnumber=${GITHUB_RUN_ID}"
 
