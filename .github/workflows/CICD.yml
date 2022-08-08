@@ -51,14 +51,15 @@ jobs:
       - name: Build image tag
         if: github.ref_type == 'tag'
         run: |
+          IMAGE_ID=${{ steps.build.outputs.image_id }}
+          GIT_TAG_LATEST=${{ steps.build.outputs.git_tag }}
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
       - name: Build image latest
         run: |
-          #print envs
-          echo "these are the previous step envs"
-          echo "${{ toJSON(steps.build.outputs) }}"
-          echo "${{ toJSON(steps.build.env) }}"
+          echo "${{ toJSON(outputs) }}"
+          IMAGE_ID=${{ steps.build.outputs.image_id }}
+          DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
           echo "build image"
           docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --label "runnumber=${GITHUB_RUN_ID}"
 
@@ -67,5 +68,8 @@ jobs:
       - name:  Push image
         run: |
             # docker push -a $(docker images | grep "$IMAGE_NAME" | awk '{print $1}' | awk 'NR==1')
+            IMAGE_ID=${{ steps.build.outputs.image_id }}
+            DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
+            GIT_TAG_LATEST=${{ steps.build.outputs.git_tag }}
             docker push $IMAGE_ID:$DOCKER_TAG
-            docker push $IMAGE_ID:$GIT_TAG_LATEST
+            [[ $GIT_TAG_LATEST != "" ]] && docker push $IMAGE_ID:$GIT_TAG_LATEST"
