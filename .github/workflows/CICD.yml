@@ -4,7 +4,7 @@ on:
   push:
     # Publish `master` as Docker `latest` image.
     branches:
-      - 'main'
+      - '**'
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -26,36 +26,53 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Build image
-        run:  |
-               echo REACT_APP_API_URL="${{ secrets.REACT_APP_API_URL }}" > .env
-               docker build . --file frontend/dockerfile.prod --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
-      - name: Log in to registry
-        # This is where you will update the PAT to GITHUB_TOKEN
-        run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - name:  Push image
+      - name: Set Tags
+        id: build
         run: |
-            IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-            
-            # Change all uppercase to lowercase
-            IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-            
-            # Strip git ref prefix from version
-            VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-            
-            # Strip "v" prefix from tag name
-            [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-            
-            # Use Docker `latest` tag convention
-            [ "$VERSION" == "main" ] && VERSION=latest
-            echo IMAGE_ID=$IMAGE_ID
-            echo VERSION=$VERSION
-            docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-            docker push $IMAGE_ID:$VERSION
-      - name: The job has succeeded
-        if: ${{ success() }}
-        run: source webhook.sh true
-      - name: The job has failure
-        if: ${{ failure() }}
-        run: source webhook.sh false
+          echo "Building image..."
+          echo REACT_APP_API_URL="${{ secrets.REACT_APP_API_URL }}" > .env 
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          echo "Change all uppercase to lowercase"
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          echo "get information about the git: ${{ github.ref_name }}"
+          GIT_BRANCH_NAME=$(echo ${{ github.ref_name }} | tr '[A-Z]' '[a-z]')
+          GIT_TAG_LATEST=$(echo ${{ github.github_ref }} | tr '[A-Z]' '[a-z]')
+          # GIT_TAG_LATEST=$(echo $(git describe --tags --abbrev=0) | tr '[A-Z]' '[a-z]')
+          echo "git tag latest: $GIT_TAG_LATEST"
+
+          DOCKER_TAG="latest"
+          [[ $GIT_BRANCH_NAME == "main" ]] && DOCKER_TAG="stable"
+          echo "set docker tag: $DOCKER_TAG"
+          echo "::set-output name=image_id::$IMAGE_ID"
+          echo "::set-output name=docker_tag::$DOCKER_TAG"
+          echo "::set-output name=git_tag::$GIT_TAG_LATEST"
+
+      - name: Build image tag
+        if: github.ref_type == 'tag'
+        run: |
+          IMAGE_ID=${{ steps.build.outputs.image_id }}
+          GIT_TAG_LATEST=${{ steps.build.outputs.git_tag }}
+          echo "build image"
+          docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$GIT_TAG_LATEST --label "runnumber=${GITHUB_RUN_ID}"
+      - name: Build image latest
+        run: |
+          IMAGE_ID=${{ steps.build.outputs.image_id }}
+          DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
+          echo "build image"
+          docker build portafolio --file portafolio/dockerfile.prod --tag $IMAGE_ID:$DOCKER_TAG --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Log in to registry # This is where you will update the PAT to GITHUB_TOKEN
+        run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+      - name: Push tag image to registry
+        if: github.ref_type == 'tag'
+        run: |
+          IMAGE_ID=${{ steps.build.outputs.image_id }}
+          GIT_TAG_LATEST=${{ steps.build.outputs.git_tag }}
+          echo "push image"
+          docker push $IMAGE_ID:$GIT_TAG_LATEST
+      - name:  Push latest image to registry
+        run: |
+            IMAGE_ID=${{ steps.build.outputs.image_id }}
+            DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
+            docker push $IMAGE_ID:$DOCKER_TAG
