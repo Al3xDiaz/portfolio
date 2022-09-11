@@ -1,6 +1,7 @@
 export interface TimeLineProfile {
     year: number;
     comment: string;
+    title:string;
     icon: string;
     profile: number;
 }

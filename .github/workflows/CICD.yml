@@ -69,7 +69,6 @@ jobs:
         run: |
           IMAGE_ID=${{ steps.build.outputs.image_id }}
           GIT_TAG_LATEST=${{ steps.build.outputs.git_tag }}
-          echo "push image"
           docker push $IMAGE_ID:$GIT_TAG_LATEST
       - name:  Push latest image to registry
         run: |

@@ -1,36 +1,20 @@
-import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-interface Item{
-    year: number;
-    title?: string;
-    description: string;
-}
+// import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+// import 'react-vertical-timeline-component/style.min.css';
+import { Row } from './row';
+import styles from './Index.module.css'
+import { TimeLineProfile } from '@/models/user';
+
 interface TimelineProps {
-    data:Item[];
+    data:TimeLineProfile[];
 }
 
 
 export const TimeLine = ({data}:TimelineProps) => {
     return (
-        <div className='container'>
-            <VerticalTimeline>
-                {data.map((item,index) => (
-                    <VerticalTimelineElement
-                        key={index}
-                        className="vertical-timeline-element--work"
-                        contentStyle={{ background: 'var(--primary)', color: '#fff' }}
-                        contentArrowStyle={{ borderRight: '7px solid  var(--primary)' }}
-                        date={`${item.year} - aaaa`}
-                        iconStyle={{ background: 'var(--primary)', color: '#fff' }}
-                        icon={(<div className='icon'>{item.year}</div>)}
-                    >
-                        <h3 className="vertical-timeline-element-title">{item.year}</h3>
-                        <p>
-                            {item.description}
-                        </p>
-                    </VerticalTimelineElement>
-                ))}
-            </VerticalTimeline>
+        <div className={styles.container}>
+            {data.map((item,index)=>(
+                <Row item={item} reverse={index%2==0}/>
+            ))}
             <style jsx>{`
                 .icon{
                     display: flex;
@@ -38,9 +22,7 @@ export const TimeLine = ({data}:TimelineProps) => {
                     justify-content: center;
                     height: 100%;     
                 }
-                `}</style>
-
+            `}</style>
         </div>
-
     )
 }

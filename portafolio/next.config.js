@@ -7,6 +7,7 @@ const nextConfig = {
       "picsum.photos",
     ],
   },
+  distDir:"build"
 }
 
 module.exports = nextConfig

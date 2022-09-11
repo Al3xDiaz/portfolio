@@ -1,8 +1,15 @@
-FROM node:16.9.0-alpine
+FROM node:18.8.0-alpine3.16 as BUILD
 WORKDIR /app
 COPY package.json /app/
 RUN yarn
 COPY . .
 RUN yarn build
+
+FROM node:18.8.0-alpine3.16 as RUNNER
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=BUILD ["/app/package.json","/app/next.config.js", "/app/"]
+RUN yarn --production
+# COPY --from=BUILD /app/build /app/build
 ENTRYPOINT [ "npm" ]
 CMD [ "start" ]
