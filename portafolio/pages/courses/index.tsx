@@ -1,12 +1,13 @@
 import { useCourses } from '@/hooks/useCourses';
 import Image from 'next/image';
+import styles from './index.module.css'
 
 export const Courses = () => {
     const { courses } = useCourses();
     return (
         <div>
             <h1>Courses</h1>
-            <div className='container'>
+            <div className={styles.row}>
                 {courses.map(course => (
                     <div key={course.id}>
                         <h2>{course.name}</h2>
@@ -14,19 +15,6 @@ export const Courses = () => {
                     </div>
                 ))}
             </div>
-            <style jsx>{`
-                .container{
-                    display: "flex";
-                    width: "100%";
-                    flex-direction: "row";
-                    align-items: "center";
-                    justify-content: "center";
-                    flex-wrap: "wrap";
-                }
-                .container div{
-                    padding: "1rem";
-                }
-                `}</style>
         </div>
     )
 }
