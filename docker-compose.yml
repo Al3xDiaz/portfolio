@@ -3,9 +3,9 @@ services:
  app:
     image: "ghcr.io/al3xdiaz/portafolio:latest"
     environment: 
-        USERNAME: ${USERNAME}
+        USERNAME: ${USERNAME:-al3xdiaz}
     build:
         context: portafolio
-        dockerfile: dockerfile${DOCKERFILE}
+        dockerfile: ${DOCKERFILE:-dockerfile}
     ports: 
         - "3000:3000"

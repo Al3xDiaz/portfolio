@@ -34,29 +34,19 @@ export default function handler(
         ],
         "time_line_profile": [
             {
-                "year": 2022,
-                "comment": "hola 2022",
-                "icon": "AiFillHeart",
-                "profile": 1
+                year: 2022,
+                comment: "hola 2022 a nu ma si ens lfhjsdlfldsjfljslafdlsjflds dsjflkjdslfj lsdjfldsjlf dslfdsjflsdlfjds fjdlsjflslfl",
+                title:'Saludos',
+                icon: "AiFillHeart",
+                profile: 1
             },
             {
-                "year": 2021,
-                "comment": "hola 2021",
-                "icon": "AiFillFire",
-                "profile": 1
+                year: 2021,
+                comment: "hola 2022 a nu ma si ens lfhjsdlfldsjfljslafdlsjflds dsjflkjdslfj lsdjfldsjlf dslfdsjflsdlfjds fjdlsjflslfl",
+                title:'Saludos',
+                icon: "AiFillHeart",
+                profile: 1
             },
-            {
-                "year": 2020,
-                "comment": "hola 2020",
-                "icon": "AiFillGift",
-                "profile": 1
-            },
-            {
-                "year": 2019,
-                "comment": "hola 2019",
-                "icon": "AiFillCode",
-                "profile": 1
-            }
         ],
         // "time_line_profile":[]
     },

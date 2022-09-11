@@ -10,12 +10,9 @@ const Home: NextPage = () => {
   return (
     <div>
       <Carrusel images={user?.profile.images_profile || []}/>
-      {user?.profile.time_line_profile.length && (<TimeLine  data={user?.profile.time_line_profile.map(item=>(
-        {
-          year: item.year,
-          description: item.comment
-        }
-      ))||[]}/>)}
+      {
+        user?.profile.time_line_profile.length && (<TimeLine data={user.profile.time_line_profile}/>)
+      }
       <Comentaries />
     </div>
   )

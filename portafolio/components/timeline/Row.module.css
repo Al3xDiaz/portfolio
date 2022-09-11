@@ -1,0 +1,107 @@
+.row{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 2;
+    margin: 10px 0px;
+}
+.reverse{
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    z-index: 2;
+    margin: 10px 0px;
+}
+.description{
+    display: flex;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;    
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+@media (min-width: 769px){
+    .row::after{
+        content: attr(data-year);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        padding: .4rem .3rem;
+        background-color: blue;
+        border-style: solid;
+        border-color: white;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .reverse::after{
+        content: attr(data-year);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        padding: .4rem .3rem;
+        background-color: blue;
+        border-style: solid;
+        border-color: white;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .description{
+        width: 39vw;
+        position: relative;
+    }
+    .title{
+        width: 40vw;
+    }
+    .row .description::before{
+        content: '';
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        transform: translate(0%,-50%);
+        background-color: var(--background);
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid blue;
+    }
+    .reverse .description::before{
+        content: '';
+        position: absolute;
+        left: -9px;
+        top: 50%;
+        transform: translate(0%,-50%);
+        background-color: var(--background);
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid blue;
+    }
+}
+@media (max-width: 768px) {
+    .row,.reverse{
+        flex-direction: column-reverse;
+    }
+    .description{
+        width: 90%;
+        align-self: center;
+    }
+}

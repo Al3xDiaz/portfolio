@@ -10,6 +10,7 @@ body {
   --secondary: #07838F;
   --tertiary: #EB9009;
   --quaternary: #EB7309;
+  --background: #C4C4C4;
 }
 
 .primary {
@@ -135,7 +136,7 @@ p {
   width: 96%;
   align-items: center;
   justify-content: center;  
-  background-color: #C4C4C4;
+  background-color: var(--background);
   margin: 2%;
   padding: 2%;
   border-radius:  30px;
