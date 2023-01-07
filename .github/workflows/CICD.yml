@@ -18,7 +18,7 @@ env:
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  push:
+  build-deploy:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -75,7 +75,10 @@ jobs:
             IMAGE_ID=${{ steps.build.outputs.image_id }}
             DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
             docker push $IMAGE_ID:$DOCKER_TAG
-      - name: success notification
+  notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: success
         if: ${{ success() }}
         uses: appleboy/discord-action@master
         with:
@@ -84,7 +87,7 @@ jobs:
           color: "#48f442"
           username: "GitHub Bot"
           message: "pipeline passed"
-      - name: fail notification
+      - name: fail
         if: ${{ failure() }}
         uses: appleboy/discord-action@master
         with:
