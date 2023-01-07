@@ -75,3 +75,21 @@ jobs:
             IMAGE_ID=${{ steps.build.outputs.image_id }}
             DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
             docker push $IMAGE_ID:$DOCKER_TAG
+      - name: success notification
+        if: ${{ success() }}
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          color: "#48f442"
+          username: "GitHub Bot"
+          message: "pipeline passed"
+      - name: fail notification
+        if: ${{ failure() }}
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          color: "#e30000"
+          username: "GitHub Bot"
+          message: "pipeline failure"

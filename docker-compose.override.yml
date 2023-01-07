@@ -1,6 +1,11 @@
-version: '3.4'
+version: '3.9'
 services:
  app:
     volumes: 
         - ./portafolio/:/app/src/
+        - next_build:/app/src/build
+    entrypoint: /app/src/entrypoint.sh yarn dev
     restart: unless-stopped
+
+volumes:
+    next_build:

@@ -4,12 +4,15 @@ este es un repositorio con react js :)
 [portafolio](https://al.coderatbest.com/)
 ## Iniciar el proyecto 
 en una terminal ejecute \
+
 ```bash
 #start proyect server test
 #use --build by compile proyect
-$ docker-compose up
+docker-compose up --build -d
+```
 
+```bash
 #start proyect server production
 #use --build by compile proyect
-$ docker-compose -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.prod.yml up -d
 ```
