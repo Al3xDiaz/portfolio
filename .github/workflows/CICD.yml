@@ -18,7 +18,7 @@ env:
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  build-deploy:
+  push:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -75,24 +75,17 @@ jobs:
             IMAGE_ID=${{ steps.build.outputs.image_id }}
             DOCKER_TAG=${{ steps.build.outputs.docker_tag }}
             docker push $IMAGE_ID:$DOCKER_TAG
-  notification:
-    runs-on: ubuntu-latest
-    steps:
       - name: success
         if: ${{ success() }}
-        uses: appleboy/discord-action@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         with:
-          webhook_id: ${{ secrets.WEBHOOK_ID }}
-          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          color: "#48f442"
-          username: "GitHub Bot"
-          message: "pipeline passed"
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
       - name: fail
         if: ${{ failure() }}
-        uses: appleboy/discord-action@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
         with:
-          webhook_id: ${{ secrets.WEBHOOK_ID }}
-          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          color: "#e30000"
-          username: "GitHub Bot"
-          message: "pipeline failure"
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} pipeline failure.'
