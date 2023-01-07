@@ -11,7 +11,7 @@ export const Courses = () => {
                 {courses.map(course => (
                     <div key={course.id}>
                         <h2>{course.name}</h2>
-                        <Image src={course.image}  width={300} height={200}/>
+                        <Image src={course.image} alt="notFount.jpg" width={300} height={200}/>
                     </div>
                 ))}
             </div>
