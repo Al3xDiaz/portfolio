@@ -8,7 +8,7 @@ export default function handler(
   const {user} = req.query
     res.status(200).json([{
         id: 1,
-        name: 'Curso de React',
+        name: 'Curso de React-js',
         image: 'https://picsum.photos/200/300'
     },
     {
