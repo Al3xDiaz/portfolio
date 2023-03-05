@@ -1,13 +1,19 @@
 version: '3.9'
 services:
   app:
+    build: 
+      context: ./portafolio
+      dockerfile: ${DOCKERFILE:-Dockerfile}
     volumes: 
       - ./portafolio/:/app/src/
       - next_build:/app/src/build
     entrypoint: /app/src/entrypoint.sh yarn dev
     restart: unless-stopped
-    build:
-      context: portafolio
-      dockerfile: ${DOCKERFILE:-dockerfile}
+  strapi:
+    build: 
+      context: ./strapi
+      dockerfile: ${DOCKERFILE:-Dockerfile}
+    volumes:
+      - ./strapi:/srv/app/
 volumes:
   next_build:

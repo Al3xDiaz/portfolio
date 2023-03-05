@@ -1,26 +1,25 @@
 version: '3.9'
 services:
   app:
-    image: "ghcr.io/al3xdiaz/portafolio:latest"    
+    container_name: portafolio
+    image: "ghcr.io/al3xdiaz/portafolio:latest"
     ports: 
       - "3000:3000"
+    depends_on:
+      - strapi
   strapi:
+    container_name: strapi
     image: "ghcr.io/al3xdiaz/strapi:latest"
-    build: 
-      context: ./strapi
-      dockerfile: Dockerfile
     ports: 
       - "1337:1337"
     environment:
-      - DATABASE_CLIENT=mysql
-      - DATABASE_HOST=${DB_HOST}
-      - DATABASE_PORT=${DB_PORT}
-      - DATABASE_NAME=${DB_NAME}
-      - DATABASE_USERNAME=${DB_USER}
-      - DATABASE_PASSWORD=${DB_PASS}
-      - JWT_SECRET=${JWT_SECRET}
-      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
-      - APP_KEYS=${APP_KEYS}
-      - NODE_ENV=${NODE_ENV:-development}
-    volumes:
-      - ./strapi:/srv/app/
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
