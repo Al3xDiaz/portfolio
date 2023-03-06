@@ -14,6 +14,8 @@ services:
       context: ./strapi
       dockerfile: ${DOCKERFILE:-Dockerfile}
     volumes:
-      - ./strapi:/srv/app/
+      - ./strapi:/opt/app
+    entrypoint: /opt/app/entrypoint.sh
+    command: yarn develop
 volumes:
   next_build:
