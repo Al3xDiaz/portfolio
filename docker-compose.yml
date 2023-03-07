@@ -5,6 +5,8 @@ services:
     image: "ghcr.io/al3xdiaz/portafolio:latest"
     ports: 
       - "3000:3000"
+    environment:
+      API_URL: ${API_URL:-http://localhost:1337}
     depends_on:
       - strapi
   strapi:

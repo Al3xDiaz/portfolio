@@ -7,7 +7,10 @@ const nextConfig = {
       "picsum.photos",
     ],
   },
-  distDir:"build"
+  distDir:"build",
+  publicRuntimeConfig: {
+    API_URL: process.env.API_URL,
+  },
 }
 
 module.exports = nextConfig

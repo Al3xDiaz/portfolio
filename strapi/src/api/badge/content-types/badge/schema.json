@@ -28,6 +28,14 @@
       "relation": "manyToOne",
       "target": "api::profile.profile",
       "inversedBy": "badges"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

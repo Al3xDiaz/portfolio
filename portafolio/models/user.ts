@@ -7,12 +7,13 @@ export interface TimeLineProfile {
 }
 
 export interface Profile {
-    name: string;
+    first_name: string;
+    last_name: string;
     jobs: string;
     age: number;
     biography: string[];
     image: string;
-    images_profile: string[];
+    images: IImages[];
     time_line_profile: TimeLineProfile[];
     last_login?: Date;
 }
@@ -23,6 +24,7 @@ export interface SocialMedia {
     gitlab: string;
     instagram: string;
     facebook: string;
+    twitter: string;
 }
 
 export interface Experiencie {
@@ -41,21 +43,19 @@ export interface Area {
 export interface IUser {
     username: string;
     email: string;
-    first_name: string;
-    last_name: string;
-    is_active: boolean;
-    date_created: string;
-    phone_number: string;
     profile: Profile;
     social_media: SocialMedia;
     education: string[];
-    experiencie: Experiencie[];
     areas: Area[];
-    is_client: boolean;
-    user_created?: any;
 }
 
 export interface IUserState {
     user?: IUser;
     status: "loading" | "loaded" | "error";
+}
+export interface IImages {
+    id: number;
+    name: string;
+    url: string;
+    previewUrl: string;
 }
