@@ -31,6 +31,7 @@ jobs:
         with:
           useConfigFile: true
           additionalArguments: '/nofetch /nocache /showvariable MajorMinorPatch'
+          configFilePath: 'GitVersion.yml'
 
       - uses: actions/checkout@v2
       - name: Set Tags
