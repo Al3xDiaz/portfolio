@@ -4,18 +4,36 @@ services:
     build: 
       context: ./portafolio
       dockerfile: ${DOCKERFILE:-Dockerfile}
+    ports: 
+      - "3000:3000"
+    environment:
+      API_URL: ${API_URL:-http://localhost:1337}
     volumes: 
       - ./portafolio/:/app/src/
-      - next_build:/app/src/build
+      - /app/src/build
+      - /app/node_modules
     entrypoint: /app/src/entrypoint.sh yarn dev
     restart: unless-stopped
   strapi:
     build: 
       context: ./strapi
       dockerfile: ${DOCKERFILE:-Dockerfile}
+    ports: 
+      - "1337:1337"
+    environment:
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - ./strapi:/opt/app
+      - /opt/app/node_modules
     entrypoint: /opt/app/entrypoint.sh
     command: yarn develop
-volumes:
-  next_build:
+    
