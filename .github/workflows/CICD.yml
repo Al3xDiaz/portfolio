@@ -21,8 +21,8 @@ jobs:
   calculate-version:
     runs-on: ubuntu-latest
     outputs:
-      MajorMinorPatch: ${{ steps.gitversion.outputs.MajorMinorPatch }}
-      FullSemVer: ${{ steps.gitversion.outputs.FullSemVer }}
+      MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
+      FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
     
     steps:
       - name: Install GitVersion
@@ -32,6 +32,11 @@ jobs:
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
+        with:
+          updateAssemblyInfo: false
+          additionalArguments: '/nofetch'
+          useConfigFile: true
+          configFilePath: 'GitVersion.yml'
       # - uses: actions/checkout@v2
       # - name: Determine Version
       #   run: |
