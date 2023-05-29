@@ -27,8 +27,6 @@ jobs:
     steps:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
-        with:
-          versionSpec: '5.x'
       - uses: actions/checkout@v2
       - name: Determine Version
         run: |
