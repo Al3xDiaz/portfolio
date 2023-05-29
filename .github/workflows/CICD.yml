@@ -33,6 +33,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0
         with:
             useConfigFile: true
+            configFilePath: 'portafolio/GitVersion.yml'
       # - uses: actions/checkout@v2
       # - name: Determine Version
       #   run: |
