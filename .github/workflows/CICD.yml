@@ -32,8 +32,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Determine Version
         run: |
-          echo "##[set-output name=MajorMinorPatch;]${{ env.GitVersion_MajorMinorPatch }}"
-          echo "##[set-output name=FullSemVer;]${{ env.GitVersion_FullSemVer }}"
+          echo "::set-output name=MajorMinorPatch::$(gitversion /showvariable MajorMinorPatch)"
+          echo "::set-output name=FullSemVer::$(gitversion /showvariable FullSemVer)"
   push:
     runs-on: ubuntu-latest
     permissions:
@@ -45,14 +45,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build portafolio
-        if: github.ref_type == 'tag'
         run: |
           echo "build image"
-          docker build portafolio --file portafolio/Dockerfile.prod --tag $REGISTRY/portafolio:latest
+          docker build portafolio --file portafolio/Dockerfile.prod --tag ${REGISTRY,,}/portafolio:latest
       - name: Build strapi
         run: |
           echo "build image"
-          docker build strapi --file strapi/Dockerfile.prod --tag $REGISTRY/strapi:latest
+          docker build strapi --file strapi/Dockerfile.prod --tag ${REGISTRY,,}/strapi:latest
 
       - name: tag docker images
         run: |
