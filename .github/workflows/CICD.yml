@@ -20,14 +20,11 @@ jobs:
   # See also https://docs.docker.com/docker-hub/builds/
   calculate-version:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-
     steps:
-      - name: Determine Version
-        uses: gittools/actions/gitversion/execute@v0
-        id: gitversion
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
   push:
     runs-on: ubuntu-latest
     permissions:
