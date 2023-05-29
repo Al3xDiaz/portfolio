@@ -33,7 +33,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0
         with:
           targetPath: "/home/runner/work/portafolio"
-          configFilePath: "portafolio/GitVersion.yml"
+          configFilePath: "GitVersion.yml"
   push:
     runs-on: ubuntu-latest
     permissions:
