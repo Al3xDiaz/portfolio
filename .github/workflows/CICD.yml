@@ -29,9 +29,6 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: '5.x'
-      - name: preview files
-        run: |
-          ls -la /home/runner/portafolio/portafolio
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0
         with:
