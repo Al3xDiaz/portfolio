@@ -32,6 +32,7 @@ jobs:
       FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
     
     steps:
+      - uses: actions/checkout@v2
       - name: Checkout Code
         run: |
           /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch
