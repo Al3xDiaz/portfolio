@@ -32,7 +32,7 @@ jobs:
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0
         with:
-          targetPath: 'portafolio'
+          targetPath: '..'
           configFilePath: "portafolio/GitVersion.yml"
   push:
     runs-on: ubuntu-latest
