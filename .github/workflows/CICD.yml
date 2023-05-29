@@ -20,6 +20,10 @@ jobs:
   # See also https://docs.docker.com/docker-hub/builds/
   calculate-version:
     runs-on: ubuntu-latest
+    outputs:
+      MajorMinorPatch: ${{ steps.determine-version.outputs.MajorMinorPatch }}
+      FullSemVer: ${{ steps.determine-version.outputs.FullSemVer }}
+    
     steps:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
@@ -28,7 +32,9 @@ jobs:
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0
         with:
-          configFilePath: './GitVersion.yml'
+          targetPath: "$(System.DefaultWorkingDirectory)/portafolio"
+          useConfigFile: true
+          configFilePath: "portafolio/GitVersion.yml"
   push:
     runs-on: ubuntu-latest
     permissions:
