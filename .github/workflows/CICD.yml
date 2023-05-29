@@ -30,7 +30,6 @@ jobs:
         id: gitversion
         with:
           useConfigFile: true
-          additionalArguments: '/nofetch /nocache'
 
       - uses: actions/checkout@v2
       - name: Set Tags
