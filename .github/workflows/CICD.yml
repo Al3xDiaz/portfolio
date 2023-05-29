@@ -20,28 +20,25 @@ jobs:
   # See also https://docs.docker.com/docker-hub/builds/
   calculate-version:
     runs-on: ubuntu-latest
+    container: 
+      image: gittools/gitversion:5.12.0-alpine.3.14-6.0
+      options: --user root:root
+      env:
+        GIT_STRATEGY: fetch
+        GIT_DEPTH: 0
+        IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
     outputs:
       MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
       FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
     
     steps:
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0
-        with:
-          versionSpec: '5.5.0'
-      - name: Determine Version
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0
-        with:
-          updateAssemblyInfo: false
-          additionalArguments: '/nofetch'
-          useConfigFile: true
-          configFilePath: 'GitVersion.yml'
-      # - uses: actions/checkout@v2
-      # - name: Determine Version
-      #   run: |
-      #     echo "{MajorMinorPatch}=$(gitversion /showvariable MajorMinorPatch)">> $GITHUB_OUTPUT
-      #     echo "{FullSemVer}=$(gitversion /showvariable FullSemVer)">> $GITHUB_OUTPUT
+      - name: Checkout Code
+        run: |
+          /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch > MajorMinorPatch.txt
+          /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer > FullSemVer.txt
+          echo "::set-output name=MajorMinorPatch::$(cat MajorMinorPatch.txt)"
+          echo "::set-output name=FullSemVer::$(cat FullSemVer.txt)"
+
   push:
     runs-on: ubuntu-latest
     permissions:
