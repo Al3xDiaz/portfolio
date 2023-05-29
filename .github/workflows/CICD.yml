@@ -25,7 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: gittools/gitversion:5.12.0-alpine.3.14-6.0
-      options: --user root:root
     outputs:
       MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
       FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
@@ -34,6 +33,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Checkout Code
         run: |
+          git fetch --unshallow
           /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch
           /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer
           
