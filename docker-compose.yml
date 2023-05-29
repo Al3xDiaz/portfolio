@@ -8,3 +8,6 @@ services:
   strapi:
     container_name: strapi
     image: "ghcr.io/al3xdiaz/strapi:latest"
+  db:
+    container_name: db
+    image: "mariadb:10.5"
