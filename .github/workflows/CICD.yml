@@ -32,8 +32,7 @@ jobs:
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0
         with:
-          targetPath: "$(System.DefaultWorkingDirectory)/portafolio"
-          useConfigFile: true
+          targetPath: "${{ github.workspace }}/"
           configFilePath: "portafolio/GitVersion.yml"
   push:
     runs-on: ubuntu-latest
