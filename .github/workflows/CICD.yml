@@ -34,8 +34,9 @@ jobs:
     steps:
       - name: Checkout Code
         run: |
-          /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch > MajorMinorPatch.txt
-          /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer > FullSemVer.txt
+          /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch
+          /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer
+          
           echo "::set-output name=MajorMinorPatch::$(cat MajorMinorPatch.txt)"
           echo "::set-output name=FullSemVer::$(cat FullSemVer.txt)"
 
