@@ -29,11 +29,11 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: '5.x'
+      - uses: actions/checkout@v2
       - name: Determine Version
-        uses: gittools/actions/gitversion/execute@v0
-        with:
-          targetPath: '/home/runner/work/portafolio/portafolio'
-          configFilePath: "GitVersion.yml"
+        run: |
+          echo "##[set-output name=MajorMinorPatch;]${{ env.GitVersion_MajorMinorPatch }}"
+          echo "##[set-output name=FullSemVer;]${{ env.GitVersion_FullSemVer }}"
   push:
     runs-on: ubuntu-latest
     permissions:
