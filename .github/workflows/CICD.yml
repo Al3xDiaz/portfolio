@@ -28,9 +28,15 @@ jobs:
       FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Checkout Code
         id: gitversion
         uses: docker://gittools/gitversion:5.12.0-alpine.3.14-6.0
+        with:
+          entrypoint: /bin/sh
+          # output: MajorMinorPatch FullSemVer
+          args: -c 'echo "::set-output name=majorMinorPatch::$(/tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch)" && echo "::set-output name=fullSemVer::$(/tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer)"'
         # run: |
         #   /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch
         #   /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer
