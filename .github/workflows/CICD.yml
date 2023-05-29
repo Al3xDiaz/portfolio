@@ -33,7 +33,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Checkout Code
         run: |
-          git fetch --unshallow
           /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch
           /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer
           
