@@ -32,7 +32,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Determine Version
         run: |
-          echo "{MajorMinorPatch: ${{ env.MajorMinorPatch }}, FullSemVer: ${{ env.FullSemVer }}}" > $GITHUB_OUTPUT
+          echo "{MajorMinorPatch}=$(gitversion /showvariable MajorMinorPatch)">> $GITHUB_OUTPUT
+          echo "{FullSemVer}=$(gitversion /showvariable FullSemVer)">> $GITHUB_OUTPUT
   push:
     runs-on: ubuntu-latest
     permissions:
