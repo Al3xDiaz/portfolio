@@ -35,8 +35,7 @@ jobs:
         uses: docker://gittools/gitversion:5.12.0-alpine.3.14-6.0
         with:
           entrypoint: /bin/sh
-          # output: MajorMinorPatch in file $GITHUB_OUTPUT
-          args: -c "echo \"{MajorMinorPatch}={$(/tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch)}\" > $GITHUB_ENV"
+          args: -c "echo \"{MajorMinorPatch}={$(/tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch)}\" >> $GITHUB_OUTPUT && echo \"{FullSemVer}={$(/tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer)}\" >> $GITHUB_OUTPUT && cat $GITHUB_OUTPUT"
         # run: |
         #   /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch
         #   /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer
