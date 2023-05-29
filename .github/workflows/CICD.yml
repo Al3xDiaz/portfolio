@@ -29,11 +29,15 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: '5.5.0'
-      - uses: actions/checkout@v2
       - name: Determine Version
-        run: |
-          echo "{MajorMinorPatch}=$(gitversion /showvariable MajorMinorPatch)">> $GITHUB_OUTPUT
-          echo "{FullSemVer}=$(gitversion /showvariable FullSemVer)">> $GITHUB_OUTPUT
+        uses: gittools/actions/gitversion/execute@v0
+        with:
+            useConfigFile: true
+      # - uses: actions/checkout@v2
+      # - name: Determine Version
+      #   run: |
+      #     echo "{MajorMinorPatch}=$(gitversion /showvariable MajorMinorPatch)">> $GITHUB_OUTPUT
+      #     echo "{FullSemVer}=$(gitversion /showvariable FullSemVer)">> $GITHUB_OUTPUT
   push:
     runs-on: ubuntu-latest
     permissions:
@@ -57,10 +61,10 @@ jobs:
         run: |
           TAG=${{ needs.calculate-version.outputs.MajorMinorPatch }}
           TAG_LONG=${{ needs.calculate-version.outputs.FullSemVer }}
-          docker tag $REGISTRY/portafolio:latest $REGISTRY/portafolio:$TAG
-          docker tag $REGISTRY/strapi:latest $REGISTRY/strapi:$TAG
-          docker tag $REGISTRY/portafolio:latest $REGISTRY/portafolio:$TAG_LONG
-          docker tag $REGISTRY/strapi:latest $REGISTRY/strapi:$TAG_LONG
+          docker tag ${REGISTRY,,}/portafolio:latest ${REGISTRY,,}/portafolio:$TAG
+          docker tag ${REGISTRY,,}/strapi:latest ${REGISTRY,,}/strapi:$TAG
+          docker tag ${REGISTRY,,}/portafolio:latest ${REGISTRY,,}/portafolio:$TAG_LONG
+          docker tag ${REGISTRY,,}/strapi:latest ${REGISTRY,,}/strapi:$TAG_LONG
 
       - name: Log in to registry # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
