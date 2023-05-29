@@ -1,23 +1,26 @@
 import { ICourse } from "@/models/course";
-import { IService } from "@/services/iService";
-import axios from "axios";
+import { AxiosBase, IService } from "@/services/iService";
+import { AxiosInstance } from "axios";
 
 export class CourseService implements IService<ICourse> {
+    axios: AxiosInstance;
+    constructor() {
+        this.axios = AxiosBase;
+    }
     async list(): Promise<ICourse[]> {
-        const response = await axios.get("/api/courses/?user=alexdiaz");
+        const response = await this.axios.get("/api/courses/?user=alexdiaz");
         return response.data;
     }
-
-    async detail(slug: string): Promise<ICourse> {
+    async detail(slug: number): Promise<ICourse> {
         throw new Error("Method not implemented.");
     }
     create(data: ICourse): Promise<ICourse> {
         throw new Error("Method not implemented.");
     }
-    update(slug: string, data: ICourse): Promise<ICourse> {
+    update(slug: number, data: ICourse): Promise<ICourse> {
         throw new Error("Method not implemented.");
     }
-    delete(slug: string): Promise<ICourse> {
+    delete(slug: number): Promise<ICourse> {
         throw new Error("Method not implemented.");
     }
 }

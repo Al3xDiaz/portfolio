@@ -1,5 +1,8 @@
-import { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "axios";
+import getConfig from "next/config";
 
+const { publicRuntimeConfig } = getConfig();
+const baseURL = publicRuntimeConfig.API_URL;
 export  interface IService<T> {
     axios: AxiosInstance;
     list(): Promise<T[]>;
@@ -9,3 +12,9 @@ export  interface IService<T> {
     delete(id:number): Promise<T>;
     listFilter?(slug:string): Promise<T[]>;
 }
+export const AxiosBase = axios.create({
+    baseURL: process.env?.API_URL || "http://localhost:1337",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
