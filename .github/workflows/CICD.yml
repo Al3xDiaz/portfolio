@@ -18,7 +18,7 @@ env:
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  push:
+  calculate-version:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -28,19 +28,15 @@ jobs:
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0
         id: gitversion
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    needs: [calculate-version]
 
+    steps:
       - uses: actions/checkout@v2
-      - name: Set Tags
-        id: build
-        run: |
-          echo "Building image..."
-          echo "Change all uppercase to lowercase"
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
-          TAG="${{ steps.gitversion.outputs.MajorMinorPatch }}"
-          LONG_TAG="${{ steps.gitversion.outputs.FullSemVer }}"
-          echo "::set-output name=docker_tag::$DOCKER_TAG"
-          echo "::set-output name=docker_tag_long::$LONG_TAG"
 
       - name: Build portafolio
         if: github.ref_type == 'tag'
@@ -54,8 +50,8 @@ jobs:
 
       - name: tag docker images
         run: |
-          TAG=${{ steps.build.outputs.docker_tag }}
-          TAG_LONG=${{ steps.build.outputs.docker_tag_long }}
+          TAG=${{ needs.calculate-version.outputs.MajorMinorPatch }}
+          TAG_LONG=${{ needs.calculate-version.outputs.FullSemVer }}
           docker tag $REGISTRY/portafolio:latest $REGISTRY/portafolio:$TAG
           docker tag $REGISTRY/strapi:latest $REGISTRY/strapi:$TAG
           docker tag $REGISTRY/portafolio:latest $REGISTRY/portafolio:$TAG_LONG
@@ -66,8 +62,8 @@ jobs:
       - name: Push tag image to registry
         if: github.ref_type == 'tag'
         run: |
-          docker push $IMAGE_ID:${{ steps.build.outputs.docker_tag }}
-          docker push $IMAGE_ID:${{ steps.build.outputs.docker_tag_long }}
+          docker push $IMAGE_ID:${{ needs.calculate-version.outputs.MajorMinorPatch }}
+          docker push $IMAGE_ID:${{ needs.calculate-version.outputs.FullSemVer }}
           # if branch is master, push image with `latest` tag
           if [ "${{ github.ref }}" = "refs/heads/master" ]; then
             docker push $IMAGE_ID:latest
