@@ -82,6 +82,21 @@ jobs:
           if [ "${{ github.ref }}" = "refs/heads/master" ]; then
             docker push $IMAGE_ID:latest
           fi
+      - name: get gitlab artifact and create ssh key
+        run: |
+          curl -L --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" "https://gitlab.com/api/v4/projects/42073065/jobs/artifacts/main/download?job=config_infrastructure" --output config.zip
+          unzip config.zip -d ansible/inventory
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/ansible
+          echo "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/ansible.pub
+          chmod -R 600 ~/.ssh/
+      - name: deploy app with ansible
+        uses: docker://registry.gitlab.com/chaoticteams/ansible:latest
+        env:
+          ANSIBLE_INVENTORY: ansible/inventory
+        with:
+          entrypoint: /bin/sh
+          args: -c "ansible-playbook ansible/deploy.yml"
+
       - name: success
         if: ${{ success() }}
         env:
