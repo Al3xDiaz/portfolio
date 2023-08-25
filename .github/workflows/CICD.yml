@@ -77,7 +77,6 @@ jobs:
       - name: Log in to registry # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
       - name: Push tag image to registry
-        if: github.ref_type == 'tag'
         run: |
           docker push $IMAGE_ID:${{ needs.calculate-version.outputs.MajorMinorPatch }}
           docker push $IMAGE_ID:${{ needs.calculate-version.outputs.FullSemVer }}
@@ -98,7 +97,7 @@ jobs:
           ANSIBLE_INVENTORY: ansible/inventory
         with:
           entrypoint: /bin/sh
-          args: -c "ansible-playbook ansible/deploy.yml"
+          args: -c "ansible-playbook ansible/main.yml"
 
       # - name: success
       #   if: ${{ success() }}
