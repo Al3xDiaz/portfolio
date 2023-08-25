@@ -78,6 +78,7 @@ jobs:
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
       - name: Push tag image to registry
         run: |
+          IMAGE_ID=${REGISTRY,,}/portafolio
           docker push $IMAGE_ID:${{ needs.calculate-version.outputs.MajorMinorPatch }}
           docker push $IMAGE_ID:${{ needs.calculate-version.outputs.FullSemVer }}
           # if branch is master, push image with `latest` tag
