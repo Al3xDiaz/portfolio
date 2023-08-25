@@ -88,7 +88,8 @@ jobs:
       - name: get gitlab artifact and create ssh key
         run: |
           curl -L --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" "https://gitlab.com/api/v4/projects/42073065/jobs/artifacts/main/download?job=config_infrastructure" --output config.zip
-          unzip config.zip -d ansible/inventory
+          unzip config.zip -o -d .
+          mkdir ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/ansible
           echo "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/ansible.pub
           chmod -R 600 ~/.ssh/
