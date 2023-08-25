@@ -60,19 +60,13 @@ jobs:
         run: |
           echo "build image"
           docker build portafolio --file portafolio/Dockerfile.prod --tag ${REGISTRY,,}/portafolio:latest
-      - name: Build strapi
-        run: |
-          echo "build image"
-          docker build strapi --file strapi/Dockerfile.prod --tag ${REGISTRY,,}/strapi:latest
 
       - name: tag docker images
         run: |
           TAG=${{ needs.calculate-version.outputs.MajorMinorPatch }}
           TAG_LONG=${{ needs.calculate-version.outputs.FullSemVer }}
           docker tag ${REGISTRY,,}/portafolio:latest ${REGISTRY,,}/portafolio:$TAG
-          docker tag ${REGISTRY,,}/strapi:latest ${REGISTRY,,}/strapi:$TAG
           docker tag ${REGISTRY,,}/portafolio:latest ${REGISTRY,,}/portafolio:$TAG_LONG
-          docker tag ${REGISTRY,,}/strapi:latest ${REGISTRY,,}/strapi:$TAG_LONG
 
       - name: Log in to registry # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.CICD_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
@@ -88,7 +82,7 @@ jobs:
       - name: get gitlab artifact and create ssh key
         run: |
           curl -L --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" "https://gitlab.com/api/v4/projects/42073065/jobs/artifacts/main/download?job=config_infrastructure" --output config.zip
-          unzip config.zip -o -d .
+          unzip -o config.zip -d .
           mkdir ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/ansible
           echo "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/ansible.pub
