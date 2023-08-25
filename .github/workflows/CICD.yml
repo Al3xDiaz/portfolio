@@ -27,21 +27,24 @@ jobs:
       MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
       FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
     steps:
-      - uses: actions/checkout@v2
+      -
+        name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Checkout Code
-        id: gitversion
-        uses: docker://gittools/gitversion:5.12.0-alpine.3.14-6.0
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
         with:
-          entrypoint: /bin/sh
-          args: -c "echo \"{MajorMinorPatch}={$(/tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch)}\" >> $GITHUB_OUTPUT && echo \"{FullSemVer}={$(/tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer)}\" >> $GITHUB_OUTPUT && cat $GITHUB_OUTPUT"
-        # run: |
-        #   /tools/dotnet-gitversion /nocache /nofetch /showvariable MajorMinorPatch
-        #   /tools/dotnet-gitversion /nocache /nofetch /showvariable FullSemVer
-
-        #   echo "::set-output name=MajorMinorPatch::$(cat MajorMinorPatch.txt)"
-        #   echo "::set-output name=FullSemVer::$(cat FullSemVer.txt)"
+          versionSpec: '5.x'
+      - name: Determine Version
+        id:   gitversion # id to later be referenced
+        uses: gittools/actions/gitversion/execute@v0
+      - name: Set Outputs major version
+        id: set-outputs-major
+        run: echo "MajorMinorPatch=${{ steps.gitversion.outputs.majorMinorPatch }}" >> $GITHUB_OUTPUT
+      - name: Set Outputs full version
+        id: set-outputs-full
+        run: echo "FullSemVer=${{ steps.gitversion.outputs.fullSemVer }}" >> $GITHUB_OUTPUT
 
   push:
     runs-on: ubuntu-latest
@@ -97,17 +100,17 @@ jobs:
           entrypoint: /bin/sh
           args: -c "ansible-playbook ansible/deploy.yml"
 
-      - name: success
-        if: ${{ success() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
-      - name: fail
-        if: ${{ failure() }}
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} pipeline failure.'
+      # - name: success
+      #   if: ${{ success() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+      # - name: fail
+      #   if: ${{ failure() }}
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} pipeline failure.'
