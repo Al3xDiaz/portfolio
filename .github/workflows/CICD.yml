@@ -86,7 +86,7 @@ jobs:
           mkdir ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/ansible
           echo "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/ansible.pub
-          chmod -R 600 ~/.ssh/
+          chmod 600 ~/.ssh/ansible || sudo chmod 600 ~/.ssh/ansible || echo "chmod 600 ~/.ssh/ansible failed"
       - name: deploy app with ansible
         uses: docker://registry.gitlab.com/chaoticteams/ansible:latest
         env:
