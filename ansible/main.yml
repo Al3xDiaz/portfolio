@@ -28,7 +28,7 @@
         dest: /etc/nginx/sites-available/al3xdiaz.chaoticteam.com
         content: |
           server {
-            listen 80;
+            listen 9090;
             server_name alexdiaz.chaoticteam.com;
             location / {
               proxy_pass http://localhost:8000;
