@@ -85,6 +85,7 @@ jobs:
         image: registry.gitlab.com/chaoticteams/ansible:latest
       needs: [build]
       steps:
+      - uses: actions/checkout@v2
       - name: get gitlab artifact and create ssh key
         run: |
           apk add --update --no-cache curl
