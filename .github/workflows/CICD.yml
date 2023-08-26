@@ -99,7 +99,6 @@ jobs:
         env:
           ANSIBLE_INVENTORY: ansible/inventory
         run: |
-          ls -la
           ansible-playbook ansible/main.yml
 
       # - name: success
