@@ -29,7 +29,7 @@
         content: |
           server {
             listen 9090;
-            server_name alexdiaz.chaoticteam.com;
+            server_name al3xdiaz.chaoticteam.com;
             location / {
               proxy_pass http://localhost:8000;
             }
