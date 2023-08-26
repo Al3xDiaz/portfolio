@@ -46,7 +46,7 @@ jobs:
         id: set-outputs-full
         run: echo "FullSemVer=${{ steps.gitversion.outputs.fullSemVer }}" >> $GITHUB_OUTPUT
 
-  push:
+  build:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -83,7 +83,7 @@ jobs:
       runs-on: ubuntu-latest
       container:
         image: registry.gitlab.com/chaoticteams/ansible:latest
-      needs: [push]
+      needs: [build]
       steps:
       - name: get gitlab artifact and create ssh key
         run: |
@@ -98,6 +98,7 @@ jobs:
         env:
           ANSIBLE_INVENTORY: ansible/inventory
         run: |
+          ls -la
           ansible-playbook ansible/main.yml
 
       # - name: success
