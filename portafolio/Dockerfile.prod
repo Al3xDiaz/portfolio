@@ -10,6 +10,6 @@ WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=BUILD ["/app/package.json","/app/next.config.js", "/app/"]
 RUN yarn --production
-# COPY --from=BUILD /app/build /app/build
+COPY --from=BUILD /app/build /app/build
 ENTRYPOINT [ "npm" ]
 CMD [ "start" ]

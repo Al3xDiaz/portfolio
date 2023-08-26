@@ -79,7 +79,7 @@ jobs:
       runs-on: ubuntu-latest
       container:
         image: registry.gitlab.com/chaoticteams/ansible:latest
-      needs: [build]
+      needs: [calculate-version,build]
       steps:
       - uses: actions/checkout@v2
       - name: get gitlab artifact and create ssh key
@@ -95,7 +95,7 @@ jobs:
         env:
           ANSIBLE_INVENTORY: ansible/inventory
         run: |
-          ansible-playbook ansible/main.yml
+          ansible-playbook ansible/main.yml -e "version=${{ needs.calculate-version.outputs.MajorMinorPatch }}"
 
       # - name: success
       #   if: ${{ success() }}
