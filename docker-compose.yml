@@ -1,11 +1,13 @@
 version: '3.9'
 services:
- app:
+  app:
+    container_name: portafolio
     image: "ghcr.io/al3xdiaz/portafolio:latest"
-    environment: 
-        USERNAME: ${USERNAME:-al3xdiaz}
-    build:
-        context: portafolio
-        dockerfile: ${DOCKERFILE:-dockerfile}
-    ports: 
-        - "3000:3000"
+    depends_on:
+      - strapi
+  strapi:
+    container_name: strapi
+    image: "ghcr.io/al3xdiaz/strapi:latest"
+  db:
+    container_name: db
+    image: "mariadb:10.5"

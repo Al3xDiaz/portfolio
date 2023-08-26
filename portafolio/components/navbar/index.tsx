@@ -8,7 +8,7 @@ export const Navbar = () => {
         <nav className="navbar">
             <div className="navbar__logo">
                 <Link href="/">
-                    <a>{user?.profile.name}</a>
+                    <a>{user?.profile.first_name} {user?.profile.last_name}</a>
                 </Link>
             </div>
             <menu>

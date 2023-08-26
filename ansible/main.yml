@@ -1,0 +1,49 @@
+---
+- hosts: all
+  become: "no"
+  tasks:
+    - ansible.builtin.file:
+        path: "{{ ansible_facts['user_dir'] }}/apps"
+        state: directory
+      name: create apps directory
+    - ansible.builtin.file:
+        path: "{{ ansible_facts['user_dir'] }}/apps/portafolio"
+        state: directory
+      name: create workspace directory
+    - ansible.builtin.copy:
+        content: |
+          version: '3.9'
+          services:
+            portafolio:
+              image: ghcr.io/al3xdiaz/portafolio:latest
+              ports:
+                - "8000:3000"
+        dest: "{{ ansible_facts['user_dir'] }}/apps/portafolio/docker-compose.yml"
+    - ansible.builtin.docker_compose:
+        project_src: "{{ ansible_facts['user_dir'] }}/apps/portafolio"
+        project_name: portafolio
+        state: present
+    - name: config nginx
+      ansible.builtin.copy:
+        dest: /etc/nginx/sites-available/al3xdiaz.chaoticteam.com
+        content: |
+          server {
+            listen 80;
+            server_name alexdiaz.chaoticteam.com;
+            location / {
+              proxy_pass http://localhost:8000;
+            }
+          }
+      become: "yes"
+    - name: enable nginx site
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/al3xdiaz.chaoticteam.com
+        dest: /etc/nginx/sites-enabled/al3xdiaz.chaoticteam.com
+        state: link
+      become: "yes"
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+      become: "yes"
+...
