@@ -19,6 +19,15 @@
               ports:
                 - "8000:3000"
         dest: "{{ ansible_facts['user_dir'] }}/apps/portafolio/docker-compose.yml"
+    - name: Prune everything (including non-dangling images)
+      community.docker.docker_prune:
+        containers: true
+        images: true
+        images_filters:
+          dangling: false
+        networks: true
+        volumes: true
+        builder_cache: true
     - ansible.builtin.docker_compose:
         project_src: "{{ ansible_facts['user_dir'] }}/apps/portafolio"
         project_name: portafolio
