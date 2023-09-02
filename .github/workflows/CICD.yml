@@ -72,7 +72,7 @@ jobs:
           docker push $IMAGE_ID:${{ needs.calculate-version.outputs.MajorMinorPatch }}
           docker push $IMAGE_ID:${{ needs.calculate-version.outputs.FullSemVer }}
           # if branch is master, push image with `latest` tag
-          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
             docker push $IMAGE_ID:latest
           fi
   deploy:
