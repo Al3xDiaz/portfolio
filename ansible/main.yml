@@ -17,12 +17,8 @@
             portafolio:
               image: ghcr.io/al3xdiaz/portafolio:{{ version | default('latest') }}
               ports:
-                - "3000:3000"
+                - "3000:80"
         dest: "{{ ansible_facts['user_dir'] }}/apps/portafolio/docker-compose.yml"
-    - ansible.builtin.docker_compose:
-        project_src: "{{ ansible_facts['user_dir'] }}/apps/portafolio"
-        project_name: portafolio
-        state: absent
     - name: Prune everything (including non-dangling images)
       ansible.builtin.docker_prune:
         images: yes
