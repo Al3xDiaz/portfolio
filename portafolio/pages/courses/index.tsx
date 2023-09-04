@@ -1,5 +1,5 @@
 import { useCourses } from '@/hooks/useCourses';
-import Image from 'next/image';
+import { Image } from '@/utils/Index';
 import styles from './index.module.css'
 
 export const Courses = () => {

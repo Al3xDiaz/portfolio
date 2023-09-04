@@ -14,5 +14,6 @@ docker-compose up --build -d
 ```bash
 #start proyect server production
 #use --build by compile proyect
-docker-compose -f docker-compose.prod.yml up -d
+export DOCKERFILE=Dockerfile.prod
+docker-compose up -d
 ```
