@@ -9,10 +9,10 @@ const useProfile = () => {
 
     const getUSer= useCallback(async ()=>{
         try{
-            const user = await service.detail(1)
-            dispatch({type:"SET_USER",payload:user})
+            const user = await service.detail(1);
+            dispatch({type:"SET_USER",payload:user});
         }catch(error){
-            dispatch({type:"ERROR"})
+            dispatch({type:"ERROR"});
         }
     },[])
     useEffect(()=>{

@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const { user } = useContext(UserContex)
   return (
     <div>
-      <Carrusel images={user?.profile.images?.map(image=>image.url) || []}/>
+      <Carrusel images={user?.profile.images}/>
     </div>
   )
 }

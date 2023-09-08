@@ -1,0 +1,19 @@
+{
+    "username": "al3xdiaz",
+    "email": "alexleonel96@hotmail.com",
+    "profile": {
+        "first_name": "Alex",
+        "last_name": "Diaz",
+        "age": 26,
+        "image":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1644296138/media/images/users/profile/imgs_extra/imagen_cjbso3_itah5l.jpg",
+        "images":[
+            "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1644296138/media/images/users/profile/imgs_extra/imagen_cjbso3_itah5l.jpg"
+        ]
+    },
+    "social_media":{
+        "twitter":"https://twitter.com/al3xsierra",
+        "linkedin":"https://www.linkedin.com/in/al3xdiaz/",
+        "github":"https://github.com/al3xdiaz",
+        "gitlab":"https://gitlab.com/al3xdiaz"
+    }
+}

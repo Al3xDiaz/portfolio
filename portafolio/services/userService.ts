@@ -11,8 +11,8 @@ export class UserService implements IService<IUser> {
         throw new Error("Method not implemented.");
     }
     async detail(id: number): Promise<IUser> {        
-        const response = await  this.axios.get(`/api/users/${id}?populate=*,profile.images,profile.badges`);
-        return response.data;
+        const response = await  fetch(`/profile.json`)
+        return await response.json();
     }
     create(data: IUser): Promise<IUser> {
         throw new Error("Method not implemented.");

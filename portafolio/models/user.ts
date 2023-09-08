@@ -13,7 +13,7 @@ export interface Profile {
     age: number;
     biography: string[];
     image: string;
-    images: IImages[];
+    images: string[];
     time_line_profile: TimeLineProfile[];
     last_login?: Date;
 }
@@ -53,9 +53,4 @@ export interface IUserState {
     user?: IUser;
     status: "loading" | "loaded" | "error";
 }
-export interface IImages {
-    id: number;
-    name: string;
-    url: string;
-    previewUrl: string;
-}
+

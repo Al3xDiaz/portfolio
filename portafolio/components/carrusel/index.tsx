@@ -8,19 +8,14 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import styles from './index.module.css'
 
-import getConfig from 'next/config';
-const { publicRuntimeConfig } = getConfig();
-const baseURL = publicRuntimeConfig.API_URL
-
 
 interface Props {
-  images: string[];
+  images?: string[];
 }
 
 
 export default function Carrusel(props: Props) {
   const theme = useTheme();
-  console.log(props.images);
   
   const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
@@ -31,7 +26,7 @@ export default function Carrusel(props: Props) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  return (
+  return props.images && (
     <Box sx={{ flexGrow: 1 ,}}>
       <Paper
         square
@@ -46,11 +41,11 @@ export default function Carrusel(props: Props) {
       </Paper>
       <div 
         className={styles.image} 
-        style={{background:`url(${baseURL}${props.images[activeStep] || ""}) no-repeat center/300px` ,}}
+        style={{background:`url(${props.images[activeStep] || ""}) no-repeat center/300px` ,}}
         >
           <div 
             className={styles.background}  
-            style={{background:`#000 url(${baseURL}${props.images[activeStep] || ""}) no-repeat center/100%` ,}}
+            style={{background:`#000 url(${props.images[activeStep] || ""}) no-repeat center/100%` ,}}
           >
         </div>
       </div>
@@ -85,5 +80,5 @@ export default function Carrusel(props: Props) {
         }
       />
     </Box>
-  );
+  ) || <div></div>;
 }
