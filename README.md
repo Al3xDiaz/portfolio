@@ -3,7 +3,7 @@ este es un repositorio con react js :)
 ## Hosting
 [portafolio](https://al.coderatbest.com/)
 ## Iniciar el proyecto 
-en una terminal ejecute \
+en una terminal ejecute
 
 ```bash
 #start proyect server test
