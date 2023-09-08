@@ -6,6 +6,5 @@ package-lock.json
 
 
 #next.js
-.next/
 dockerfile
 dockerfile.prod
