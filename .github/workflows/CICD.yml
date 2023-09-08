@@ -66,10 +66,11 @@ jobs:
       - name: Build portafolio
         run: |
           echo "build image"
+          cd portafolio
           yarn
           yarn build
           yarn export
-          docker build portafolio --file portafolio/Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest
+          docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
 
       - name: tag docker images
         run: |
