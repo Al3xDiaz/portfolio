@@ -6,8 +6,6 @@ services:
       dockerfile: ${DOCKERFILE:-Dockerfile}
     ports: 
       - "3000:3000"
-    environment:
-      API_URL: ${API_URL:-http://localhost:1337}
     volumes: 
       - ./portafolio/:/app/src/
       - /app/src/build
