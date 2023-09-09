@@ -7,8 +7,29 @@
         "age": 26,
         "image":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1644296138/media/images/users/profile/imgs_extra/imagen_cjbso3_itah5l.jpg",
         "images":[
-            "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1644296138/media/images/users/profile/imgs_extra/imagen_cjbso3_itah5l.jpg"
-        ]
+        ],
+        "time_line_profile":[
+        {
+            "year": 2019,
+            "comment":"i'm got a job in BIDSS-Technologie",
+            "title":"Desarrollador de software .NET jr"
+        },
+        {
+            "year": 2020,
+            "comment":"i'm got a job in Agencia Global Honduras",
+            "title":"Desarrollador Backend"
+        },
+        {
+            "year": 2021,
+            "comment":"i'm got a job in SignsCloud",
+            "title":"Backend Developer"
+        },
+        {
+            "year": 2021,
+            "comment":"i'm got a job in Abstract Development Studio SA",
+            "title":"DevOps Engineer"
+        }
+    ]
     },
     "social_media":{
         "twitter":"https://twitter.com/al3xsierra",

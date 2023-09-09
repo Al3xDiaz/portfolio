@@ -2,15 +2,20 @@ import type { NextPage } from 'next'
 import  Carrusel from '@/components/carrusel'
 import { useContext } from 'react'
 import UserContex from '@/context/UserContext'
-import { TimeLine } from '@/components/timeline'
+import TimeLine from '@/components/timeline'
+import { IUserState } from '@/models/user'
 
 const Home: NextPage = () => {
-  const { user } = useContext(UserContex)
+  const { user }:IUserState = useContext(UserContex);
+  let images: string[]=[]
+  if (user?.profile)
+    images = [user.profile.image,...user.profile.images];
   return (
     <div>
-      <Carrusel images={user?.profile.images}/>
+      <Carrusel images={images} />
+      <TimeLine data={user?.profile.time_line_profile} />
     </div>
   )
 }
 
-export default Home
+export default Home;

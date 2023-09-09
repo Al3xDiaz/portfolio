@@ -25,7 +25,6 @@ export default function Carrusel(props: Props) {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
   return props.images && (
     <Box sx={{ flexGrow: 1 ,}}>
       <Paper

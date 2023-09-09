@@ -40,13 +40,21 @@ export const Footer = () => {
                 <a>or to contact me <FaHeart size={20} color={"#ff0000"}/>.</a>
                 <div 
                     className='social'>
-                    {user?.social_media.twitter && <a href={user?.social_media?.twitter} target="_blank" rel="noopener noreferrer">
-                        <FaTwitterSquare  size={20}/>
-                        Twitter
+                    {user?.social_media.linkedin && <a href={user?.social_media?.linkedin} target="_blank" rel="noopener noreferrer">
+                        <FaLinkedin  size={20}/>
+                        Linkedin
+                    </a>}
+                    {user?.social_media.github && <a href={user?.social_media?.github} target="_blank" rel="noopener noreferrer">
+                        <FaGithubSquare  size={20}/>
+                        Github
                     </a>}
                     {user?.social_media.gitlab && <a href={user?.social_media?.gitlab} target="_blank" rel="noopener noreferrer">
                         <FaGitlab  size={20}/>
                         GitLab
+                    </a>}
+                    {user?.social_media.twitter && <a href={user?.social_media?.twitter} target="_blank" rel="noopener noreferrer">
+                        <FaTwitterSquare  size={20}/>
+                        Twitter
                     </a>}
                     {user?.social_media.instagram && <a href={user?.social_media?.instagram} target="_blank" rel="noopener noreferrer">
                         <FaInstagram  size={20}/>
@@ -55,14 +63,6 @@ export const Footer = () => {
                     {user?.social_media.facebook && <a href={user?.social_media?.facebook} target="_blank" rel="noopener noreferrer">
                         <FaFacebookSquare  size={20}/>
                         Facebook
-                    </a>}
-                    {user?.social_media.linkedin && <a href={user?.social_media?.linkedin} target="_blank" rel="noopener noreferrer">
-                        <FaLinkedin  size={20}/>
-                        Linkedin
-                    </a>}
-                    {user?.social_media.github && <a href={user?.social_media?.github} target="_blank" rel="noopener noreferrer">
-                        <FaGithubSquare  size={20}/>
-                        Github
                     </a>}
                 </div>
             </div>

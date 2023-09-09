@@ -5,11 +5,13 @@ import styles from './Index.module.css'
 import { TimeLineProfile } from '@/models/user';
 
 interface TimelineProps {
-    data:TimeLineProfile[];
+    data?:TimeLineProfile[];
 }
 
 
-export const TimeLine = ({data}:TimelineProps) => {
+const TimeLine = ({data}:TimelineProps) => {
+    if (!data)
+        return <div>no hay datos</div>
     return (
         <div className={styles.container}>
             {data.map((item,index)=>(
@@ -26,3 +28,4 @@ export const TimeLine = ({data}:TimelineProps) => {
         </div>
     )
 }
+export default TimeLine;
