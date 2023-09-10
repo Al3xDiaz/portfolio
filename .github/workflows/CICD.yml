@@ -55,7 +55,6 @@ jobs:
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
-            ~/.npm
             ${{ github.workspace }}/portafolio/.next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-${{ hashFiles('portafolio/**/*.js', 'portafolio/**/*.jsx', 'portafolio/**/*.ts', 'portafolio/**/*.tsx') }}
@@ -71,7 +70,18 @@ jobs:
           yarn build
           yarn export
           docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
-
+          pwd
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('portafolio/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: tag docker images
         run: |
