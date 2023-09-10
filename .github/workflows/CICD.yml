@@ -82,7 +82,7 @@ jobs:
           yarn build
           yarn export
           docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
-          echo "${{ github.workspace }}/portafolio/.next/cache"
+          ls -la ${{ github.workspace }}/portafolio/.next/cache
 
       - name: tag docker images
         run: |
