@@ -69,17 +69,20 @@ a {
 }
 .layout{
   display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 7vh auto 7vh;
   flex-direction: column;
   min-height: 100vh;
 }
 footer{
-  justify-self: flex-end;
+  align-self: end;
   width: 100%;
+  height: fit-content;
 }
 .main{
   display: flex;
   flex-direction: column;
-  min-height: 70vh;
+  /* min-height: 70vh; */
 }
 .navbar .navbar__logo{
   font-size: 1.5rem;
