@@ -76,12 +76,12 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-
       - name: Build portafolio
         run: |
-          ls -la ${{ github.workspace }}/portafolio/
           echo "build image"
           cd portafolio
           yarn
           yarn build
           yarn export
+          ls -la ${{ github.workspace }}/portafolio/.next/
           docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
 
       - name: tag docker images
