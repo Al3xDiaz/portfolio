@@ -81,7 +81,7 @@ jobs:
           yarn
           yarn build
           yarn export
-          ls -la ${{ github.workspace }}/portafolio/.next/
+          ls -la ${{ github.workspace }}/portafolio/.next/ || ls -la .next/ || ls -la && pwd
           docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
 
       - name: tag docker images
