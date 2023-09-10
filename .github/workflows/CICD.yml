@@ -51,14 +51,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build portafolio
-        run: |
-          echo "build image"
-          cd portafolio
-          yarn
-          yarn build
-          yarn export
-          docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
       - uses: actions/cache@v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
@@ -70,6 +62,15 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-
+      - name: Build portafolio
+        run: |
+          echo "build image"
+          cd portafolio
+          yarn
+          yarn build
+          yarn export
+          docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
 
 
       - name: tag docker images
