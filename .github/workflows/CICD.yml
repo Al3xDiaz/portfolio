@@ -50,18 +50,7 @@ jobs:
     needs: [calculate-version]
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v3
-        with:
-          # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
-          path: |
-            ${{ github.workspace }}/portafolio/.next/cache
-          # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-${{ hashFiles('portafolio/**/*.js', 'portafolio/**/*.jsx', 'portafolio/**/*.ts', 'portafolio/**/*.tsx') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-
-            ${{ runner.os }}-nextjs-
+      - uses: actions/checkout@v3
       - name: Build portafolio
         run: |
           echo "build image"
@@ -82,6 +71,15 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('portafolio/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - uses: actions/cache@v3
+        with:
+          # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
+          path: ${{ github.workspace }}/portafolio/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-${{ hashFiles('portafolio/**/*.js', 'portafolio/**/*.jsx', 'portafolio/**/*.ts', 'portafolio/**/*.tsx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-
 
       - name: tag docker images
         run: |
@@ -107,7 +105,7 @@ jobs:
         image: registry.gitlab.com/chaoticteams/ansible:latest
       needs: [calculate-version,build]
       steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: get gitlab artifact and create ssh key
         run: |
           apk add --update --no-cache curl
