@@ -1,7 +1,7 @@
 # Portafolio
-este es un repositorio con react js :)
+este es un repositorio con react js y next js :)
 ## Hosting
-[portafolio](https://al.coderatbest.com/)
+[portafolio](https://alex.chaoticteam.com)
 ## Iniciar el proyecto 
 en una terminal ejecute
 
