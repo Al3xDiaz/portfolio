@@ -24,22 +24,6 @@ export const Footer = () => {
                         <IoMail  size={20}/>
                         Email
                     </a>
-                </div>
-            </div>) }
-            <div className="services">
-                <h4>Services</h4>
-                <ul>
-                    <li>Backend Development</li>
-                    <li>Frontend Development</li>
-                    <li>DevOps Development</li>
-                </ul>
-            </div>
-            <div className="about">
-                <h4>Made for</h4>
-                Help to any human being.
-                <a>or to contact me <FaHeart size={20} color={"#ff0000"}/>.</a>
-                <div 
-                    className='social'>
                     {user?.social_media.linkedin && <a href={user?.social_media?.linkedin} target="_blank" rel="noopener noreferrer">
                         <FaLinkedin  size={20}/>
                         Linkedin
@@ -64,6 +48,24 @@ export const Footer = () => {
                         <FaFacebookSquare  size={20}/>
                         Facebook
                     </a>}
+                </div>
+            </div>) }
+            <div className="services">
+                <h4>Specialties</h4>
+                <ul>
+                    <li>Backend</li>
+                    <li>Frontend</li>
+                    <li>DevOps</li>
+                    <li>Database</li>
+                    <li>Mobile</li>
+                </ul>
+            </div>
+            <div className="about">
+                <h4>Made for</h4>
+                Help to any human being.
+                <a>or to contact me <FaHeart size={20} color={"#ff0000"}/>.</a>
+                <div 
+                    className='social'>
                 </div>
             </div>
             <style jsx>{`

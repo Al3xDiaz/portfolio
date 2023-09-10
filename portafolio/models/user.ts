@@ -47,6 +47,7 @@ export interface IUser {
     social_media: SocialMedia;
     education: string[];
     areas: Area[];
+    courses: ICourse[];
 }
 
 export interface IUserState {
@@ -54,3 +55,8 @@ export interface IUserState {
     status: "loading" | "loaded" | "error";
 }
 
+export interface ICourse {
+    id: number;
+    name: string;
+    image: string;
+}

@@ -36,5 +36,23 @@
         "linkedin":"https://www.linkedin.com/in/al3xdiaz/",
         "github":"https://github.com/al3xdiaz",
         "gitlab":"https://gitlab.com/al3xdiaz"
-    }
+    },
+    "courses":[
+        {
+            "id":1,
+            "image":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668757/Courses/Terminal_y_L%C3%ADnea_de_Comandos.png"
+        },
+        {
+            "id":2,
+            "image":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Jenkins.png"
+        },
+        {
+            "id":3,
+            "image":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Docker.png"
+        },
+        {
+            "id":4,
+            "image":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628667208/Courses/Node.js.png"
+        }
+    ]
 }
