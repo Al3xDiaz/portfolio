@@ -12,17 +12,14 @@ export const Navbar = () => {
                 </Link>
             </div>
             <menu>
-                <Link href="/">
-                    <a>Home</a>
-                </Link>
                 <Link href="/courses">
 				<a>Courses</a>
                 </Link>
-                <Link href="/skills">
-				<a>Skills</a>
+                <Link href="/gallery">
+				<a>Gallery</a>
                 </Link>
-                <Link href="/hobbies">
-				<a>Hobbies</a>
+                <Link href="/projects">
+				<a>Projects</a>
                 </Link>
                 <Link href="/contact">
 				<a>Contact</a>

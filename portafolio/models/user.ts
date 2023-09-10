@@ -25,6 +25,7 @@ export interface SocialMedia {
     instagram: string;
     facebook: string;
     twitter: string;
+    discord: string;
 }
 
 export interface Experiencie {
@@ -48,6 +49,7 @@ export interface IUser {
     education: string[];
     areas: Area[];
     courses: ICourse[];
+    projects: IProject[];
 }
 
 export interface IUserState {
@@ -56,7 +58,13 @@ export interface IUserState {
 }
 
 export interface ICourse {
-    id: number;
     name: string;
     image: string;
+}
+
+export interface IProject {
+    name: string;
+    description: string;
+    image: string;
+    url: string;
 }

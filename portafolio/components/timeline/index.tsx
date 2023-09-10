@@ -15,7 +15,7 @@ const TimeLine = ({data}:TimelineProps) => {
     return (
         <div className={styles.container}>
             {data.map((item,index)=>(
-                <Row item={item} reverse={index%2==0}/>
+                <Row key={index} item={item} reverse={index%2==0}/>
             ))}
             <style jsx>{`
                 .icon{

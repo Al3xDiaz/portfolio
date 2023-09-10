@@ -10,8 +10,8 @@ export const Courses = () => {
         <div>
             <h1>Courses</h1>
             <div className='row'>
-                {courses.map(course => (
-                    <div key={course.id}>
+                {courses.map((course,index) => (
+                    <div key={index}>
                         <Image src={course.image} alt="notFount.jpg" width={300} height={200}/>
                     </div>
                 ))}

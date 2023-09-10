@@ -5,7 +5,8 @@ import {
     FaInstagram,
     FaFacebookSquare,
     FaLinkedin, 
-    FaGithubSquare, 
+    FaGithubSquare,
+    FaDiscord,
     FaHeart
 } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
@@ -47,6 +48,10 @@ export const Footer = () => {
                     {user?.social_media.facebook && <a href={user?.social_media?.facebook} target="_blank" rel="noopener noreferrer">
                         <FaFacebookSquare  size={20}/>
                         Facebook
+                    </a>}
+                    {user?.social_media.discord && <a href={`${user?.social_media?.discord}`} target="_blank" rel="noopener noreferrer">
+                        <FaDiscord  size={20}/>
+                        Discord
                     </a>}
                 </div>
             </div>) }
