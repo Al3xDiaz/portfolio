@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import UserContex from "@/context/UserContext"
 import { Image } from '@/utils/Index';
-import styles from './index.module.css'
+import ModalImage from "react-modal-image";
 
 export const Courses = () => {
     const {user} = useContext(UserContex);
@@ -11,23 +11,27 @@ export const Courses = () => {
             <h1>Courses</h1>
             <div className='row'>
                 {courses.map((course,index) => (
-                    <div key={index}>
-                        <Image src={course.image} alt="notFount.jpg" width={300} height={200}/>
+                    <div className='course' key={index}>
+                        {/* <Image src={course} alt="notFound.jpg" width={300} height={200}/> */}
+                        <ModalImage
+                        small={course}
+                        large={course}
+                        hideDownload={true}
+                        showRotate={true}                        
+                        />;
                     </div>
                 ))}
             </div>
             <style jsx>{`
-                .course-title{
-                    max-width: 20ch;
-                    text-align: center;
-                    margin: 0 auto;
-                }
                 .row{
                     display: flex;
-                    flex-direction: row;
-                    align-items: flex-end;
-                    justify-content: space-around;
                     flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .course{
+                    margin: 1rem;
+                    height: 200px;
+                    width: 300px;
                 }
                 `}</style>
         </div>

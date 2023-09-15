@@ -48,18 +48,13 @@ export interface IUser {
     social_media: SocialMedia;
     education: string[];
     areas: Area[];
-    courses: ICourse[];
+    courses: string[];
     projects: IProject[];
 }
 
 export interface IUserState {
     user?: IUser;
     status: "loading" | "loaded" | "error";
-}
-
-export interface ICourse {
-    name: string;
-    image: string;
 }
 
 export interface IProject {

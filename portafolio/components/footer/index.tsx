@@ -11,11 +11,15 @@ import {
 } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import UserContex from "@/context/UserContext"
+import { version } from '../../package.json'
 
 export const Footer = () => {
     const {user} = useContext(UserContex);
     return (
         <footer>
+            <div>
+                <h4>version: {version}</h4>
+            </div>
             {user?.email && (<div>
                 <h4>Contact me</h4>
                 <div>
