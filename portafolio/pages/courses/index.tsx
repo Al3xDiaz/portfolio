@@ -18,7 +18,7 @@ export const Courses = () => {
                         large={course}
                         hideDownload={true}
                         showRotate={true}                        
-                        />;
+                        />
                     </div>
                 ))}
             </div>
@@ -29,7 +29,9 @@ export const Courses = () => {
                     justify-content: center;
                 }
                 .course{
-                    margin: 1rem;
+                    margin-bottom: 3rem;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
                     height: 200px;
                     width: 300px;
                 }
