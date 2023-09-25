@@ -1,7 +1,6 @@
 import React,{useContext} from 'react';
 import UserContex from "@/context/UserContext"
-import { Image } from '@/utils/Index';
-import ModalImage from "react-modal-image";
+import { Image,ModalImage } from '@/utils/Index';
 
 export const Courses = () => {
     const {user} = useContext(UserContex);
@@ -12,12 +11,9 @@ export const Courses = () => {
             <div className='row'>
                 {courses.map((course,index) => (
                     <div className='course' key={index}>
-                        {/* <Image src={course} alt="notFound.jpg" width={300} height={200}/> */}
                         <ModalImage
                         small={course}
-                        large={course}
-                        hideDownload={true}
-                        showRotate={true}                        
+                        large={course}                      
                         />
                     </div>
                 ))}
