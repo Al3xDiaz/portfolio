@@ -1,6 +1,7 @@
 import {IUser} from './user'
 export interface IComentary{
     id: number;
-    user?: IUser;
-    content: string;
+    userId?: number;
+    CreatedAt: Date;
+    comment: string;
 }
