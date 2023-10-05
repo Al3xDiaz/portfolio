@@ -10,9 +10,9 @@ export const Commentaries = () => {
                 <h2>Commentaries</h2>
             </div>
             <div className="commentaries-body">
-                {commentaries.map((item,i)=>(<div className="commentary" key={item.id} style={{flexDirection:i%2?"row-reverse":"row"}}>
+                {commentaries.map((item,i)=>(<div className="commentary" key={item.id}>
                     <RxAvatar size={50}/>
-                    <div className="content">{item.comment}</div>
+                    <div className="content"><p>{item.comment}</p></div>
                 </div>))}
             </div>
         <style jsx>{`
@@ -24,28 +24,31 @@ export const Commentaries = () => {
                 margin: 1rem;
             }
             .commentaries-body{
-                width: 100vw;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;
                 background-color: var(--background);
             }
             .commentary{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                width: 80%;
+                display: grid;
+                justify-items: start;
+                grid-template-columns: 5rem 1fr;
+
+                width: 70%;
                 margin: 1rem;
             }
             .content{
                 background-color: #ffffff;
-                max-width: 50rem;
-                min-width: 20rem;
-                padding: 1rem;
+                width: 100%;
                 border-radius: 1rem;
-                --webkit-line-clamp: 4;
+                padding: 1rem;
+            }
+            .content p {
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                text-align: left;
             }
         `}</style>
     </div>)

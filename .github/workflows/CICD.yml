@@ -13,6 +13,7 @@ env:
   GIT_STRATEGY: fetch
   GIT_DEPTH: 0
   IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
+  API_URL: https://api.chaoticteam.com
 
 jobs:
   # Push image to GitHub Packages.
