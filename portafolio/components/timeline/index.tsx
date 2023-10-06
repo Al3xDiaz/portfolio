@@ -13,18 +13,15 @@ const TimeLine = ({data}:TimelineProps) => {
     if (!data)
         return <div>no hay datos</div>
     return (
-        <div className={styles.container}>
+        <div>
+            <div className={styles["timeline-title"]}>
+                <h2>Experience</h2>
+            </div>
+            <div className={styles.container}>
             {data.map((item,index)=>(
                 <Row key={index} item={item} reverse={index%2==0}/>
             ))}
-            <style jsx>{`
-                .icon{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100%;     
-                }
-            `}</style>
+        </div>
         </div>
     )
 }

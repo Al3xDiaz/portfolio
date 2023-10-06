@@ -20,15 +20,15 @@ export const Footer = () => {
             <div>
                 <h4>version: {version}</h4>
             </div>
-            {user?.email && (<div>
+            <div>
                 <h4>Contact me</h4>
                 <div>
-                    <a href={`mailto:${user?.email}`}
+                    {user?.email && (<a href={`mailto:${user?.email}`}
                         target="_blank"
                         rel="noopener noreferrer">
                         <IoMail  size={20}/>
                         Email
-                    </a>
+                    </a>)}
                     {user?.social_media.linkedin && <a href={user?.social_media?.linkedin} target="_blank" rel="noopener noreferrer">
                         <FaLinkedin  size={20}/>
                         Linkedin
@@ -58,16 +58,6 @@ export const Footer = () => {
                         Discord
                     </a>}
                 </div>
-            </div>) }
-            <div className="services">
-                <h4>Specialties</h4>
-                <ul>
-                    <li>Backend</li>
-                    <li>Frontend</li>
-                    <li>DevOps</li>
-                    <li>Database</li>
-                    <li>Mobile</li>
-                </ul>
             </div>
             <div className="about">
                 <h4>Made for</h4>
@@ -98,11 +88,16 @@ export const Footer = () => {
                     color: white;
                     position: relative;
                     z-index: 1;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-evenly; 
-                    align-items: flex-start;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    justify-items: start;
+                    
                     padding: 1rem;
+                  }
+                  footer div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-items: start;
                   }
                 `}</style>
         </footer>
