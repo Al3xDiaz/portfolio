@@ -18,9 +18,6 @@ export const Footer = () => {
     return (
         <footer>
             <div>
-                <h4>version: {version}</h4>
-            </div>
-            <div>
                 <h4>Contact me</h4>
                 <div>
                     {user?.email && (<a href={`mailto:${user?.email}`}
@@ -59,15 +56,24 @@ export const Footer = () => {
                     </a>}
                 </div>
             </div>
+            {user?.specialties && (
+            <div className="specialties">
+                <h4>Specialties</h4>
+                <ul>
+                    {user?.specialties.map((item,i)=>(<li>{item}</li>))}
+                </ul>
+            </div>
+            )}
             <div className="about">
                 <h4>Made for</h4>
                 Help to any human being.
                 <a>or to contact me <FaHeart size={20} color={"#ff0000"}/>.</a>
-                <div 
-                    className='social'>
-                </div>
+                <h4 className='version'>version: {version}</h4>
             </div>
             <style jsx>{`
+                .version{
+                    margin-top: 1rem;
+                }
                 .social{
                     display: flex;
                     flex-direction: column;
@@ -90,7 +96,7 @@ export const Footer = () => {
                     z-index: 1;
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
-                    justify-items: start;
+                    justify-items: center;
                     
                     padding: 1rem;
                   }

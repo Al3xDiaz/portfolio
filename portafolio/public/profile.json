@@ -57,5 +57,11 @@
         "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/docker2_wsekwi.png",
         "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/docker2_wsekwi.png",
         "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628669138/Courses/Software_Development_Fundamentals.jpg"
+    ],
+    "specialties":[
+        "DevOps",
+        "Backend",
+        "Frontent",
+        "Mobile"
     ]
 }

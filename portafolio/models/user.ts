@@ -50,6 +50,7 @@ export interface IUser {
     areas: Area[];
     courses: string[];
     projects: IProject[];
+    specialties: string[];
 }
 
 export interface IUserState {
