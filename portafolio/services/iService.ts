@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import getConfig from "next/config";
+import { IUser, IUserAuth } from "../models";
 
 const { publicRuntimeConfig } = getConfig();
 const baseURL = publicRuntimeConfig.API_URL;
@@ -13,9 +14,9 @@ export  interface IService<T> {
     delete(id:number): Promise<T>;
     listFilter?(slug:string): Promise<T[]>;
 }
-export const AxiosBase = axios.create({
-    headers: {
-        "Content-Type": "application/json",
-    },
-    baseURL,
-});
+export interface IServiceAuth{
+    axios: AxiosInstance;
+    login(username: string,password: string):Promise<IUserAuth>;
+    getData():Promise<IUser>;
+    signUp(data:IUser):Promise<IUserAuth>;
+}

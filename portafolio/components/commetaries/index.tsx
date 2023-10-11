@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { RxAvatar } from "react-icons/rx"
 import useCommentary from "@/hooks/useCommentary"
+import { CreateCommentary } from "./createCommentary";
+import context from "@/context/siteContext"
 
-export const Commentaries = () => {
-    const {commentaries} = useCommentary();
+interface IProps {
+    unAuthorized?:()=>void
+}
+
+export const Commentaries = ({unAuthorized}:IProps) => {
+    const {commentaries,createCommentary} = useCommentary();
+    const {state} = useContext(context)
+    const postCommentary =async (content:string) =>{
+        if (!!state.visitor){
+            await createCommentary(content)
+            return true
+        }else{
+            unAuthorized && await unAuthorized()
+            return false
+        }
+    }
 
     return(<div>
             <div className="commentaries-title">
@@ -15,6 +31,7 @@ export const Commentaries = () => {
                     <div className="content"><p>{item.comment}</p></div>
                 </div>))}
             </div>
+            <CreateCommentary postCommentary={postCommentary} />
         <style jsx>{`
             .commentaries-title{
                 background-color: var(--primary);

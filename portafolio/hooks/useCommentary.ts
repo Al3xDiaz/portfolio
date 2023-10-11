@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useRef, useState} from "react";
-import { Commentary } from "@/models/index"
+import { ICommentary } from "@/models/index"
 import {CommentaryService} from "@/services/commentaryService"
+import useSite from "./useSite";
+import axios from "axios";
 
 const useCommentary = () => {
-    const [commentaries,setCommentaries] = useState<Commentary.IComentary[]>([])
+    const {state:{axiosInstance}} = useSite()
+    const [commentaries,setCommentaries] = useState<ICommentary[]>([])
 
-    const service  = useRef<CommentaryService>(new CommentaryService()).current
+    const service = useRef<CommentaryService>(new CommentaryService(axiosInstance)).current
 
     const getCommentaries= useCallback(async ()=>{
         try{
@@ -19,9 +22,15 @@ const useCommentary = () => {
         getCommentaries()
     },[getCommentaries])
     
+    const createCommentary = useCallback(async (content: string)=>{
+        await service.create({comment:content,})
+        await getCommentaries()
+    },[])
+    
     return {
         commentaries,
-        getCommentaries
+        getCommentaries,
+        createCommentary,
     }
 }
 export default useCommentary;

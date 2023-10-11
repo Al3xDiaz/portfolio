@@ -1,26 +1,30 @@
-import { Commentary } from "@/models/index";
-import {AxiosBase, IService} from "@/services/iService";
-import { AxiosInstance } from "axios";
+import { ICommentary } from "@/models/index";
+import { IService} from "@/services/iService";
+import axios,{ AxiosInstance } from "axios";
 
-export class CommentaryService implements IService<Commentary.IComentary> {
+export class CommentaryService implements IService<ICommentary> {
     axios: AxiosInstance;
-    constructor() {
-        this.axios = AxiosBase;
-    }    
-    async list(): Promise<Commentary.IComentary[]> {
+    constructor(axiosInstance?: AxiosInstance) {
+        this.axios =axiosInstance || axios.create()
+    }
+    async list(): Promise<ICommentary[]> {
         const response = await  this.axios.get(`/commentaries`)
         return await response.data;
     }
-    async detail(id: number): Promise<Commentary.IComentary> {        
+    async detail(id: number): Promise<ICommentary> {        
         throw new Error("Method not implemented.");
     }
-    create(data: Commentary.IComentary): Promise<Commentary.IComentary> {
+    async create(data: ICommentary): Promise<ICommentary>{
+        const resp = await this.axios.post("/commentaries",data);
+        return resp.data
+    }
+    update(id: number, data: ICommentary): Promise<ICommentary> {
         throw new Error("Method not implemented.");
     }
-    update(id: number, data: Commentary.IComentary): Promise<Commentary.IComentary> {
+    delete(id: number): Promise<ICommentary> {
         throw new Error("Method not implemented.");
     }
-    delete(id: number): Promise<Commentary.IComentary> {
+    listFilter?(slug: string): Promise<ICommentary[]> {
         throw new Error("Method not implemented.");
     }
 }

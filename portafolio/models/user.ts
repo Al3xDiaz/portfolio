@@ -1,3 +1,5 @@
+import { AxiosInstance } from "axios";
+
 export interface TimeLineProfile {
     year: number;
     comment: string;
@@ -42,6 +44,18 @@ export interface Area {
 }
 
 export interface IUser {
+    id: number;
+    userName: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    verified: boolean;
+}
+export interface IUserAuth{
+    user: IUser;
+    token: string;
+}
+export interface IOwnerSite{
     username: string;
     email: string;
     profile: Profile;
@@ -53,9 +67,12 @@ export interface IUser {
     specialties: string[];
 }
 
-export interface IUserState {
-    user?: IUser;
+export interface ISiteState {
+    ownerSite?: IOwnerSite;
+    visitor?: IUser;
     status: "loading" | "loaded" | "error";
+    msgError?: any;
+    axiosInstance?: AxiosInstance;
 }
 
 export interface IProject {

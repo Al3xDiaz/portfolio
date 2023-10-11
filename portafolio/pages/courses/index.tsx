@@ -1,5 +1,5 @@
 import React,{useContext} from 'react';
-import UserContex from "@/context/UserContext"
+import UserContex from "@/context/siteContext"
 import { Image,ModalImage } from '@/utils/Index';
 
 export const Courses = () => {

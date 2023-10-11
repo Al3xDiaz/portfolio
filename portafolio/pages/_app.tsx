@@ -1,18 +1,18 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from '@/components/layaut'
-import UserContex from '@/context/UserContext'
-import useProfile from '@/hooks/useProfile'
+import siteContex from '@/context/siteContext'
+import useSite from '@/hooks/useSite'
 
 function App({ Component, pageProps }: AppProps) {
-  const { state } = useProfile()
+  const value = useSite()
   return (
-    <UserContex.Provider value={state}>
+    <siteContex.Provider value={value}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </UserContex.Provider>
+    </siteContex.Provider>
   )
 }
 
-export default App
+export default App;

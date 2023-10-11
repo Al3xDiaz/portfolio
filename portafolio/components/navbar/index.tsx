@@ -1,14 +1,14 @@
 import { useContext } from "react"
-import UserContex from "@/context/UserContext"
 import Link from "next/link"
+import siteContex from "@/context/siteContext"
 
 export const Navbar = () => {
-    const {user} = useContext(UserContex)
+    const {ownerSite} = useContext(siteContex)
     return (
         <nav className="navbar">
             <div className="navbar__logo">
                 <Link href="/">
-                    <a>{user?.profile.first_name} {user?.profile.last_name}</a>
+                    <a>{ownerSite?.profile.first_name} {ownerSite?.profile.last_name}</a>
                 </Link>
             </div>
             <menu>
