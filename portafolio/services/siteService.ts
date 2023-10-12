@@ -1,11 +1,11 @@
 import { IOwnerSite } from "@/models/index";
-import {AxiosBase, IService} from "@/services/iService";
-import { AxiosInstance } from "axios";
+import {IService} from "@/services/iService";
+import axios,{ AxiosInstance } from "axios";
 
 export class SiteService implements IService<IOwnerSite> {
     axios: AxiosInstance;
-    constructor() {
-        this.axios = AxiosBase;
+    constructor(axiosBase?: AxiosInstance) {
+        this.axios = axiosBase || axios.create();
     }    
     async list(): Promise<IOwnerSite[]> {
         throw new Error("Method not implemented.");

@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import {
     FaTwitterSquare,
     FaGitlab,
@@ -10,11 +10,11 @@ import {
     FaHeart
 } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
-import siteContex from "@/context/siteContext"
 import packageInfo from '../../package.json'
+import useSite from '@/hooks/useSite';
 
 export const Footer = () => {
-    const {ownerSite} = useContext(siteContex);
+    const {state:{ownerSite}} = useSite()
     return (
         <footer>
             <div>

@@ -1,9 +1,8 @@
-import { useContext } from "react"
+import useSite from "@/hooks/useSite"
 import Link from "next/link"
-import siteContex from "@/context/siteContext"
 
 export const Navbar = () => {
-    const {ownerSite} = useContext(siteContex)
+    const {state:{ownerSite}} = useSite()
     return (
         <nav className="navbar">
             <div className="navbar__logo">

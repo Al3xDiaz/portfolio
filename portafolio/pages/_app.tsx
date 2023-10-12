@@ -2,7 +2,6 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from '@/components/layaut'
 import siteContex from '@/context/siteContext'
-import useSite from '@/hooks/useSite'
 import { useReducer } from 'react'
 import { initialState, reducer } from '@/reducers/useSiteReducer'
 

@@ -1,10 +1,9 @@
 **/node_modules/
 
 node_modules/
-yarn.lock
 package-lock.json
 
 
 #next.js
-dockerfile
-dockerfile.prod
+**/Dockerfile
+**/Dockerfile.prod

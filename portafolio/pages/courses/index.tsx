@@ -1,10 +1,10 @@
-import React,{useContext} from 'react';
-import UserContex from "@/context/siteContext"
+import React from 'react';
 import { Image,ModalImage } from '@/utils/Index';
+import useSite from '@/hooks/useSite';
 
 export const Courses = () => {
-    const {user} = useContext(UserContex);
-    const courses = user?.courses || [];
+    const {state:{ownerSite}} = useSite()
+    const courses = ownerSite?.courses || [];
     return (
         <div>
             <h1>Courses</h1>

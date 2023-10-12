@@ -1,6 +1,7 @@
 FROM node:18.8.0-alpine3.16 as BUILD
+ENV API_URL=https://api.chaoticteam.com
 WORKDIR /app
-COPY package.json /app/
+COPY package.json yarn.lock /app/
 RUN yarn
 COPY . .
 RUN yarn build
