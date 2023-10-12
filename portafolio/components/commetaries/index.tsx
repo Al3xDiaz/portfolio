@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { RxAvatar } from "react-icons/rx"
 import useCommentary from "@/hooks/useCommentary"
 import { CreateCommentary } from "./createCommentary";
-import context from "@/context/siteContext"
+import useSite from "@/hooks/useSite";
 
 interface IProps {
     unAuthorized?:()=>void
@@ -10,8 +10,10 @@ interface IProps {
 
 export const Commentaries = ({unAuthorized}:IProps) => {
     const {commentaries,createCommentary} = useCommentary();
-    const {state} = useContext(context)
+    const {state} = useSite()
     const postCommentary =async (content:string) =>{
+        if (!content)
+            throw "Comentary required";
         if (!!state.visitor){
             await createCommentary(content)
             return true

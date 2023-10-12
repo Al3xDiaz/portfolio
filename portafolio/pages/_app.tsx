@@ -3,11 +3,14 @@ import type { AppProps } from 'next/app'
 import Layout from '@/components/layaut'
 import siteContex from '@/context/siteContext'
 import useSite from '@/hooks/useSite'
+import { useReducer } from 'react'
+import { initialState, reducer } from '@/reducers/useSiteReducer'
 
 function App({ Component, pageProps }: AppProps) {
-  const value = useSite()
+
+  const [state,dispatch]= useReducer(reducer,initialState);
   return (
-    <siteContex.Provider value={value}>
+    <siteContex.Provider value={{state,dispatch}}>
       <Layout>
         <Component {...pageProps} />
       </Layout>

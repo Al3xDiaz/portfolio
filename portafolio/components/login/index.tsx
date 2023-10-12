@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import {Password} from '../form';
 import { TextField } from '@mui/material';
 import context from "@/context/siteContext"
+import useSite from '@/hooks/useSite';
 
 interface Iprops{
   open: boolean;
@@ -29,7 +30,7 @@ export default function Login({open,handleClose}:Iprops) {
   const [signupInValidate,setSignupInValidate] = React.useState(false)
   const [loginDataForm,setLoginDataForm] = React.useState<IloginData>()
   const [signUpDataForm,setSignUpDataForm] = React.useState<IloginData>()
-  const {login,signUp} = React.useContext(context)
+  const {login,signUp} = useSite()
   return (
     <div>
       <Modal
@@ -106,8 +107,17 @@ export default function Login({open,handleClose}:Iprops) {
                   variant="contained"
                   size='small'
                   color="success"
-                  onClick={()=>{
-                    console.log(signUpDataForm)
+                  onClick={async()=>{
+                    try {
+                      if (!!loginDataForm?.userName && !!loginDataForm?.password) {
+                        await login(loginDataForm?.userName,loginDataForm?.password)
+                        handleClose()
+                      }else{
+                        setLoginInValidate(true)
+                      }
+                    } catch (error) {
+                      setLoginInValidate(true)                      
+                    }
                   }}
                   >SignUp</Button>
             </form>

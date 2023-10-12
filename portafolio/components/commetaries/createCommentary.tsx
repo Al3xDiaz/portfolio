@@ -5,6 +5,7 @@ interface iprops {
 }
 export const CreateCommentary = ({postCommentary}:iprops)=>{
     const [content,setContent] = useState<string>("");
+    const [error,setError] = useState<string>()
     return (
     <div>
         <div className="commentary-form">
@@ -16,12 +17,15 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
                 <TextField
                     id="outlined-multiline-static"
                     required
+                    label={error}
                     multiline
+                    error={!!error}
                     rows={4}
                     value={content}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         setContent(event.target.value);
                     }}
+                    onFocus={()=>setError(undefined)}
                     style={{
                         backgroundColor:"#fff",
                         borderRadius:"4px"
@@ -33,9 +37,9 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
                     style={{alignSelf:"flex-end"}}
                     variant="contained"
                     color="success"
-                    onClick={()=>{postCommentary && postCommentary(content).then((resp)=>{
+                    onClick={()=>{postCommentary && postCommentary(content.trim()).then((resp)=>{
                         resp && setContent("")
-                    })}}
+                    }).catch(err=>setError(err))}}
                 >Send</Button>
             </div>
         </div>

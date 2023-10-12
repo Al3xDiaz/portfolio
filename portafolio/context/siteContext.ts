@@ -1,10 +1,11 @@
 import React  from "react";
 import { ISiteState, IUser } from "@/models/user";
-interface IGlobalContex{
+import IAction from "@/reducers/types";
+interface IContextState{
     state: ISiteState;
-    login?: (username: string, password: string) => Promise<void>;
-    signUp?: (data: IUser) => Promise<void>;
+    dispatch?: React.Dispatch<IAction>
 }
-const siteContex =React.createContext<IGlobalContex>({state:{status: "loading"}});
+
+const siteContex =React.createContext<IContextState>({state:{status: "loading"}});
 
 export default siteContex;
