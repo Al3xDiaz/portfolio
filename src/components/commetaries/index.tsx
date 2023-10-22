@@ -1,8 +1,8 @@
 import React from "react";
 import { RxAvatar } from "react-icons/rx"
-import useCommentary from "src/hooks/useCommentary"
+import useCommentary from "@/src/hooks/useCommentary"
 import { CreateCommentary } from "./createCommentary";
-import useSite from "src/hooks/useSite";
+import useSite from "@/src/hooks/useSite";
 
 interface IProps {
     unAuthorized?:()=>void

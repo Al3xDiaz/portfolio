@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image,ModalImage } from 'src/utils/Index';
-import useSite from 'src/hooks/useSite';
+import { Image,ModalImage } from '@/src/utils'
+import useSite from '@/src/hooks/useSite';
 
 export const Courses = () => {
     const {state:{ownerSite}} = useSite()

@@ -1,4 +1,4 @@
-import useSite from "src/hooks/useSite"
+import useSite from "@/src/hooks/useSite"
 import Link from "next/link"
 
 export const Navbar = () => {

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from '../form';
 import { TextField } from '@mui/material';
-import useSite from 'src/hooks/useSite';
+import useSite from '@/src/hooks/useSite';
 
 interface Iprops{
   open: boolean;

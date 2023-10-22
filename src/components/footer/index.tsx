@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import packageInfo from '../../../package.json'
-import useSite from 'src/hooks/useSite';
+import useSite from '@/src/hooks/useSite';
 
 export const Footer = () => {
     const {state:{ownerSite}} = useSite()

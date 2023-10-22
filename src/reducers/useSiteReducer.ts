@@ -1,5 +1,5 @@
-import { IUser, ISiteState } from "src/models/user";
-import { IAction } from "src/reducers/types";
+import { IUser, ISiteState } from "@/src/models/user";
+import { IAction } from "@/src/reducers/types";
 import axios from "axios";
 import getConfig from "next/config";
 

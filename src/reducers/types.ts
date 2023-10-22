@@ -1,4 +1,4 @@
-import {IOwnerSite, IUser, IUserAuth} from "src/models/user";
+import {IOwnerSite, IUser, IUserAuth} from "@/src/models/user";
 import { AxiosInstance } from "axios";
 interface ISetSiteAction {
     type: "SET_SITE";

@@ -1,9 +1,9 @@
 import { useCallback, useContext, useEffect, useReducer, useRef } from "react"
-import {reducer} from "src/reducers/useSiteReducer"
-import { SiteService } from "src/services/siteService"
-import {authService as AuthService } from "src/services/index"
+import {reducer} from "@/src/reducers/useSiteReducer"
+import { SiteService } from "@/src/services/siteService"
+import {authService as AuthService } from "@/src/services"
 import { IUser } from "../models";
-import context from "src/context/siteContext"
+import context from "@/src/context/siteContext"
 
 
 const useSite = () => {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState} from "react";
-import { ICommentary } from "src/models/index"
-import {CommentaryService} from "src/services/commentaryService"
+import { ICommentary } from "@/src/models"
+import {CommentaryService} from "@/src/services/commentaryService"
 import useSite from "./useSite";
 import axios from "axios";
 

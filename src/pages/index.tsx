@@ -1,10 +1,10 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import  Carrusel from 'src/components/carrusel'
-import TimeLine from 'src/components/timeline'
-import Commentaries from 'src/components/commetaries'
-import Login from 'src/components/login'
-import useSite from 'src/hooks/useSite'
+import  Carrusel from '@/src/components/carrusel'
+import TimeLine from '@/src/components/timeline'
+import Commentaries from '@/src/components/commetaries'
+import Login from '@/src/components/login'
+import useSite from '@/src/hooks/useSite'
 
 const Home: NextPage = () => {
   const [open, setOpen] = React.useState(false);

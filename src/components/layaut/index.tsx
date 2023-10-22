@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from "src/components/navbar";
-import  Footer  from "src/components/footer";
+import Navbar from "@/src/components/navbar";
+import  Footer  from "@/src/components/footer";
 import { NextComponentType, NextPageContext } from 'next';
 
 interface LayoutProps {

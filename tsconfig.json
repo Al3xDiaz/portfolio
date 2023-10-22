@@ -2,29 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "src/components/*",
-      ],
-      "@/models/*": [
-        "src/models/*",
-      ],
-      "@/context/*":[
-        "src/context/*"
-      ],
-      "@/services/*":[
-        "src/services/*"
-      ],
-      "@/reducers/*":[
-        "src/reducers/*"
-      ],
-      "@/const/*":[
-        "src/const/*"
-      ],
-      "@/hooks/*":[
-        "src/hooks/*"
-      ],
-      "@/utils/*":[
-        "src/utils/*"
+      "@/src/*": [
+        "src/*",
       ]
     },
     "target": "es5",

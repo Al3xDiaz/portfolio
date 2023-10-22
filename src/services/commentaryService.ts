@@ -1,5 +1,5 @@
-import { ICommentary } from "src/models/index";
-import { IService} from "src/services/iService";
+import { ICommentary } from "@/src/models";
+import { IService} from "@/src/services/iService";
 import axios,{ AxiosInstance } from "axios";
 
 export class CommentaryService implements IService<ICommentary> {

@@ -1,9 +1,9 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import Layout from 'src/components/layaut'
-import siteContex from 'src/context/siteContext'
+import Layout from '@/src/components/layaut'
+import siteContex from '@/src/context/siteContext'
 import { useReducer } from 'react'
-import { initialState, reducer } from 'src/reducers/useSiteReducer'
+import { initialState, reducer } from '@/src/reducers/useSiteReducer'
 
 function App({ Component, pageProps }: AppProps) {
 

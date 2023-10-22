@@ -1,5 +1,5 @@
-import { IOwnerSite } from "src/models/index";
-import {IService} from "src/services/iService";
+import { IOwnerSite } from "@/src/models";
+import {IService} from "@/src/services/iService";
 import axios,{ AxiosInstance } from "axios";
 
 export class SiteService implements IService<IOwnerSite> {

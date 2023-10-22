@@ -1,5 +1,5 @@
-import {IUser, IUserAuth} from "src/models/index";
-import {IServiceAuth} from "src/services/iService";
+import {IUser, IUserAuth} from "@/src/models";
+import {IServiceAuth} from "@/src/services/iService";
 import axios, { AxiosInstance } from "axios";
 
 export class authService implements IServiceAuth{

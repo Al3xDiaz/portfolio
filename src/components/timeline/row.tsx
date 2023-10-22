@@ -1,4 +1,4 @@
-import { TimeLineProfile } from "src/models/user";
+import { TimeLineProfile } from "@/src/models/user";
 import React from "react";
 import styles from './Row.module.css'
 

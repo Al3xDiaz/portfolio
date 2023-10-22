@@ -2,7 +2,7 @@
 // import 'react-vertical-timeline-component/style.min.css';
 import { Row } from './row';
 import styles from './Index.module.css'
-import { TimeLineProfile } from 'src/models/user';
+import { TimeLineProfile } from '@/src/models/user';
 
 interface TimelineProps {
     data?:TimeLineProfile[];
