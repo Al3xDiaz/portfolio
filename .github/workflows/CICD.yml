@@ -62,19 +62,19 @@ jobs:
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('portafolio/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('./yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - uses: actions/cache@v3
         with:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
-            ${{ github.workspace }}/portafolio/build/cache
+            ${{ github.workspace }}/build/cache
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-${{ hashFiles('**/**/*.ts', '**/**/*.tsx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('./yarn.lock') }}-${{ hashFiles('**/**/*.ts', '**/**/*.tsx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('portafolio/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('./yarn.lock') }}-
       - name: Build portafolio
         run: |
           echo "build image"
@@ -83,7 +83,7 @@ jobs:
           yarn
           yarn build
           yarn export
-          docker build --file Dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
+          docker build --file dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
 
       - name: tag docker images
         run: |

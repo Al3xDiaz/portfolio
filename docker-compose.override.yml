@@ -2,14 +2,14 @@ version: '3.9'
 services:
   app:
     build: 
-      context: ./portafolio
-      dockerfile: ${DOCKERFILE:-Dockerfile}
+      context: .
+      dockerfile: ${DOCKERFILE:-dockerfile}
     environment:
       API_URL: $API_URL
     ports: 
       - "3000:3000"
     volumes: 
-      - ./portafolio/:/app/src/
+      - ./:/app/src/
       - /app/src/build
       - /app/node_modules
   
