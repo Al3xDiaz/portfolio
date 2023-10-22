@@ -55,7 +55,6 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: |
-          cd portafolio
           echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
       
       - uses: actions/cache@v3
