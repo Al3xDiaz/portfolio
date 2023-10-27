@@ -1,13 +1,15 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
-import React from "react";
-interface Iprops {
+import React from 'react'
+import { IInput } from "..";
+
+interface Iprops extends IInput  {
     id: string;
     label?: string;
     error?: boolean; 
     onChange?: (value: string)=>void;
 }
-export default ({id,label="Password",onChange,error}:Iprops)=>{
+export const Password = ({id,label="Password",onChange,error}:Iprops)=>{
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {

@@ -6,21 +6,21 @@ export const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar__logo">
-                <Link href="/">
+                <Link legacyBehavior href="/">
                     <a>{ownerSite?.profile.first_name} {ownerSite?.profile.last_name}</a>
                 </Link>
             </div>
             <menu>
-                <Link href="/courses">
+                <Link legacyBehavior href="/courses">
 				<a>Courses</a>
                 </Link>
-                <Link href="/gallery">
+                <Link legacyBehavior href="/gallery">
 				<a>Gallery</a>
                 </Link>
-                <Link href="/projects">
+                <Link legacyBehavior href="/projects">
 				<a>Projects</a>
                 </Link>
-                <Link href="/contact">
+                <Link legacyBehavior href="/contact">
 				<a>Contact</a>
                 </Link>
             </menu>
