@@ -2,6 +2,7 @@ import React, { HTMLInputTypeAttribute } from "react"
 
 export * from "./input"
 export * from "./password"
+export * from "./btn"
 
 
 export interface IInput {
@@ -34,13 +35,13 @@ export const Form =  ({children,onSubmit}:IForm)=>{
         event.preventDefault()
         let data:Dictionary<any> ={};
         values.forEach(item=>{
-            console.log(item.current?.type)
             if (item.current?.name){
+                const value = item.current?.value.trim()
                 try {
                     if (item.current.type == "number")
-                        data[item.current?.name] = Number(item.current?.value) 
+                        data[item.current?.name] = Number(value) 
                     else
-                        data[item.current?.name] = item.current?.value as string
+                        data[item.current?.name] =  value as string
                 } catch {
                     data[item.current?.name] = undefined
                 }
@@ -53,7 +54,7 @@ export const Form =  ({children,onSubmit}:IForm)=>{
             <>{child}</>
             <style jsx>{`
     form {
-        background-color: var(--background)
+        background-color: #00000000;
     }
             `}</style>
         </form>

@@ -1,3 +1,4 @@
+
 html,
 body {
   padding: 0;
@@ -51,6 +52,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+a {
+  mix-blend-mode: hard-light;
+  cursor: pointer;;
 }
 
 * {
@@ -214,8 +219,4 @@ p {
 input,.MuiFormControl-root {
   margin: .1rem;
   background-color: #fff;
-}
-a {
-  color: #fff;
-  cursor: pointer;
 }
