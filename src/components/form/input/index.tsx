@@ -1,5 +1,6 @@
 import React,{ FC, PropsWithChildren, RefAttributes } from 'react'
 import {IInput} from "../"
+import useFormContext from '../formProvider/useFormContext';
 
 interface Iprops extends IInput {
     label?:string,
@@ -9,25 +10,31 @@ interface Iprops extends IInput {
     className?:string,
 }
 
-export const TextField = React.forwardRef<HTMLInputElement,Iprops>((props, ref) => {
+export const TextField:FC<Iprops> = (props) => {
     const {
         label="textfield",
         required,
         style,
         className,
+        name,
         ...extraProps
     } = props;
+    const {setProp,state} = useFormContext();
+    const value:string =state[name] ? String(state[name]) : "";
+    const spanText = `${required?"*":""}${props.label?label:props.name}`;
     return (
         <div className={className} style={style}>
             <label>
                 <input
                     type="text"
                     className="input"
-                    ref={ref}
                     required={required}
+                    value={value}
+                    onChange={e=>{setProp({name,value:e.target.value})}}
+                    name={name}
                     {...extraProps}
                 />
-                <span>{required?"*":""}{props.label?label:props.name}</span>
+                <span>{spanText}</span>
             </label>
             <style jsx>{`
             label {
@@ -78,23 +85,27 @@ export const TextField = React.forwardRef<HTMLInputElement,Iprops>((props, ref) 
             `}</style>
         </div>
     )
-})
+}
 
-export const TextArea = React.forwardRef<HTMLTextAreaElement,Iprops>((props, ref) => {
+export const TextArea: FC<Iprops> = (props) => {
     const {
         label="textfield",
         required,
         style,
         className,
+        name,
         ...extraProps
     } = props;
+    const {setProp,state} = useFormContext()
     return (
         <div className={className} style={style}>
             <label>
                 <textarea
-                    className="input"
-                    ref={ref}
+                    className="textarea"
                     required={required}
+                    value={state[name] as string}
+                    onChange={e=>{setProp({name,value:e.target.value})}}
+                    name={name}
                     {...extraProps}
                 />
                 <span>{required?"*":""}{props.label?label:props.name}</span>
@@ -107,6 +118,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement,Iprops>((props, ref
             }
     
             label .textarea {
+                resize: none;
                 background-color: #fff;
                 width: 100%;
                 padding: 1rem;
@@ -135,7 +147,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement,Iprops>((props, ref
             }
     
             label .textarea:focus + span,label .textarea:valid + span {
-                top: 3rem;
+                top: 4rem;
                 font-size: 0.7em;
                 font-weight: 600;
             }
@@ -148,4 +160,4 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement,Iprops>((props, ref
             `}</style>
         </div>
     )
-})
+}

@@ -24,7 +24,6 @@ const Home: NextPage = () => {
     <div>
       <Carrusel images={images} />
       <TimeLine data={ownerSite?.profile.time_line_profile} />
-      <Commentaries unAuthorized={handleOpen}/>
       <Modal show={open} onClose={handleClose} title='Authentication'>
         <div className='content'>
           <div className='panel'>
@@ -40,10 +39,11 @@ const Home: NextPage = () => {
               <p><a target='_black' href="https://www.freepik.es/vector-gratis/concepto-abstracto-sistema-control-acceso_12085707.htm">Imagen de vectorjuice</a> en Freepik</p>              
             </div>
           <div>
-            {modal == "login" && <Login onSignUp={()=>setModal('signup')} /> || <SignUp onLogin={()=>setModal('login')}/>}
+            {modal == "login" && <Login onLoged={()=>setOpen(false)} onSignUp={()=>setModal('signup')} /> || <SignUp onLoged={()=>setOpen(false)} onLogin={()=>setModal('login')}/>}
           </div>
         </div>
       </Modal>
+      <Commentaries unAuthorized={handleOpen}/>
       <style jsx>{`
       .content{
         display: grid;

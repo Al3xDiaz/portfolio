@@ -18,8 +18,9 @@ export class authService implements IServiceAuth{
         const response = await this.axios.get(`/auth/userdata`)
         return response.data;
     }
-    signUp(data:IUser): Promise<IUserAuth> {
-        throw new Error("Method not implemented.");
+    async signUp(data:IUser): Promise<IUserAuth> {
+        const response = await this.axios.post(`/auth/signup`,data)
+        return response.data;
     }
 }
 

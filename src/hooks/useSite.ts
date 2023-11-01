@@ -1,5 +1,4 @@
-import { useCallback, useContext, useEffect, useReducer, useRef } from "react"
-import {reducer} from "@/src/reducers/useSiteReducer"
+import { useCallback, useContext, useEffect, useRef } from "react"
 import { SiteService } from "@/src/services/siteService"
 import {authService as AuthService } from "@/src/services"
 import { IUser } from "../models";
@@ -21,7 +20,7 @@ const useSite = () => {
     },[])
     const authService  = useRef<AuthService>(new AuthService(state.axiosInstance)).current
 
-    const login= useCallback(async (username: string,password: string)=>{
+    const login= useCallback(async ({username,password}:{username: string,password: string})=>{
         try{
             const resp = await authService.login(username,password);
             dispatch && dispatch({type:"SET_VISITOR",payload:resp.user})

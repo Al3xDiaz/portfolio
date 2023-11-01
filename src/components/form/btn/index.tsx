@@ -18,6 +18,7 @@ export const Button = ({label,style}:iprops)=> {
             fontSize:16,
             transform: ".3s ease",
             width:"100%",
+            alignSelf:"end",
             ...style
         }}
     >{label}</button>

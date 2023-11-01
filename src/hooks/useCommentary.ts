@@ -25,7 +25,7 @@ const useCommentary = () => {
     const createCommentary = useCallback(async (content: string)=>{
         await service.create({comment:content,})
         await getCommentaries()
-    },[])
+    },[commentaries,getCommentaries])
     
     return {
         commentaries,

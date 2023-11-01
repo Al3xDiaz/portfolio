@@ -3,18 +3,20 @@ import Form,{Button, TextField} from '../form';
 import useSite from '@/src/hooks/useSite';
 
 interface Iprops{
-  onSignUp?: ()=>void
+  onSignUp?: ()=>void;
+  onLoged?:()=>void;
 }
-interface IloginData{
-  userName?: string;
-  password?:string;
+interface IUser{
+  username: string;
+  password: string;
 }
 export const Login: React.FC<Iprops> = (props) => {
+  const {login} =useSite()
   return (
     <div>
       <h4>Login</h4>
-      <Form onSubmit={console.log}>
-        <TextField label='user name' required name='userName' />
+      <Form onSubmit={(data:IUser)=>login(data).then(()=>props.onLoged && props.onLoged())}>
+        <TextField label='user name' required name='username' />
         <TextField required name='password'/>
         <div style={{display:"flex",justifyContent:"flex-end",margin:".3rem"}}>
           <a>Forgot your password?</a>

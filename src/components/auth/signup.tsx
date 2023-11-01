@@ -1,9 +1,11 @@
 import * as React from 'react';
 import Form,{Button, TextField} from '../form';
 import useSite from '@/src/hooks/useSite';
+import { IUser } from '@/src/models';
 
 interface Iprops{
-  onLogin?: ()=>void
+  onLogin?: ()=>void;
+  onLoged?:()=>void;
 }
 interface IloginData{
   userName?: string;
@@ -14,12 +16,13 @@ interface IloginData{
   email?:string;
 }
 export function SignUp(props:Iprops) {
+  const {signUp} = useSite()
   return (
     <div>
       <h4>Register</h4>
-      <Form onSubmit={console.log}>
+      <Form onSubmit={(data:IUser)=>signUp(data).then(()=>props.onLoged && props.onLoged())}>
         <TextField label='First Name' required name='firstName' />
-        <TextField label='Last Name' required name='firstName' />
+        <TextField label='Last Name' required name='lastName' />
         <TextField label='user name' required name='userName' />
         <TextField label='Email' required name='email' />
         <TextField label='password' required name='password' />
