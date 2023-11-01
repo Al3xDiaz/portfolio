@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Form,{Button, TextField} from '../form';
+import Form,{Button, PasswordField, TextField} from '../form';
 import useSite from '@/src/hooks/useSite';
 import { IUser } from '@/src/models';
 
@@ -25,8 +25,8 @@ export function SignUp(props:Iprops) {
         <TextField label='Last Name' required name='lastName' />
         <TextField label='user name' required name='userName' />
         <TextField label='Email' required name='email' />
-        <TextField label='password' required name='password' />
-        <TextField label='confirm password' required name='confirmPassword' />
+        <PasswordField label='password' required name='password' />
+        <PasswordField label='confirm password' required name='confirmPassword' />
         <Button label='sign up' style={{backgroundColor:"var(--primary)"}} />
         <p className="signin" style={{margin:".3rem"}}>Already have an acount ? <a onClick={props.onLogin}>SignUp</a> </p>
       </Form>
