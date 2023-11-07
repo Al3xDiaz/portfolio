@@ -77,7 +77,7 @@ jobs:
       - name: Build portafolio
         run: |
           echo "build image"
-          sed -i 's/"version": ".*"/"version": "${{ needs.calculate-version.outputs.MajorMinorPatch }}"/g' package.json
+          yarn version --new-version  "${{ needs.calculate-version.outputs.MajorMinorPatch }}"
           yarn
           yarn build
           yarn export

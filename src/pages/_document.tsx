@@ -5,6 +5,12 @@ export default function Document() {
     <Html>
       <Head>
         <title>Portafolio</title>
+        <link
+          rel="icon"
+          href="/icon.svg"
+          type="image/svg"
+          sizes="any"
+        />
 
         <meta name="twitter:card" content="summary" />
         <meta property="og:type" content="website" />

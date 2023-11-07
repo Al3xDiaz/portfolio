@@ -1,10 +1,7 @@
 node_modules/
-
-./src/node_modules/
-./src/package-lock.json
-
+.git/
 
 #next.js
-./src/dockerfile
-./src/dockerfile.prod
-./src/dockerfile.static
+dockerfile
+dockerfile.prod
+dockerfile.static

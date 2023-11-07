@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Form,{Button, PasswordField, TextField} from '@/src/components/form';
+import Form from 'form-with-state/';
 import useSite from '@/src/hooks/useSite';
 
 interface Iprops{
@@ -16,12 +16,12 @@ export const Login: React.FC<Iprops> = (props) => {
     <div>
       <h4>Login</h4>
       <Form onSubmit={(data:IUser)=>login(data).then(()=>props.onLoged && props.onLoged())}>
-        <TextField label='user name' required name='username' />
-        <PasswordField required name='password'/>
+        <Form.TextField label='user name' required name='username' />
+        <Form.PasswordField required name='password'/>
         <div style={{display:"flex",justifyContent:"flex-end",margin:".3rem"}}>
           <a>Forgot your password?</a>
         </div>
-        <Button label='login' style={{backgroundColor:"var(--primary)"}} />
+        <Form.Submit label='login' style={{backgroundColor:"var(--primary)"}} />
         <div style={{display:"flex",justifyContent:"flex-start",margin:".3rem"}}>Don`t have an account yet?
         <a
           onClick={props.onSignUp}
