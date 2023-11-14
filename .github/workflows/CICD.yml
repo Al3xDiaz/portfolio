@@ -14,6 +14,7 @@ env:
   GIT_DEPTH: 0
   IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
   API_URL: https://api.chaoticteam.com
+  ARTIFACT_URL: "https://gitlab.com/api/v4/projects/42073065/jobs/artifacts/main/download?job=config_infrastructure"
 
 jobs:
   # Push image to GitHub Packages.
@@ -34,7 +35,7 @@ jobs:
         with:
           versionSpec: '5.x'
       - name: Determine Version
-        id:   gitversion # id to later be referenced
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0
       - name: Set Outputs major version
         id: set-outputs-major
@@ -56,9 +57,8 @@ jobs:
         id: yarn-cache-dir-path
         run: |
           echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-      
       - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('./yarn.lock') }}
@@ -66,7 +66,6 @@ jobs:
             ${{ runner.os }}-yarn-
       - uses: actions/cache@v3
         with:
-          # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ${{ github.workspace }}/build/cache
           # Generate a new cache whenever packages or source files change.
@@ -77,7 +76,7 @@ jobs:
       - name: Build portafolio
         run: |
           echo "build image"
-          yarn version --new-version  "${{ needs.calculate-version.outputs.MajorMinorPatch }}"
+          yarn version --no-git-tag-version --new-version  "${{ needs.calculate-version.outputs.MajorMinorPatch }}"
           yarn
           yarn build
           yarn export
@@ -102,16 +101,18 @@ jobs:
             docker push $IMAGE_ID:latest
           fi
   deploy:
-      runs-on: ubuntu-latest
-      container:
-        image: registry.gitlab.com/chaoticteams/ansible:latest
-      needs: [calculate-version,build]
-      steps:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/chaoticteams/ansible:latest
+    needs:
+      - calculate-version
+      - build
+    steps:
       - uses: actions/checkout@v3
       - name: get gitlab artifact and create ssh key
         run: |
           apk add --update --no-cache curl
-          curl -L --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" "https://gitlab.com/api/v4/projects/42073065/jobs/artifacts/main/download?job=config_infrastructure" --output config.zip
+          curl -L --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" "$ARTIFACT_URL" --output config.zip
           unzip -o config.zip -d .
           mkdir ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/ansible
@@ -122,18 +123,4 @@ jobs:
           ANSIBLE_INVENTORY: ansible/inventory
         run: |
           ansible-playbook ansible/main.yml -e "version=${{ needs.calculate-version.outputs.MajorMinorPatch }}"
-
-      # - name: success
-      #   if: ${{ success() }}
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #   uses: Ilshidur/action-discord@master
-      #   with:
-      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
-      # - name: fail
-      #   if: ${{ failure() }}
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #   uses: Ilshidur/action-discord@master
-      #   with:
-      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} pipeline failure.'
+...
