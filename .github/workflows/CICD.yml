@@ -79,7 +79,6 @@ jobs:
           yarn version --no-git-tag-version --new-version  "${{ needs.calculate-version.outputs.MajorMinorPatch }}"
           yarn
           yarn build
-          yarn export
           docker build --file dockerfile.static --tag ${REGISTRY,,}/portafolio:latest .
 
       - name: tag docker images

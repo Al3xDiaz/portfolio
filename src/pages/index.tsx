@@ -1,12 +1,11 @@
-import React from 'react'
-import type { NextPage } from 'next'
-import  Carrusel from '@/src/components/carrusel'
-import TimeLine from '@/src/components/timeline'
-import Commentaries from '@/src/components/commetaries'
-import {Login,SignUp} from '@/src/components/auth/'
-import useSite from '@/src/hooks/useSite'
-import { Modal } from '@/src/components/Modal'
-import Form, { PasswordField } from '@/src/components/form'
+import React from 'react';
+import type { NextPage } from 'next';
+import  Carrusel from '@/src/components/carrusel';
+import TimeLine from '@/src/components/timeline';
+import Commentaries from '@/src/components/commetaries';
+import {Login,SignUp} from '@/src/components/auth/';
+import useSite from '@/src/hooks/useSite';
+import { Modal } from '@/src/components/Modal';
 
 type modalType = "login" | "signup";
 
@@ -37,7 +36,7 @@ const Home: NextPage = () => {
                   backgroundPosition: "center center",
                 }}>
               </div>
-              <p><a target='_black' href="https://www.freepik.es/vector-gratis/concepto-abstracto-sistema-control-acceso_12085707.htm">Imagen de vectorjuice</a> en Freepik</p>              
+              <p><a target='_black' href="https://www.freepik.es/vector-gratis/concepto-abstracto-sistema-control-acceso_12085707.htm">Imagen de vectorjuice</a> en Freepik</p>
             </div>
           <div>
             {modal == "login" && <Login onLoged={()=>setOpen(false)} onSignUp={()=>setModal('signup')} /> || <SignUp onLoged={()=>setOpen(false)} onLogin={()=>setModal('login')}/>}
