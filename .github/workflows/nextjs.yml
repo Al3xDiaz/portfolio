@@ -100,7 +100,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('./yarn.lock') }}-
       - name: Build portafolio
         run: |
-          export base_url="/portfolio"
+          export BASE_URL="/portfolio"
           echo "build image"
           yarn version --no-git-tag-version --new-version  "${{ needs.calculate-version.outputs.MajorMinorPatch }}"
           yarn
