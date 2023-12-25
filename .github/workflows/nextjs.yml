@@ -33,14 +33,51 @@ env:
   API_URL: https://api.chaoticteam.com
 
 jobs:
+  calculate-version:
+    runs-on: ubuntu-latest
+    outputs:
+      MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
+      FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: 5.x
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0
+      - name: Set Outputs major version
+        id: set-outputs-major
+        run: echo "MajorMinorPatch=${{ steps.gitversion.outputs.majorMinorPatch }}" >> $GITHUB_OUTPUT
+      - name: Set Outputs full version
+        id: set-outputs-full
+        run: echo "FullSemVer=${{ steps.gitversion.outputs.fullSemVer }}" >> $GITHUB_OUTPUT
   # Build job
   build:
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
+    needs: [calculate-version]
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        with:
+          # Automatically inject basePath in your Next.js configuration file and disable
+          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+          #
+          # You may remove this line if you want to manage the configuration yourself.
+          static_site_generator: next
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: |
