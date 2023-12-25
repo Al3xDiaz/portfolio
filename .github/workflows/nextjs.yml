@@ -31,6 +31,7 @@ env:
   GIT_DEPTH: 0
   IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
   API_URL: https://api.chaoticteam.com
+  BASE_URL: /portfolio
 
 jobs:
   calculate-version:
@@ -100,7 +101,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('./yarn.lock') }}-
       - name: Build portafolio
         run: |
-          export BASE_URL="/portfolio"
           echo "build image"
           yarn version --no-git-tag-version --new-version  "${{ needs.calculate-version.outputs.MajorMinorPatch }}"
           yarn
