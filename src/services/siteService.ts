@@ -3,15 +3,16 @@ import {IService} from "@/src/services/iService";
 import axios,{ AxiosInstance } from "axios";
 
 export class SiteService implements IService<IOwnerSite> {
-    axios: AxiosInstance;
-    constructor(axiosBase?: AxiosInstance) {
-        this.axios = axiosBase || axios.create();
-    }    
+    axios?: AxiosInstance;
+    baseUrl?: string;
+    constructor(baseUrl?: string) {
+        this.baseUrl = baseUrl;
+    }
     async list(): Promise<IOwnerSite[]> {
         throw new Error("Method not implemented.");
     }
-    async detail(id: number): Promise<IOwnerSite> {        
-        const response = await  fetch(`/profile.json`)
+    async detail(id: number): Promise<IOwnerSite> {
+        const response = await  fetch(`${this.baseUrl}/profile.json`)
         return await response.json();
     }
     create(data: IOwnerSite): Promise<IOwnerSite> {
@@ -26,4 +27,3 @@ export class SiteService implements IService<IOwnerSite> {
 }
 
 export default SiteService;
-        

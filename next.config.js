@@ -11,6 +11,7 @@ const nextConfig = {
   distDir:"build",
   publicRuntimeConfig: {
     API_URL: process.env.API_URL,
+    BASE_URL: process.env.BASE_URL || "http://localhost:3000",
   },
   output: 'export',
   trailingSlash: true,

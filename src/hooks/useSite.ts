@@ -1,14 +1,18 @@
-import { useCallback, useContext, useEffect, useRef } from "react"
-import { SiteService } from "@/src/services/siteService"
-import {authService as AuthService } from "@/src/services"
+import { useCallback, useContext, useEffect, useRef } from "react";
+import { SiteService } from "@/src/services/siteService";
+import {authService as AuthService } from "@/src/services";
 import { IUser } from "../models";
 import context from "@/src/context/siteContext"
+import getConfig from "next/config";
+
+const { publicRuntimeConfig } = getConfig();
+const baseURL = publicRuntimeConfig.BASE_URL;
 
 
 const useSite = () => {
     const {state,dispatch} = useContext(context)
 
-    const siteService  = useRef<SiteService>(new SiteService()).current
+    const siteService  = useRef<SiteService>(new SiteService(baseURL)).current
 
     const getSiteConfig= useCallback(async ()=>{
         try{
@@ -28,7 +32,7 @@ const useSite = () => {
         }catch(error){
             dispatch && dispatch({type:"ERROR",payload:error});
         }
-    },[])    
+    },[])
     const signUp= useCallback(async (data: IUser)=>{
         try{
             const resp = await authService.signUp(data);

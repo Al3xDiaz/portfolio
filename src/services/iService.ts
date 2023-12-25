@@ -1,12 +1,9 @@
-import axios, { AxiosInstance } from "axios";
-import getConfig from "next/config";
+import { AxiosInstance } from "axios";
 import { IUser, IUserAuth } from "../models";
 
-const { publicRuntimeConfig } = getConfig();
-const baseURL = publicRuntimeConfig.API_URL;
-
 export  interface IService<T> {
-    axios: AxiosInstance;
+    axios?: AxiosInstance;
+    baseUrl?: string;
     list(): Promise<T[]>;
     detail(id:number): Promise<T>;
     create(data:T): Promise<T>;
