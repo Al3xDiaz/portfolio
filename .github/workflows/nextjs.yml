@@ -23,6 +23,15 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  REGISTRY: ghcr.io/${{ github.repository_owner }}
+  WEBHOOK_ID: ${{ secrets.WEBHOOK_ID }}
+  WEBHOOK_TOKEN: ${{ secrets.WEBHOOK_TOKEN }}
+  GIT_STRATEGY: fetch
+  GIT_DEPTH: 0
+  IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
+  API_URL: https://api.chaoticteam.com
+
 jobs:
   # Build job
   build:

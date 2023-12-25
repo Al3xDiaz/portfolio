@@ -1,20 +1,21 @@
+---
 name: CI portafolio
 
 on:
   push:
     # Publish `master` as Docker `latest` image.
     branches:
-      - 'main'
+      - main
 
 env:
-  REGISTRY: "ghcr.io/${{ github.repository_owner }}"
-  WEBHOOK_ID: "${{ secrets.WEBHOOK_ID }}"
-  WEBHOOK_TOKEN: "${{ secrets.WEBHOOK_TOKEN }}"
+  REGISTRY: ghcr.io/${{ github.repository_owner }}
+  WEBHOOK_ID: ${{ secrets.WEBHOOK_ID }}
+  WEBHOOK_TOKEN: ${{ secrets.WEBHOOK_TOKEN }}
   GIT_STRATEGY: fetch
   GIT_DEPTH: 0
   IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
   API_URL: https://api.chaoticteam.com
-  ARTIFACT_URL: "https://gitlab.com/api/v4/projects/42073065/jobs/artifacts/main/download?job=config_infrastructure"
+  ARTIFACT_URL: https://gitlab.com/api/v4/projects/42073065/jobs/artifacts/main/download?job=config_infrastructure
 
 jobs:
   # Push image to GitHub Packages.
@@ -25,15 +26,14 @@ jobs:
       MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
       FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
         with:
-          versionSpec: '5.x'
+          versionSpec: 5.x
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
@@ -50,7 +50,6 @@ jobs:
       packages: write
       contents: read
     needs: [calculate-version]
-
     steps:
       - uses: actions/checkout@v3
       - name: Get yarn cache directory path
@@ -122,4 +121,3 @@ jobs:
           ANSIBLE_INVENTORY: ansible/inventory
         run: |
           ansible-playbook ansible/main.yml -e "version=${{ needs.calculate-version.outputs.MajorMinorPatch }}"
-...
