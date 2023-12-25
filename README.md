@@ -1,9 +1,9 @@
-# Portafolio
-este es un repositorio con react js y next js :)
+# Portfolio
+this is a repository with react js and next js :)
 ## Hosting
-[portafolio](https://alex.chaoticteam.com)
-## Iniciar el proyecto 
-en una terminal ejecute
+[portfolio](https://alex.chaoticteam.com)
+## Init project
+Run in a terminal
 
 ```bash
 #start proyect server test
