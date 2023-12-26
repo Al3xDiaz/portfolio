@@ -1,7 +1,0 @@
-node_modules/
-.git/
-
-#next.js
-dockerfile
-dockerfile.prod
-dockerfile.static
