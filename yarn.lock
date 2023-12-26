@@ -1255,10 +1255,10 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-form-with-state@^0.3.6:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/form-with-state/-/form-with-state-0.3.6.tgz#37c034de295fd3dc0fcfe7ada9fd1a592676fb38"
-  integrity sha512-tVmcxFrz8Q8RERt1ZuRCIy0KAELI1yoAtk4AdJW7y1NttMykV6jihUFzzUx53CIa04GLl/FRsT24qOe96V36Uw==
+form-with-state@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/form-with-state/-/form-with-state-0.4.0.tgz#c80d6a5770e858b02399f554da5479a34102e331"
+  integrity sha512-hv35jxtGV2zVu4OJUmqvq4/KDu1eiWETo4zn0H9rBT6ZgeT/qV1Z5aPSx0enG0seuv3VbalGHN/hu8gh1QSuuA==
 
 fs.realpath@^1.0.0:
   version "1.0.0"

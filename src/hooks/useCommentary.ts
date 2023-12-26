@@ -18,19 +18,22 @@ const useCommentary = () => {
             setCommentaries([])
         }
     },[setCommentaries])
+    const createCommentary = useCallback(async (content: string)=>{
+        await service.create({comment:content,})
+    },[commentaries])
+
+    const deleteCommentary = useCallback(async (id:number)=>{
+       await service.delete(id);
+    },[commentaries])
+
     useEffect(()=>{
         getCommentaries()
     },[getCommentaries])
-    
-    const createCommentary = useCallback(async (content: string)=>{
-        await service.create({comment:content,})
-        await getCommentaries()
-    },[commentaries,getCommentaries])
-    
     return {
         commentaries,
         getCommentaries,
         createCommentary,
+        deleteCommentary,
     }
 }
 export default useCommentary;

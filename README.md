@@ -7,13 +7,11 @@ Run in a terminal
 
 ```bash
 #start proyect server test
-#use --build by compile proyect
-docker-compose up --build -d
+yarn
+yarn dev
 ```
 
 ```bash
 #start proyect server production
-#use --build by compile proyect
-export DOCKERFILE=dockerfile.prod
-docker-compose up -d
+yarn build
 ```

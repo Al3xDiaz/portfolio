@@ -11,7 +11,7 @@ export class CommentaryService implements IService<ICommentary> {
         const response = await  this.axios.get(`/commentaries`)
         return await response.data;
     }
-    async detail(id: number): Promise<ICommentary> {        
+    async detail(id: number): Promise<ICommentary> {
         throw new Error("Method not implemented.");
     }
     async create(data: ICommentary): Promise<ICommentary>{
@@ -21,8 +21,8 @@ export class CommentaryService implements IService<ICommentary> {
     update(id: number, data: ICommentary): Promise<ICommentary> {
         throw new Error("Method not implemented.");
     }
-    delete(id: number): Promise<ICommentary> {
-        throw new Error("Method not implemented.");
+    async delete(id: number): Promise<void> {
+        await this.axios.delete(`/commentaries/${id}`);
     }
     listFilter?(slug: string): Promise<ICommentary[]> {
         throw new Error("Method not implemented.");
@@ -30,4 +30,3 @@ export class CommentaryService implements IService<ICommentary> {
 }
 
 export default CommentaryService;
-        

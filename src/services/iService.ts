@@ -8,7 +8,7 @@ export  interface IService<T> {
     detail(id:number): Promise<T>;
     create(data:T): Promise<T>;
     update(id:number, data:T): Promise<T>;
-    delete(id:number): Promise<T>;
+    delete(id:number): Promise<void>;
     listFilter?(slug:string): Promise<T[]>;
 }
 export interface IServiceAuth{

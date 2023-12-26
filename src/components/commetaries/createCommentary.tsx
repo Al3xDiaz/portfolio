@@ -8,13 +8,14 @@ interface iprops {
 }
 export const CreateCommentary = ({postCommentary}:iprops)=>{
     const [error,setError] = useState("");
-    const handlePost = useCallback((formData:iformdata)=>{
+    const handlePost = useCallback(async(formData:iformdata)=>{
         setError("")
-        postCommentary(formData).then((resp)=>{
-            resp?setError(""):setError("Error: contact to administrator")
-        }).catch((err)=>{
+        try {
+            const data =await postCommentary(formData);
+            data?setError(""):setError("Error: contact to administrator")
+        } catch (err) {
             setError(String(err))
-        })
+        }
     },[])
     return (
     <div>

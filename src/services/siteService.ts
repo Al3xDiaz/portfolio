@@ -21,7 +21,7 @@ export class SiteService implements IService<IOwnerSite> {
     update(id: number, data: IOwnerSite): Promise<IOwnerSite> {
         throw new Error("Method not implemented.");
     }
-    delete(id: number): Promise<IOwnerSite> {
+    delete(id: number): Promise<void> {
         throw new Error("Method not implemented.");
     }
 }
