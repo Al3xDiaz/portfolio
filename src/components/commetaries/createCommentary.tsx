@@ -29,8 +29,9 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
         <style jsx>{`
         .content{
             margin: 1rem;
-            margin-left: 10rem;
-            margin-right: 10rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         `}</style>
     </div>

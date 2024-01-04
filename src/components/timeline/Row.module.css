@@ -19,8 +19,8 @@
     background-color: var(--primary);
     padding: 10px;
     margin: 10px;
-    border-radius: 5px; 
-    color: #fff;  
+    border-radius: 5px;
+    color: #fff;
 }
 .title{
     display: flex;
@@ -79,8 +79,8 @@
         top: 50%;
         transform: translate(0%,-50%);
         background-color: var(--background);
-        width: 0; 
-        height: 0; 
+        width: 0;
+        height: 0;
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
         border-left: 10px solid var(--primary);
@@ -92,8 +92,8 @@
         top: 50%;
         transform: translate(0%,-50%);
         background-color: var(--background);
-        width: 0; 
-        height: 0; 
+        width: 0;
+        height: 0;
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
         border-right: 10px solid var(--primary);

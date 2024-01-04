@@ -10,24 +10,24 @@
         ],
         "time_line_profile":[
         {
-            "year": 2019,
-            "comment":"i'm got a job in BIDSS-Technologie",
-            "title":"Desarrollador de software .NET jr"
-        },
-        {
-            "year": 2020,
-            "comment":"i'm got a job in Agencia Global Honduras",
-            "title":"Desarrollador Backend"
+            "year": 2023,
+            "comment":"i'm got a job at DevOps Engineer",
+            "title":"Abstract Development Studio SA"
         },
         {
             "year": 2021,
-            "comment":"i'm got a job in SignsCloud",
-            "title":"Backend Developer"
+            "comment":"i'm got a job at Backend Developer",
+            "title":"SignsCloud"
         },
         {
-            "year": 2023,
-            "comment":"i'm got a job in Abstract Development Studio SA",
-            "title":"DevOps Engineer"
+            "year": 2020,
+            "comment":"i'm got a job at Desarrollador Backend",
+            "title":"Agencia Global Honduras"
+        },
+        {
+            "year": 2019,
+            "comment":"i'm got a job at Desarrollador de software .NET jr",
+            "title":"BIDSS-Technologie"
         }
     ]
     },
