@@ -19,7 +19,7 @@ export const Footer = () => {
         <footer>
             <div className='social'>
                 <h4>Contact me</h4>
-                <div >
+                <p>
                     {ownerSite?.email && (<a href={`mailto:${ownerSite?.email}`}
                         target="_blank"
                         rel="noopener noreferrer">
@@ -46,7 +46,7 @@ export const Footer = () => {
                     {ownerSite?.social_media.discord && <a href={`${ownerSite?.social_media?.discord}`} target="_blank" rel="noopener noreferrer">
                         <FaDiscord  size={20}/>
                     </a>}
-                </div>
+                </p>
             </div>
             {ownerSite?.specialties && (
             <div className="specialties">
@@ -60,52 +60,55 @@ export const Footer = () => {
                 <h4>Made for</h4>
                 Help to any human being.
                 <a>or to contact me <FaHeart size={20} color={"#ff0000"}/>.</a>
+            </div>
+            <div className='version'>
                 <h4 className='version'>version: {packageInfo.version}</h4>
             </div>
             <style jsx>{`
-                .social > div {
+                .social > p {
+                    display: flex;
                     flex-direction: row;
                 }
-                @media (min-width: 769px){
-                    .version{
-                        margin-top: 1rem;
-                    }
-                    .social{
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        justify-content: space-around;
-                    }
-                    a{
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        // color: #4183c4
-                    }
-                    a :global(svg){
-                        margin: 0px 5px;
-                    }
-                    footer div {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: start;
-
+                .specialties ul {
+                    display: flex;
+                    flex-wrap: wrap;
+                    list-style-type: disclosure-closed;
+                    margin-block-start: 0px;
+                    margin-block-end: 0px;
+                    margin-inline-start: 0px;
+                    margin-inline-end: 0px;
+                    padding-inline-start: 0px;
+                    li {
+                        margin: .2rem;
+                        margin-left: 2rem;
+                        width: fit-content;
                     }
                 }
-                @media (max-width: 770px){
-                    .social > div {
-                        width: max-content;
-                        padding: .5rem;
-                    }
-                    .social > div > a {
-                        margin: .3rem;
-                    }
-                    .specialties{
-                        display: none;
-                    }
-                    .about{
-                        display: none;
-                    }
+                .about > div {
+                    flex-direction: row;
+                }
+                .social{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-around;
+                }
+                a{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;]
+                }
+                a :global(svg){
+                    margin: 0px 5px;
+                }
+                footer > div > div {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    margin-left: 1rem;
+                }
+                footer > div > h4  {
+                    margin-left: -1rem;
                 }
                 footer{
                     background-color: #000;
@@ -113,10 +116,27 @@ export const Footer = () => {
                     position: relative;
                     z-index: 1;
                     display: grid;
-                    grid-template-columns: 1fr 1fr 1fr;
-                    justify-items: center;
 
                     padding: 1rem;
+                }
+                @media (min-width: 769px){
+                    footer{
+                        grid-template-columns: 1fr 1fr 1fr .5fr;
+                        justify-items: center;
+                        align-items: start;
+                    }
+                }
+                @media (max-width: 770px){
+                    footer{
+                        grid-template-rows: 1fr 1fr 1fr 1fr;
+                        align-items: center;
+                        padding-left: 5rem;
+                    }
+                    .specialties ul {
+                    li {
+                        margin-left: 2rem;
+                    }
+                }
                 }
                 `}</style>
         </footer>
