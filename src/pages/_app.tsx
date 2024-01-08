@@ -7,17 +7,17 @@ import { initialState, reducer } from '@/src/reducers/useSiteReducer'
 
 function App({ Component, pageProps }: AppProps) {
 
-  const [state,dispatch]= useReducer(reducer,initialState);
-  useMemo(()=>{
-    return {state,dispatch}
-  },[state,dispatch])
-  return (
-    <siteContex.Provider value={{state,dispatch}}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </siteContex.Provider>
-  )
+	const [state,dispatch]= useReducer(reducer,initialState);
+	useMemo(()=>{
+		return {state,dispatch}
+	},[state,dispatch])
+	return (
+		<siteContex.Provider value={{state,dispatch}}>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</siteContex.Provider>
+	)
 }
 
 export default App;
