@@ -7,7 +7,7 @@ name: CI
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: 30 3 * * *
+    - cron: 33 9 * * *
 jobs:
   # This workflow contains a single job called "build"
   build:
