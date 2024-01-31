@@ -7,8 +7,7 @@ Run in a terminal
 
 ```bash
 #start proyect server test
-yarn
-yarn dev
+yarn && yarn dev
 ```
 
 ```bash
