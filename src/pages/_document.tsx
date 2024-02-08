@@ -4,14 +4,12 @@ export default function Document() {
 	return (
 		<Html>
 			<Head>
-				<title>Portafolio</title>
 				<link
 					rel="icon"
 					href="/icon.svg"
 					type="image/svg"
 					sizes="any"
 				/>
-
 				<meta name="twitter:card" content="summary" />
 				<meta property="og:type" content="website" />
 				<meta property="og:title" name="twitter:title" content="web portfolio - Alex Diaz" />

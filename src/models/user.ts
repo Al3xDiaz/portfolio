@@ -65,12 +65,12 @@ export interface IOwnerSite{
 		courses: string[];
 		projects: IProject[];
 		specialties: string[];
-}
-
-export interface ISiteState {
+	}
+	export type ISiteStateStatus ="loading" | "loaded" | "error";
+	export interface ISiteState {
 		ownerSite?: IOwnerSite;
 		visitor?: IUser;
-		status: "loading" | "loaded" | "error";
+		status: ISiteStateStatus;
 		msgError?: any;
 		axiosInstance?: AxiosInstance;
 }

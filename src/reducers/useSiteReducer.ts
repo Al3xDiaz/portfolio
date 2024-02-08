@@ -15,29 +15,34 @@ export const initialState: ISiteState = {
 		}),
 };
 export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
-		switch (action.type) {
-				case "SET_SITE":
-						return {
-								...state,
-								status: "loaded",
-								ownerSite : action.payload,
-								visitor: state.visitor,
-								msgError:undefined,
-						};
-						case "SET_VISITOR":
-								return {
-										...state,
-										status: "loaded",
-										visitor: action.payload,
-										msgError:undefined,
-								}
-						case "ERROR":
-								return {
-										...state,
-										status: "error",
-										msgError:action.payload,
-								};
-				default:
-						return state;
-		}
+	switch (action.type) {
+		case "SET_SITE":
+			return {
+				...state,
+				status: "loaded",
+				ownerSite : action.payload,
+				visitor: state.visitor,
+				msgError:undefined,
+			};
+			case "SET_VISITOR":
+				return {
+					...state,
+					status: "loaded",
+					visitor: action.payload,
+					msgError:undefined,
+				}
+			case "SET_STATUS":
+				return {
+					...state,
+					status: action.payload,
+				}
+			case "ERROR":
+				return {
+					...state,
+					status: "error",
+					msgError:action.payload,
+				};
+		default:
+			return state;
+	}
 }

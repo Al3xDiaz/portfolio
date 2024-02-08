@@ -1,18 +1,21 @@
-import {IOwnerSite, IUser, IUserAuth} from "@/src/models/user";
-import { AxiosInstance } from "axios";
+import {IOwnerSite, IUser, ISiteStateStatus } from "@/src/models/user";
 interface ISetSiteAction {
-		type: "SET_SITE";
-		payload: IOwnerSite;
+	type: "SET_SITE";
+	payload: IOwnerSite;
+}
+interface ISetStatusAction {
+	type: "SET_STATUS";
+	payload: ISiteStateStatus;
 }
 interface ISetVisitorAction {
-		type: "SET_VISITOR";
-		payload: IUser;
+	type: "SET_VISITOR";
+	payload: IUser;
 }
 interface IErrorAction {
-		type: "ERROR";
-		payload: any;
+	type: "ERROR";
+	payload: any;
 }
 
 
-export type IAction = ISetSiteAction	| ISetVisitorAction | IErrorAction;
+export type IAction = ISetSiteAction | ISetStatusAction	| ISetVisitorAction | IErrorAction;
 export default IAction;
