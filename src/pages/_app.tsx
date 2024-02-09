@@ -4,10 +4,10 @@ import Layout from '@/src/components/layaut';
 import siteContex from '@/src/context/siteContext';
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import { initialState, reducer } from '@/src/reducers/useSiteReducer';
-import { SiteService } from '../services';
+import { SiteService } from '@/src/services';
 import { useRouter } from 'next/router';
+import { PacmanLoader } from '@/src/components/loader/packman';
 import getConfig from "next/config";
-import { PacmanLoader } from '../components/loader/packman';
 
 const { publicRuntimeConfig } = getConfig();
 const baseURL = publicRuntimeConfig.BASE_URL;

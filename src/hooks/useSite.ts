@@ -1,12 +1,11 @@
-import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
-import { SiteService } from "@/src/services/siteService";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import {authService as AuthService } from "@/src/services";
-import { IUser } from "../models";
-import context from "@/src/context/siteContext"
-import { useRouter } from "next/router";
+import { IUser } from "@/src/models";
+import context from "@/src/context/siteContext";
+import { AxiosError } from "axios";
 
 
-const useSite = () => {
+export const useSite = () => {
 	const {state,dispatch} = useContext(context)
 
 
@@ -58,4 +57,3 @@ const useSite = () => {
 			login,
 			signUp,
 	}}
-export default useSite;

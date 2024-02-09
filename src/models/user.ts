@@ -1,33 +1,42 @@
 import { AxiosInstance } from "axios";
-
-export interface TimeLineProfile {
-		year: number;
-		comment: string;
-		title?:string;
-		icon: string;
-		profile: number;
+export interface IUser {
+	id: number;
+	userName: string;
+	email: string;
+	firstName: string;
+	lastName: string;
+	verified: boolean;
 }
 
 export interface Profile {
-		first_name: string;
-		last_name: string;
-		jobs: string;
-		age: number;
-		biography: string[];
-		image: string;
-		images: string[];
-		time_line_profile: TimeLineProfile[];
-		last_login?: Date;
+	first_name: string;
+	last_name: string;
+	telephone: string;
+	jobs: string;
+	age: number;
+	biography: string[];
+	image: string;
+	images: string[];
+	time_line_profile: TimeLineProfile[];
+	last_login?: Date;
+
+	website: string;
+	linkedin: string;
+	youtube: string;
+	github: string;
+	gitlab: string;
+	instagram: string;
+	facebook: string;
+	twitter: string;
+	discord: string;
 }
 
-export interface SocialMedia {
-		linkedin: string;
-		github: string;
-		gitlab: string;
-		instagram: string;
-		facebook: string;
-		twitter: string;
-		discord: string;
+export interface TimeLineProfile {
+	year: number;
+	comment: string;
+	title?:string;
+	icon: string;
+	profile: number;
 }
 
 export interface Experiencie {
@@ -43,14 +52,7 @@ export interface Area {
 		badges: string[];
 }
 
-export interface IUser {
-		id: number;
-		userName: string;
-		email: string;
-		firstName: string;
-		lastName: string;
-		verified: boolean;
-}
+
 export interface IUserAuth{
 		user: IUser;
 		token: string;
@@ -59,7 +61,6 @@ export interface IOwnerSite{
 		username: string;
 		email: string;
 		profile: Profile;
-		social_media: SocialMedia;
 		education: string[];
 		areas: Area[];
 		courses: string[];
@@ -73,6 +74,8 @@ export interface IOwnerSite{
 		status: ISiteStateStatus;
 		msgError?: any;
 		axiosInstance?: AxiosInstance;
+		header: boolean;
+		footer: boolean;
 }
 
 export interface IProject {

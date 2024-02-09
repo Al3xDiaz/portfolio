@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { RxAvatar } from "react-icons/rx"
 import useCommentary from "@/src/hooks/useCommentary"
-import useSite from "@/src/hooks/useSite";
+import {useSite} from "@/src/hooks/useSite";
 import { CreateCommentary } from "./createCommentary";
 
 interface IProps {

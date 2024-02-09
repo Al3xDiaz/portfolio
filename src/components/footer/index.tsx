@@ -1,20 +1,17 @@
 import React from 'react';
 import {
-	FaTwitterSquare,
-	FaGitlab,
-	FaInstagram,
-	FaFacebookSquare,
-	FaLinkedin,
-	FaGithubSquare,
-	FaDiscord,
 	FaHeart
 } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import packageInfo from '../../../package.json'
-import useSite from '@/src/hooks/useSite';
+import {useSite} from '@/src/hooks';
+import { Twitter, MdiLinkedin, MdiYoutube, MdiWhatsapp } from '@/src/components/socialMedia';
 
 export const Footer= () => {
-	const {state:{ownerSite}} = useSite()
+	const {state:{ownerSite,footer}} = useSite()
+	if (!footer)
+		return (<></>)
+
 	return (
 		<footer>
 			{ownerSite && (
@@ -27,27 +24,9 @@ export const Footer= () => {
 					rel="noopener noreferrer">
 					<IoMail	size={20}/>
 					</a>)}
-					{ownerSite?.social_media.linkedin && <a href={ownerSite?.social_media?.linkedin} target="_blank" rel="noopener noreferrer">
-					<FaLinkedin	size={20}/>
-					</a>}
-					{ownerSite?.social_media.github && <a href={ownerSite?.social_media?.github} target="_blank" rel="noopener noreferrer">
-					<FaGithubSquare	size={20}/>
-					</a>}
-					{ownerSite?.social_media.gitlab && <a href={ownerSite?.social_media?.gitlab} target="_blank" rel="noopener noreferrer">
-					<FaGitlab	size={20}/>
-					</a>}
-					{ownerSite?.social_media.twitter && <a href={ownerSite?.social_media?.twitter} target="_blank" rel="noopener noreferrer">
-					<FaTwitterSquare	size={20}/>
-					</a>}
-					{ownerSite?.social_media.instagram && <a href={ownerSite?.social_media?.instagram} target="_blank" rel="noopener noreferrer">
-					<FaInstagram	size={20}/>
-					</a>}
-					{ownerSite?.social_media.facebook && <a href={ownerSite?.social_media?.facebook} target="_blank" rel="noopener noreferrer">
-					<FaFacebookSquare	size={20}/>
-					</a>}
-					{ownerSite?.social_media.discord && <a href={`${ownerSite?.social_media?.discord}`} target="_blank" rel="noopener noreferrer">
-					<FaDiscord	size={20}/>
-					</a>}
+					<Twitter userName={ownerSite?.profile.twitter}/>
+					<MdiLinkedin userName={ownerSite?.profile.linkedin} />
+					<MdiYoutube userName={ownerSite?.profile.youtube} />
 				</p>
 				</div>
 				{ownerSite?.specialties && (

@@ -1,8 +1,10 @@
-import useSite from "@/src/hooks/useSite"
+import {useSite} from "@/src/hooks"
 import Link from "next/link"
 
 export const Navbar = () => {
-	const {state:{ownerSite,status}} = useSite()
+	const {state:{ownerSite,header}} = useSite()
+	if (!header)
+		return (<></>)
 	return (
 		<nav className="navbar">
 			<div className="navbar__logo">

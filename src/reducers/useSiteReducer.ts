@@ -10,6 +10,8 @@ export const initialState: ISiteState = {
 		status: "loading",
 		ownerSite: undefined,
 		visitor: undefined,
+		header: true,
+		footer: true,
 		axiosInstance: axios.create({
 				baseURL:baseURL,
 		}),
@@ -35,6 +37,18 @@ export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
 				return {
 					...state,
 					status: action.payload,
+				}
+			case "SET_HIDDEM_HF":
+				return {
+					...state,
+					header: false,
+					footer: false,
+				}
+			case "SET_DISPLAY_HF":
+				return {
+					...state,
+					header: true,
+					footer: true,
 				}
 			case "ERROR":
 				return {

@@ -4,7 +4,7 @@ import	Carrusel from '@/src/components/carrusel';
 import TimeLine from '@/src/components/timeline';
 import Commentaries from '@/src/components/commetaries';
 import {Login,SignUp} from '@/src/components/auth/';
-import useSite from '@/src/hooks/useSite';
+import {useSite} from '@/src/hooks';
 import { Modal } from '@/src/components/Modal';
 import UserService from '@/src/services/userService';
 
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 
 	const [modal,setModal] = React.useState<modalType>("login")
 
-	const { state:{ownerSite,status,msgError} } = useSite();
+	const { state:{ownerSite} } = useSite();
 	let images: string[]=[]
 	if (ownerSite){
 		images = [ownerSite.profile.image,...ownerSite.profile.images];
