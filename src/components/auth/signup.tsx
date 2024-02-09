@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Form from 'form-with-state';
-import useSite from '@/src/hooks/useSite';
+import {useSite} from '@/src/hooks/useSite';
 import { IUser } from '@/src/models';
 
 interface Iprops{

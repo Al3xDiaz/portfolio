@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image,ModalImage } from '@/src/utils'
-import useSite from '@/src/hooks/useSite';
+import {useSite} from '@/src/hooks/useSite';
 import UserService from '@/src/services/userService';
 import { GetStaticPaths, GetStaticProps } from 'next';
 

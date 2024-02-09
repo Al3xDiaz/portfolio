@@ -2,7 +2,6 @@ import { useCallback, useContext, useEffect, useRef } from "react";
 import {authService as AuthService } from "@/src/services";
 import { IUser } from "@/src/models";
 import context from "@/src/context/siteContext";
-import { AxiosError } from "axios";
 
 
 export const useSite = () => {
