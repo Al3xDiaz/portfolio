@@ -1,14 +1,33 @@
-import React from 'react';
-import type { NextPage } from 'next';
+import React, { useRef } from 'react';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import	Carrusel from '@/src/components/carrusel';
 import TimeLine from '@/src/components/timeline';
 import Commentaries from '@/src/components/commetaries';
 import {Login,SignUp} from '@/src/components/auth/';
 import useSite from '@/src/hooks/useSite';
 import { Modal } from '@/src/components/Modal';
+import UserService from '@/src/services/userService';
 
 type modalType = "login" | "signup";
-
+export const getStaticPaths = (async () => {
+	// ...
+	const service = new UserService()
+	const userNames = await service.getUserNames()
+	return {
+		paths: userNames.map((userName) => ({
+			params: {
+				username: userName,
+			},
+		})),
+		fallback: false,
+	};
+}) satisfies GetStaticPaths
+export const getStaticProps = (async () => {
+	await new Promise((resolve) => setTimeout(resolve, 1));
+  return { props: { component:"index" } }
+}) satisfies GetStaticProps<{
+  component: string
+}>
 const Home: NextPage = () => {
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);

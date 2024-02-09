@@ -13,58 +13,61 @@ import { IoMail } from "react-icons/io5";
 import packageInfo from '../../../package.json'
 import useSite from '@/src/hooks/useSite';
 
-export const Footer = () => {
+export const Footer= () => {
 	const {state:{ownerSite}} = useSite()
-	if (ownerSite)
 	return (
 		<footer>
-			<div className='social'>
-			<h4>Contact me</h4>
-			<p>
-				{ownerSite?.email && (<a href={`mailto:${ownerSite?.email}`}
-				target="_blank"
-				rel="noopener noreferrer">
-				<IoMail	size={20}/>
-				</a>)}
-				{ownerSite?.social_media.linkedin && <a href={ownerSite?.social_media?.linkedin} target="_blank" rel="noopener noreferrer">
-				<FaLinkedin	size={20}/>
-				</a>}
-				{ownerSite?.social_media.github && <a href={ownerSite?.social_media?.github} target="_blank" rel="noopener noreferrer">
-				<FaGithubSquare	size={20}/>
-				</a>}
-				{ownerSite?.social_media.gitlab && <a href={ownerSite?.social_media?.gitlab} target="_blank" rel="noopener noreferrer">
-				<FaGitlab	size={20}/>
-				</a>}
-				{ownerSite?.social_media.twitter && <a href={ownerSite?.social_media?.twitter} target="_blank" rel="noopener noreferrer">
-				<FaTwitterSquare	size={20}/>
-				</a>}
-				{ownerSite?.social_media.instagram && <a href={ownerSite?.social_media?.instagram} target="_blank" rel="noopener noreferrer">
-				<FaInstagram	size={20}/>
-				</a>}
-				{ownerSite?.social_media.facebook && <a href={ownerSite?.social_media?.facebook} target="_blank" rel="noopener noreferrer">
-				<FaFacebookSquare	size={20}/>
-				</a>}
-				{ownerSite?.social_media.discord && <a href={`${ownerSite?.social_media?.discord}`} target="_blank" rel="noopener noreferrer">
-				<FaDiscord	size={20}/>
-				</a>}
-			</p>
-			</div>
-			{ownerSite?.specialties && (
-			<div className="specialties">
-			<h4>Specialties</h4>
-			<ul>
-				{ownerSite?.specialties.map((item,i)=>(<li key={i}>{item}</li>))}
-			</ul>
-			</div>
+			{ownerSite && (
+				<>
+				<div className='social'>
+				<h4>Contact me</h4>
+				<p>
+					{ownerSite?.email && (<a href={`mailto:${ownerSite?.email}`}
+					target="_blank"
+					rel="noopener noreferrer">
+					<IoMail	size={20}/>
+					</a>)}
+					{ownerSite?.social_media.linkedin && <a href={ownerSite?.social_media?.linkedin} target="_blank" rel="noopener noreferrer">
+					<FaLinkedin	size={20}/>
+					</a>}
+					{ownerSite?.social_media.github && <a href={ownerSite?.social_media?.github} target="_blank" rel="noopener noreferrer">
+					<FaGithubSquare	size={20}/>
+					</a>}
+					{ownerSite?.social_media.gitlab && <a href={ownerSite?.social_media?.gitlab} target="_blank" rel="noopener noreferrer">
+					<FaGitlab	size={20}/>
+					</a>}
+					{ownerSite?.social_media.twitter && <a href={ownerSite?.social_media?.twitter} target="_blank" rel="noopener noreferrer">
+					<FaTwitterSquare	size={20}/>
+					</a>}
+					{ownerSite?.social_media.instagram && <a href={ownerSite?.social_media?.instagram} target="_blank" rel="noopener noreferrer">
+					<FaInstagram	size={20}/>
+					</a>}
+					{ownerSite?.social_media.facebook && <a href={ownerSite?.social_media?.facebook} target="_blank" rel="noopener noreferrer">
+					<FaFacebookSquare	size={20}/>
+					</a>}
+					{ownerSite?.social_media.discord && <a href={`${ownerSite?.social_media?.discord}`} target="_blank" rel="noopener noreferrer">
+					<FaDiscord	size={20}/>
+					</a>}
+				</p>
+				</div>
+				{ownerSite?.specialties && (
+				<div className="specialties">
+				<h4>Specialties</h4>
+				<ul>
+					{ownerSite?.specialties.map((item,i)=>(<li key={i}>{item}</li>))}
+				</ul>
+				</div>
+				)}
+				<div className="about">
+				<h4>Made for</h4>
+				Help to any human being.
+				<a>or to contact me <FaHeart size={20} color={"#ff0000"}/>.</a>
+				</div>
+				<div className='version'>
+				<h4 className='version'>version: {packageInfo.version}</h4>
+				</div>
+			</>
 			)}
-			<div className="about">
-			<h4>Made for</h4>
-			Help to any human being.
-			<a>or to contact me <FaHeart size={20} color={"#ff0000"}/>.</a>
-			</div>
-			<div className='version'>
-			<h4 className='version'>version: {packageInfo.version}</h4>
-			</div>
 			<style jsx>{`
 			.social > p {
 				display: flex;

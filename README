@@ -14,4 +14,10 @@ yarn dev
 ```bash
 #start proyect server production
 yarn build
+# you cand run this command for display static website
+docker run \
+  --name=static_site --rm \
+  -v "${PWD}/build:/usr/share/nginx/html" \
+	-p "80:80" \
+  nginx:1.25.3-alpine
 ```
