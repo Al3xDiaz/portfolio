@@ -7,14 +7,6 @@ interface Iprops{
 	onLogin?: ()=>void;
 	onLoged?:()=>void;
 }
-interface IloginData{
-	userName?: string;
-	password?:string;
-	confirmpassword?: string;
-	firstName?:string;
-	lastName?: string;
-	email?:string;
-}
 export function SignUp(props:Iprops) {
 	const {signUp} = useSite()
 	return (

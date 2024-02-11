@@ -7,7 +7,7 @@ interface IProps {
 export const Image = ({ src, alt, ...props }:IProps) => {
 	return (
 		<div className="relative">
-			<img src={src} alt={alt} {...props} />
+			<img src={src} alt={alt}  />
 		</div>
 	);
 }
