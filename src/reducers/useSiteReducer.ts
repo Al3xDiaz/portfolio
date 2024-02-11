@@ -29,13 +29,13 @@ export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
 			case "SET_VISITOR":
 				return {
 					...state,
-					status: "loaded",
 					visitor: action.payload,
 					msgError:undefined,
 				}
 			case "SET_STATUS":
 				return {
 					...state,
+					ownerSite:undefined,
 					status: action.payload,
 				}
 			case "SET_HIDDEM_HF":

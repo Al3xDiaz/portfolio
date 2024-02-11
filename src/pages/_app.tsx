@@ -39,7 +39,7 @@ function App({ Component, pageProps }: AppProps) {
 	},[router.query.username])
 
 	let content = <Component {...pageProps} />
-	if (state.status == "loading"){
+	if (!router.isReady || state.status == "loading"){
 		content = <PacmanLoader />
 	}
 	return (
