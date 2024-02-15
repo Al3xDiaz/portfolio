@@ -1,4 +1,5 @@
 import { AxiosInstance } from "axios";
+import { Telephone } from "./telephone";
 export interface IUser {
 	id: number;
 	userName: string;
@@ -11,7 +12,7 @@ export interface IUser {
 export interface Profile {
 	first_name: string;
 	last_name: string;
-	telephone: string;
+	telephone: Telephone[];
 	jobs: string;
 	age: number;
 	biography: string[];

@@ -3,11 +3,10 @@ import { SVGProps } from "react";
 interface IProps extends SVGProps<SVGSVGElement>{
 	href: string;
 	userName?: string;
-	telephone?: string;
 }
 
-export const VCardDownload = ({href,userName,telephone,...props}:IProps)=>{
-	if (!userName || !telephone)
+export const VCardDownload = ({href,userName,...props}:IProps)=>{
+	if (!userName)
 		return <></>
 	return (
 		<a href={`${href}/${userName}`} download>

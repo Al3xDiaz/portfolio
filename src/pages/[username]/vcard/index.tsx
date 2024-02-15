@@ -43,7 +43,9 @@ export default function Page() {
 					<h1>{ownerSite?.username}</h1>
 				</div>
 				<div>
-					<Telephone Telephone={ownerSite?.profile.telephone} />
+					{ownerSite?.profile.telephone.map(({countryCode,phoneNumber})=>
+						<Telephone Telephone={`+${countryCode} ${phoneNumber}`} />
+					)}
 					<Email email={ownerSite?.email} />
 					<WebSite website={ownerSite?.profile.website} />
 				</div>
@@ -55,13 +57,13 @@ export default function Page() {
 					<p>{line}</p>
 					)}
 				</div>)}
-				{ownerSite?.profile.telephone && (<div>
+				{ownerSite?.profile.telephone.map(({countryCode,phoneNumber})=><div>
 					<div>
 						<Telephone />
 					</div>
 					<div>
 						<p>Phone (Mobile)</p>
-						<p>{ownerSite.profile.telephone}</p>
+						<p>{`+${countryCode} ${phoneNumber}`}</p>
 					</div>
 				</div>)}
 				{ownerSite?.email && (<div>
@@ -87,10 +89,11 @@ export default function Page() {
 				<Twitter userName={ownerSite?.profile.twitter}/>
 				<MdiLinkedin userName={ownerSite?.profile.linkedin} />
 				<MdiYoutube userName={ownerSite?.profile.youtube} />
-				<MdiWhatsapp telephone={ownerSite?.profile.telephone} />
+				{/* <MdiWhatsapp telephone={ownerSite?.profile.telephone} /> */}
+				{ownerSite?.profile.telephone.map(({countryCode,phoneNumber,whatsapp})=>whatsapp && (<MdiWhatsapp telephone={`+${countryCode} ${phoneNumber}`} />))}
 			</div>
 			<div className='vcard-download'>
-				<VCardDownload href={`${API_URL}/vcard`} userName={ownerSite?.username} telephone={ownerSite?.profile.telephone} />
+				<VCardDownload href={`${API_URL}/vcard`} userName={ownerSite?.username} />
 			</div>
 			<style jsx>
 			{`
