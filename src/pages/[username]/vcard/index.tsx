@@ -51,9 +51,9 @@ export default function Page() {
 				</div>
 			</header>
 			<div className='personal-info'>
-				{ownerSite?.profile.biography && (
+				{ownerSite?.profile.bio && (
 				<div>
-					{ownerSite.profile.biography.map((line)=>
+					{ownerSite.profile.bio.map((line)=>
 					<p>{line}</p>
 					)}
 				</div>)}

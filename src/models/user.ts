@@ -15,7 +15,7 @@ export interface Profile {
 	telephone: Telephone[];
 	jobs: string;
 	age: number;
-	biography: string[];
+	bio: string[];
 	image: string;
 	images: string[];
 	time_line_profile: TimeLineProfile[];

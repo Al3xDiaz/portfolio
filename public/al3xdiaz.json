@@ -34,11 +34,13 @@
 				"I'm Software Engenieer, i like play chess and volleyball. I'm 27 years old and i'm leave Honduras. Not only, I have experiencie on frontend, backend and database manage, but also I'm site reliability engineer (sre | devops)."
 			],
 			"website":"https://portfolio.chaoticteam.com/al3xdiaz",
-			"telephone":{
-				"phoneNumber":"12345678",
-				"countryCode":"504",
-				"whatsapp":true
-			},
+			"telephone":[
+				{
+					"phoneNumber":"12345678",
+					"countryCode":"504",
+					"whatsapp":true
+				}
+			],
 			"twitter":"al3xsierra",
 			"linkedin":"al3xdiaz/",
 			"youtube":"al3xdiaz",

@@ -31,12 +31,14 @@ export const useSite = () => {
 		}
 	},[])
 	const getUserData= useCallback(async ()=>{
-		try{
-			const resp = await authService.getData();
-			dispatch && dispatch({type:"SET_VISITOR",payload:resp})
-		}catch(error){
-			console.log("user unauthorized")
-		}
+		return new Promise((resolve,reject)=>{
+			authService.getData().then(resp=>{
+				dispatch && dispatch({type:"SET_VISITOR",payload:resp})
+				resolve(resp)
+			}).catch(error=>{
+				resolve(null)
+			})
+		})
 	},[])
 	useEffect(()=>{
 		const token = localStorage.getItem("access_token")
