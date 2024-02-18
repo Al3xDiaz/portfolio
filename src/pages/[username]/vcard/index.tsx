@@ -90,7 +90,7 @@ export default function Page() {
 				<MdiLinkedin userName={ownerSite?.profile.linkedin} />
 				<MdiYoutube userName={ownerSite?.profile.youtube} />
 				{/* <MdiWhatsapp telephone={ownerSite?.profile.telephone} /> */}
-				{ownerSite?.profile.telephone.map(({countryCode,phoneNumber,whatsapp})=>whatsapp && (<MdiWhatsapp telephone={`+${countryCode} ${phoneNumber}`} />))}
+				{ownerSite?.profile.telephone.map(({countryCode,phoneNumber,whatsapp})=>whatsapp && (<MdiWhatsapp telephone={`+${countryCode}${phoneNumber}`} />))}
 			</div>
 			<div className='vcard-download'>
 				<VCardDownload href={`${API_URL}/vcard`} userName={ownerSite?.username} />
