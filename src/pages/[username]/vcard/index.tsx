@@ -43,11 +43,13 @@ export default function Page() {
 					<h1>{ownerSite?.username}</h1>
 				</div>
 				<div>
-					{ownerSite?.profile.telephone.map(({countryCode,phoneNumber})=>
-						<Telephone Telephone={`+${countryCode} ${phoneNumber}`} />
-					)}
-					<Email email={ownerSite?.email} />
-					<WebSite website={ownerSite?.profile.website} />
+					<div>
+						{ownerSite?.profile.telephone.map(({countryCode,phoneNumber})=>
+							<Telephone height="1rem" width="1rem" Telephone={`+${countryCode} ${phoneNumber}`} />
+						)}
+						<Email height="1rem" width="1rem" email={ownerSite?.email} />
+						<WebSite height="1rem" width="1rem" website={ownerSite?.profile.website} />
+					</div>
 				</div>
 			</header>
 			<div className='personal-info'>
@@ -97,70 +99,99 @@ export default function Page() {
 			</div>
 			<style jsx>
 			{`
-					.conteiner{
-						max-width: 900px;
-						margin: 0 auto;
-					}
-					.header{
-						background-color: var(--primary)
-					}
-					.header div:first-child{
-						display: flex;
-						flex-direction: column;
-						align-items: center;
-					}
-					.header div:first-child div{
-						border-radius: 10rem;
-						background-size: cover;
-						background-repeat: no-repeat;
-						height: 8rem;
-						width: 8rem;
-						box-shadow: 0rem 0rem 1.2rem rgba(0, 0, 0, 0.9);
-					}
-					.header div:last-child{
-						flex-wrap: wrap;
-						justify-content: center;
-						display: flex;
-						flex-direction: row;
-						justify-content: space-around;
-						align-items: center;
-						color: white;
-					}
-					.personal-info{
-						padding: 1rem;
-						margin-top: 1rem;
-						margin-bottom: 1rem;
-					}
-					.personal-info > div{
-						display: flex;
-						flex-direction: row;
-						align-items: center;
-						padding: 1rem;
-						border-bottom: 1px solid var(--primary);
-					}
-					.personal-info > div > div{
-						display: flex;
-						flex-direction: column;
-					}
-					.personal-info > div > div:first-child{
-						margin-right: 1rem;
-					}
-					.social-media{
-						display: flex;
-						flex-direction: row;
-						justify-content: space-around;
-						margin-top: 1rem;
-						margin-bottom: 1rem;
-						margin-left: 8rem;
-						margin-right: 8rem;
-						align-items: center;
-					}
-					.vcard-download{
-						position: fixed;
-						z-index: 2;
-						bottom: 1rem;
-						right: 1rem;
-					}
+			.header{
+				color: white;
+			}
+			.header div{
+				padding: .2rem;
+			}
+			@media (min-width: 730px){
+				.conteiner{
+					min-width: 700px;
+					margin: 0 auto;
+				}
+				.header div div:last-child{
+					justify-content: center;
+					display: flex;
+					flex-direction: row;
+					justify-content: space-around;
+					align-items: center;
+
+				}
+				.header{
+					border-radius: 0 3rem;
+				}
+			}
+			@media (max-width: 729px){
+				.conteiner{
+					margin: 0;
+				}
+				.header div:last-child div{
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+				}
+				.header div:last-child{
+					align-items: center;
+					display: flex;
+					flex-direction: column;
+				}
+			}
+				.header{
+					background-color: var(--primary);
+					padding: .5rem 0;
+				}
+				.header div:first-child{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+				.header div:first-child div{
+					border-radius: 10rem;
+					background-size: cover;
+					background-repeat: no-repeat;
+					height: 8rem;
+					width: 8rem;
+					box-shadow: 0rem 0rem 1.2rem rgba(0, 0, 0, 0.9);
+				}
+				.personal-info{
+					padding: 1rem;
+					margin-top: 1rem;
+					margin-bottom: 1rem;
+				}
+				.personal-info > div{
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					padding: 1rem;
+					border-bottom: 1px solid var(--primary);
+				}
+				.personal-info > div > div{
+					display: flex;
+					flex-direction: column;
+				}
+				.personal-info > div > div:first-child{
+					margin-right: 1rem;
+				}
+				.personal-info > div > div > p{
+					width: fit-content;
+				}
+				.social-media{
+					display: flex;
+					flex-direction: row;
+					justify-content: space-around;
+					margin-top: 1rem;
+					margin-bottom: 1rem;
+					margin-left: 8rem;
+					margin-right: 8rem;
+					align-items: center;
+				}
+				.vcard-download{
+					position: fixed;
+					z-index: 2;
+					bottom: 1rem;
+					right: 1rem;
+				}
 			`}
 			</style>
 		</div>
