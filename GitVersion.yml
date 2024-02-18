@@ -4,7 +4,7 @@ branches:
   main:
     regex: ^master$|^main$
     tag: ""
-    increment: none
+    increment: Inherit
     prevent-increment-of-merged-branch-version: true
     track-merge-target: false
     source-branches: [develop]
