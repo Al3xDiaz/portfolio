@@ -5,6 +5,7 @@ branches:
     regex: ^master$|^main$
     tag: ""
     increment: Inherit
+    mode: ContinuousDeployment
     prevent-increment-of-merged-branch-version: true
     track-merge-target: false
     source-branches: [develop]
