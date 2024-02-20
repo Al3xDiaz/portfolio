@@ -121,7 +121,6 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: f0ca48a7318d00fd705502e78e39b26c
           projectName: portfolio
           directory: ./build
           # Enable Wrangler v3
