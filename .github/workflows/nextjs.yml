@@ -10,7 +10,17 @@ on:
   push:
     branches: [main]
   # Allows you to run this workflow manually from the Actions tab
+
+  pull_request:
+    types: [opened,reopened]
+
   workflow_dispatch:
+    inputs:
+      username:
+        type: string
+        description: who to deploy page
+        default: al3xdiaz
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -107,6 +117,15 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./build
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: f0ca48a7318d00fd705502e78e39b26c
+          projectName: portfolio
+          directory: ./build
+          # Enable Wrangler v3
+          wranglerVersion: '3'
 
   # Deployment job
   deploy:
