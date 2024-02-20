@@ -117,14 +117,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./build
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          projectName: portfolio
-          directory: ./build
-          # Enable Wrangler v3
-          wranglerVersion: '3'
 
   # Deployment job
   deploy:
