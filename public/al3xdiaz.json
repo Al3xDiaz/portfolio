@@ -4,36 +4,17 @@
 		"profile": {
 			"first_name": "Alex",
 			"last_name": "Diaz",
-			"age": 27,
-			"image":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1644296138/media/images/users/profile/imgs_extra/imagen_cjbso3_itah5l.jpg",
-			"images":[
-			],
-			"time_line_profile":[
-			{
-					"year": 2023,
-					"comment":"i'm got a job at DevOps Engineer",
-					"title":"Abstract Development Studio SA"
-			},
-			{
-					"year": 2021,
-					"comment":"i'm got a job at Backend Developer",
-					"title":"SignsCloud"
-			},
-			{
-					"year": 2020,
-					"comment":"i'm got a job at Desarrollador Backend",
-					"title":"Agencia Global Honduras"
-			},
-			{
-					"year": 2019,
-					"comment":"i'm got a job at Desarrollador de software .NET jr",
-					"title":"BIDSS-Technologie"
-			}
-			],
-			"bio":[
-				"I am Alex Diaz, i like play chess and volleyball. I'm 27 years old and i'm leave Honduras.",
-				"I'm Software Engenieer, Not only, I have experiencie on frontend, backend and database manage, but also I'm site reliability engineer (sre | devops)."
-			],
+			"photo":"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1644296138/media/images/users/profile/imgs_extra/imagen_cjbso3_itah5l.jpg",
+      "bio":[
+        "I am Alex Diaz, i like play chess and volleyball. I'm 27 years old and i'm leave Honduras.",
+        "I'm Software Engenieer, Not only, I have experiencie on frontend, backend and database manage, but also I'm site reliability engineer (sre | devops)."
+      ],
+			"twitter":"al3xsierra",
+			"linkedin":"al3xdiaz/",
+			"youtube":"al3xdiaz",
+			"github":"https://github.com/al3xdiaz",
+			"gitlab":"https://gitlab.com/al3xdiaz",
+			"discord":"https://discordapp.com/users/1028806986457960488",
 			"website":"https://portfolio.chaoticteam.com/al3xdiaz",
 			"telephone":[
 				{
@@ -42,37 +23,6 @@
 					"whatsapp":true
 				}
 			],
-			"twitter":"al3xsierra",
-			"linkedin":"al3xdiaz/",
-			"youtube":"al3xdiaz",
-			"github":"https://github.com/al3xdiaz",
-			"gitlab":"https://gitlab.com/al3xdiaz",
-			"discord":"https://discordapp.com/users/1028806986457960488"
-		},
-		"courses":[
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668757/Courses/Terminal_y_L%C3%ADnea_de_Comandos.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Jenkins.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Docker.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628667208/Courses/Node.js.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755318/shell_wbquow.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755318/terraform_irgpn3.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755318/programacion_j84u7g.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755318/regex_nfn03p.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755318/nodejs_ouk9o7.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755318/next_gggvoi.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/ingles_pbwijh.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/github_jcpqm1.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/ecmacscrip_y0fibe.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/gitlab_icanxf.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/golang_ugssyl.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/docker2_wsekwi.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1694755317/docker2_wsekwi.png",
-				"https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628669138/Courses/Software_Development_Fundamentals.jpg"
-		],
-		"specialties":[
-				"DevOps",
-				"Backend",
-				"Frontent",
-				"Mobile"
-		]
+      "specialties":"DevOps,Backend,Frontent,Mobile"
+		}
 }

@@ -12,24 +12,34 @@ export interface IUser {
 export interface Profile {
 	first_name: string;
 	last_name: string;
-	telephone: Telephone[];
-	jobs: string;
-	age: number;
+	photo: string;
 	bio: string[];
-	image: string;
+
+	jobs: string;
+
+	linkedin: string;
+	github: string;
+// pending
+	gitlab: string;
+	discord: string;
+//
+	twitter: string;
+	facebook: string;
+	instagram: string;
+	youtube: string;
+	website: string;
+
+// pending delete
 	images: string[];
 	time_line_profile: TimeLineProfile[];
-	last_login?: Date;
+//
+  specialties: string;
+  skills: string;
+  Languages: string;
+  Hobbies: string;
 
-	website: string;
-	linkedin: string;
-	youtube: string;
-	github: string;
-	gitlab: string;
-	instagram: string;
-	facebook: string;
-	twitter: string;
-	discord: string;
+	telephone: Telephone[];
+
 }
 
 export interface TimeLineProfile {
@@ -38,19 +48,6 @@ export interface TimeLineProfile {
 	title?:string;
 	icon: string;
 	profile: number;
-}
-
-export interface Experiencie {
-		title: string;
-		company: string;
-		date_from: string;
-		date_to: string;
-		description: string;
-}
-
-export interface Area {
-		title: string;
-		badges: string[];
 }
 
 
@@ -62,11 +59,7 @@ export interface IOwnerSite{
 		username: string;
 		email: string;
 		profile: Profile;
-		education: string[];
-		areas: Area[];
 		courses: string[];
-		projects: IProject[];
-		specialties: string[];
 	}
 	export type ISiteStateStatus ="loading" | "loaded" | "error";
 	export interface ISiteState {
@@ -79,9 +72,3 @@ export interface IOwnerSite{
 		footer: boolean;
 }
 
-export interface IProject {
-		name: string;
-		description: string;
-		image: string;
-		url: string;
-}

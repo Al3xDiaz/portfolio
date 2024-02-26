@@ -38,11 +38,11 @@ const Home: NextPage = () => {
 	const { state:{ownerSite} } = useSite();
 	let images: string[]=[]
 	if (ownerSite){
-		images = [ownerSite.profile.image,...ownerSite.profile.images];
+		images = [ownerSite.profile.photo,];
 		return (
 			<div>
 				<Carrusel images={images} />
-				<TimeLine data={ownerSite?.profile.time_line_profile} />
+				<TimeLine />
 				<Modal show={open} onClose={handleClose} title='Authentication'>
 					<div className='content'>
 						<div className='panel'>

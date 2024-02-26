@@ -39,7 +39,7 @@ export default function Page() {
 			<header className='header'>
 				<div>
 					{/* <img src={ownerSite?.profile.image} alt="none" /> */}
-					<div style={{backgroundImage:`url(${ownerSite?.profile.image})`}} />
+					<div style={{backgroundImage:`url(${ownerSite?.profile.photo})`}} />
 					<h1>{ownerSite?.username}</h1>
 				</div>
 				<div>

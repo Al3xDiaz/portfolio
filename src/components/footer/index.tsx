@@ -29,11 +29,11 @@ export const Footer= () => {
 					<MdiYoutube userName={ownerSite?.profile.youtube} />
 				</p>
 				</div>
-				{ownerSite?.specialties && (
+				{ownerSite?.profile.specialties && (
 				<div className="specialties">
 				<h4>Specialties</h4>
 				<ul>
-					{ownerSite?.specialties.map((item,i)=>(<li key={i}>{item}</li>))}
+					{ownerSite?.profile.specialties.split(",").map((item,i)=>(<li className='ul-items' key={i}>{item}</li>))}
 				</ul>
 				</div>
 				)}
@@ -115,12 +115,10 @@ export const Footer= () => {
 				align-items: center;
 				padding-left: 5rem;
 				}
-				.specialties ul {
-				li {
-				margin-left: 2rem;
-				}
 			}
-			}
+      .specialties ul li{
+        margin-left: 2rem;
+      }
 			`}</style>
 		</footer>
 	);

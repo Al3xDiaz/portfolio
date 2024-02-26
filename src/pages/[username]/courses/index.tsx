@@ -1,8 +1,17 @@
-import React from 'react';
-import { Image,ModalImage } from '@/src/utils'
-import {useSite} from '@/src/hooks/useSite';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ModalImage } from '@/src/utils'
 import UserService from '@/src/services/userService';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import axios from 'axios';
+import getConfig from "next/config";
+import { Course } from '@/src/models';
+
+interface ICoursesProps{
+  courses: Course[]
+}
+
+const { publicRuntimeConfig } = getConfig();
+const API_URL = publicRuntimeConfig.API_URL;
 
 export const getStaticPaths = (async () => {
 	// ...
@@ -17,25 +26,22 @@ export const getStaticPaths = (async () => {
 		fallback: false,
 	};
 }) satisfies GetStaticPaths
-export const getStaticProps = (async () => {
-	await new Promise((resolve) => setTimeout(resolve, 1));
-  return { props: { component:"index" } }
-}) satisfies GetStaticProps<{
-  component: string
-}>
+export const getStaticProps = (async ({params}) => {
+  const username = params && params["username"]
+  const response =await axios.get(`${API_URL}/courses?username=${username}`)
+  return { props: { courses:response.data } }
+}) satisfies GetStaticProps<ICoursesProps>
 
-export const Courses = () => {
-		const {state:{ownerSite}} = useSite()
-		const courses = ownerSite?.courses || [];
+export const Courses = ({courses}:ICoursesProps) => {
 		return (
 				<div>
 						<h1>Courses</h1>
 						<div className='row'>
-								{courses.map((course,index) => (
+								{courses.map(({image},index) => (
 										<div className='course' key={index}>
 												<ModalImage
-												small={course}
-												large={course}
+												small={image}
+												large={image}
 												/>
 										</div>
 								))}
