@@ -7,13 +7,14 @@ export interface IUser {
 	firstName: string;
 	lastName: string;
 	verified: boolean;
+  profile: Profile
 }
 
 export interface Profile {
-	first_name: string;
-	last_name: string;
+	firstName: string;
+	lastName: string;
 	photo: string;
-	bio: string[];
+	bio: string;
 
 	jobs: string;
 
@@ -63,7 +64,7 @@ export interface IOwnerSite{
 	}
 	export type ISiteStateStatus ="loading" | "loaded" | "error";
 	export interface ISiteState {
-		ownerSite?: IOwnerSite;
+		ownerSite?: IUser;
 		visitor?: IUser;
 		status: ISiteStateStatus;
 		msgError?: any;

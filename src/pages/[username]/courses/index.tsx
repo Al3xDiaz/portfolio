@@ -4,10 +4,13 @@ import UserService from '@/src/services/userService';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
 import getConfig from "next/config";
-import { Course } from '@/src/models';
+import { Course, IUser } from '@/src/models';
+import Layout from '@/src/components/layaut';
+import { SiteService } from '@/src/services';
 
 interface ICoursesProps{
-  courses: Course[]
+  courses: Course[];
+  user:IUser;
 }
 
 const { publicRuntimeConfig } = getConfig();
@@ -27,14 +30,19 @@ export const getStaticPaths = (async () => {
 	};
 }) satisfies GetStaticPaths
 export const getStaticProps = (async ({params}) => {
-  const username = params && params["username"]
-  const response =await axios.get(`${API_URL}/courses?username=${username}`)
-  return { props: { courses:response.data } }
+  const username = params && params["username"]?.toString() || ""
+  const service = new SiteService(API_URL);
+
+  const {data} =await axios.get(`${API_URL}/courses?username=${username}`)
+  const user = await service.getSlugName(username)
+  return { props: {
+    courses:data,
+    user} }
 }) satisfies GetStaticProps<ICoursesProps>
 
-export const Courses = ({courses}:ICoursesProps) => {
+export const Courses = ({courses,user}:ICoursesProps) => {
 		return (
-				<div>
+				<Layout user={user}>
 						<h1>Courses</h1>
 						<div className='row'>
 								{courses.map(({image},index) => (
@@ -60,7 +68,7 @@ export const Courses = ({courses}:ICoursesProps) => {
 										width: 300px;
 								}
 								`}</style>
-				</div>
+				</Layout>
 		)
 }
 export default Courses;

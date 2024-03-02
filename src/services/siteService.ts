@@ -1,27 +1,28 @@
-import { IOwnerSite } from "@/src/models";
+import { IUser } from "@/src/models";
 import {IService} from "@/src/services/iService";
-import { AxiosInstance } from "axios";
+import axios,{ AxiosInstance } from "axios";
 
-export class SiteService implements IService<IOwnerSite> {
-		axios?: AxiosInstance;
-		baseUrl?: string;
-		constructor(baseUrl?: string) {
-			this.baseUrl = baseUrl;
+export class SiteService implements IService<IUser> {
+		axios: AxiosInstance;
+		constructor(baseURL: string) {
+      this.axios = axios.create({baseURL})
 		}
-		async list(): Promise<IOwnerSite[]> {
+		async list(): Promise<IUser[]> {
 			throw new Error("Method not implemented.");
 		}
-		async detail(id: number): Promise<IOwnerSite> {
+		async detail(id: number): Promise<IUser> {
 			throw new Error("Method not implemented.");
 		}
-		async getSlugName(username:string): Promise<IOwnerSite> {
-			const response = await	fetch(`${this.baseUrl}/${username}.json`)
-			return await response.json();
+		async getSlugName(username:string): Promise<IUser> {
+			const response = await	this.axios.get("/profile",{params:{
+        username
+      }})
+			return response.data;
 		}
-		create(data: IOwnerSite): Promise<IOwnerSite> {
+		create(data: IUser): Promise<IUser> {
 			throw new Error("Method not implemented.");
 		}
-		update(id: number, data: IOwnerSite): Promise<IOwnerSite> {
+		update(id: number, data: IUser): Promise<IUser> {
 			throw new Error("Method not implemented.");
 		}
 		delete(id: number): Promise<void> {

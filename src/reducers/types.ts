@@ -1,7 +1,7 @@
-import {IOwnerSite, IUser, ISiteStateStatus } from "@/src/models/user";
+import {IUser, ISiteStateStatus } from "@/src/models/user";
 interface ISetSiteAction {
 	type: "SET_SITE";
-	payload: IOwnerSite;
+	payload: IUser;
 }
 interface ISetStatusAction {
 	type: "SET_STATUS";

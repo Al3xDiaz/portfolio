@@ -3,8 +3,8 @@ import axios,{ AxiosInstance } from "axios";
 
 export class AchievementsService{
 		axios: AxiosInstance;
-		constructor(axiosInstance?: AxiosInstance) {
-				this.axios =axiosInstance || axios.create()
+		constructor(API_URL?: string) {
+				this.axios =axios.create({baseURL:API_URL})
 		}
 		async list(username?: string): Promise<TimeLineProfile[]> {
 				const response = await	this.axios.get(`/achievements`,{params:{

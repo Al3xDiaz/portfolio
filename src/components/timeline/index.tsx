@@ -1,20 +1,13 @@
 
 import { Row } from './row';
 import styles from './Index.module.css'
-import useTimeLine from '@/src/hooks/useTimeLine';
 import { PacmanLoader } from '../loader/packman';
+import { TimeLineProfile } from '@/src/models';
 
-const TimeLine = () => {
-  const {data,state} = useTimeLine();
-  if (state=="loading")
-    return (<div>
-        <div className={styles["timeline-title"]}>
-          <h2>Achievements</h2>
-        </div>
-        <div style={{display:"flex",flexDirection:"row",alignItems:"center",height:"8rem"}}>
-          <PacmanLoader />
-        </div>
-    </div>)
+interface iprops{
+  data:TimeLineProfile[];
+}
+const TimeLine = ({data}:iprops) => {
   return (
     <div>
       <div className={styles["timeline-title"]}>

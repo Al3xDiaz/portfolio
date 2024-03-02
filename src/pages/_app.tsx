@@ -10,7 +10,7 @@ import { PacmanLoader } from '@/src/components/loader/packman';
 import getConfig from "next/config";
 
 const { publicRuntimeConfig } = getConfig();
-const baseURL = publicRuntimeConfig.BASE_URL;
+const baseURL = publicRuntimeConfig.API_URL;
 
 function App({ Component, pageProps }: AppProps) {
 
@@ -20,33 +20,11 @@ function App({ Component, pageProps }: AppProps) {
 	useMemo(()=>{
 		return {state,dispatch}
 	},[state,dispatch])
-	const siteService	= useRef<SiteService>(new SiteService(baseURL)).current
-
-	const getSiteConfig= useCallback(async ()=>{
-		if (!dispatch) return;
-		dispatch({type:"SET_STATUS",payload:"loading"})
-		if (!router.isReady) return;
-		try{
-			const ownerSite = await siteService.getSlugName(router.query.username as string);
-			await new Promise(resolve => setTimeout(resolve, 3000));
-			dispatch({type:"SET_SITE",payload:ownerSite});
-		}catch(error){
-			dispatch({type:"ERROR",payload:error});
-		}
-	},[router,dispatch])
-	useEffect(()=>{
-		getSiteConfig()
-	},[router.query.username])
 
 	let content = <Component {...pageProps} />
-	if (!router.isReady || state.status == "loading"){
-		content = <PacmanLoader />
-	}
 	return (
 		<siteContex.Provider value={{state,dispatch}}>
-			<Layout>
-				{content}
-			</Layout>
+			{content}
 		</siteContex.Provider>
 	)
 }

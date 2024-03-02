@@ -1,14 +1,19 @@
 import { useEffect } from 'react';
 import useSiteCLI from '@/src/hooks/useVCard';
 import UserService from '@/src/services/userService';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import {Twitter,MdiLinkedin,MdiYoutube, MdiWhatsapp, Telephone,Email, WebSite} from "@/src/components/socialMedia"
 import getConfig from "next/config";
 import { VCardDownload } from '@/src/components/socialMedia/vcardDownload';
+import { SiteService } from '@/src/services';
+import { IUser } from '@/src/models';
 
 const { publicRuntimeConfig } = getConfig();
 const API_URL = publicRuntimeConfig.API_URL;
 
+interface iprops{
+  user:IUser;
+}
 export const getStaticPaths = (async () => {
 	// ...
 	const service = new UserService()
@@ -22,80 +27,76 @@ export const getStaticPaths = (async () => {
 		fallback: false,
 	};
 }) satisfies GetStaticPaths
-export const getStaticProps = (async () => {
-	await new Promise((resolve) => setTimeout(resolve, 1));
-  return { props: { component:"index" } }
-}) satisfies GetStaticProps<{
-  component: string
-}>
+export const getStaticProps = (async ({params}) => {
+  const username = params && params["username"]?.toString() || ""
+  const service = new SiteService(API_URL)
+  const user = await service.getSlugName(username)
+  return { props: {
+    user,
+  }}
+}) satisfies GetStaticProps<iprops>
 
-export default function Page() {
-	const {hiddenHeader,state:{ownerSite}} = useSiteCLI()
-	useEffect(()=>{
-		hiddenHeader()
-	},[])
+export const VCard:NextPage<iprops> =({user})=> {
   return (
 		<div className='conteiner'>
 			<header className='header'>
 				<div>
-					{/* <img src={ownerSite?.profile.image} alt="none" /> */}
-					<div style={{backgroundImage:`url(${ownerSite?.profile.photo})`}} />
-					<h1>{ownerSite?.username}</h1>
+					<div style={{backgroundImage:`url(${user.profile.photo})`}} />
+					<h1>{user.userName}</h1>
 				</div>
 				<div>
 					<div>
-						{ownerSite?.profile.telephone.map(({countryCode,phoneNumber})=>
-							<Telephone height="1rem" width="1rem" Telephone={`+${countryCode} ${phoneNumber}`} />
+						{user.profile.telephone.map(({countryCode,phoneNumber},i)=>
+							<Telephone key={i} height="1rem" width="1rem" Telephone={`+${countryCode} ${phoneNumber}`} />
 						)}
-						<Email height="1rem" width="1rem" email={ownerSite?.email} />
-						<WebSite height="1rem" width="1rem" website={ownerSite?.profile.website} />
+						<Email height="1rem" width="1rem" email={user.email} />
+						<WebSite height="1rem" width="1rem" website={user.profile.website} />
 					</div>
 				</div>
 			</header>
 			<div className='personal-info'>
-				{ownerSite?.profile.bio && (
+				{user.profile.bio && (
 				<div>
-					{ownerSite.profile.bio.map((line)=>
-					<p>{line}</p>
+					{user.profile.bio.split("\n").map((line,i)=>
+					<p key={i}>{line}</p>
 					)}
 				</div>)}
-				{ownerSite?.profile.telephone.map(({countryCode,phoneNumber})=><div>
+				{user.profile.telephone.map(({countryCode,phoneNumber},i)=><div>
 					<div>
-						<Telephone />
+						<Telephone key={i} />
 					</div>
 					<div>
 						<p>Phone (Mobile)</p>
 						<p>{`+${countryCode} ${phoneNumber}`}</p>
 					</div>
 				</div>)}
-				{ownerSite?.email && (<div>
+				{user.email && (<div>
 					<div>
 						<Email />
 					</div>
 					<div>
 						<p>E-mail</p>
-						<p>{ownerSite.email}</p>
+						<p>{user.email}</p>
 					</div>
 				</div>)}
-				{ownerSite?.profile.website && (<div>
+				{user.profile.website && (<div>
 					<div>
 						<WebSite />
 					</div>
 					<div>
 						<p>Web Site</p>
-						<p>{ownerSite.profile.website}</p>
+						<p>{user.profile.website}</p>
 					</div>
 				</div>)}
 			</div>
 			<div className='social-media'>
-				<Twitter userName={ownerSite?.profile.twitter}/>
-				<MdiLinkedin userName={ownerSite?.profile.linkedin} />
-				<MdiYoutube userName={ownerSite?.profile.youtube} />
-				{/* <MdiWhatsapp telephone={ownerSite?.profile.telephone} /> */}
-				{ownerSite?.profile.telephone.map(({countryCode,phoneNumber,whatsapp})=>whatsapp && (<MdiWhatsapp telephone={`+${countryCode}${phoneNumber}`} />))}
+				<Twitter userName={user.profile.twitter}/>
+				<MdiLinkedin userName={user.profile.linkedin} />
+				<MdiYoutube userName={user.profile.youtube} />
+				{user.profile.telephone.map(({countryCode,phoneNumber,whatsapp},i)=>whatsapp && (<MdiWhatsapp key={i} telephone={`+${countryCode}${phoneNumber}`} />))}
 			</div>
 			<div className='vcard-download'>
-				<VCardDownload href={`${API_URL}/vcard`} userName={ownerSite?.username} />
+				<VCardDownload href={`${API_URL}/vcard`} userName={user.userName} />
 			</div>
 			<style jsx>
 			{`
@@ -197,3 +198,4 @@ export default function Page() {
 		</div>
 	)
 }
+export default VCard;
