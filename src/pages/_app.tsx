@@ -24,7 +24,13 @@ function App({ Component, pageProps }: AppProps) {
 	let content = <Component {...pageProps} />
 	return (
 		<siteContex.Provider value={{state,dispatch}}>
-			{content}
+      <div className="background-container">
+        <div className="background"></div>
+        <div className="radial"></div>
+      </div>
+      <div className="page">
+			  {content}
+      </div>
 		</siteContex.Provider>
 	)
 }

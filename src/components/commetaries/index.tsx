@@ -71,7 +71,7 @@ export const Commentaries = ({unAuthorized}:IProps) => {
 						}
 						.content{
 								position: relative;
-								background-color: #ffffff;
+								{/* background-color: #ffffff; */}
 								width: 100%;
 								border-radius: 1rem;
 								padding: 1rem;

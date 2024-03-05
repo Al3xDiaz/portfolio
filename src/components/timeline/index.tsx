@@ -8,6 +8,9 @@ interface iprops{
   data:TimeLineProfile[];
 }
 const TimeLine = ({data}:iprops) => {
+  if (!data.length){
+    return <div></div>
+  }
   return (
     <div>
       <div className={styles["timeline-title"]}>

@@ -41,34 +41,35 @@ export const getStaticProps = (async ({params}) => {
 }) satisfies GetStaticProps<ICoursesProps>
 
 export const Courses = ({courses,user}:ICoursesProps) => {
-		return (
-				<Layout user={user}>
-						<h1>Courses</h1>
-						<div className='row'>
-								{courses.map(({image},index) => (
-										<div className='course' key={index}>
-												<ModalImage
-												small={image}
-												large={image}
-												/>
-										</div>
-								))}
-						</div>
-						<style jsx>{`
-								.row{
-										display: flex;
-										flex-wrap: wrap;
-										justify-content: center;
-								}
-								.course{
-										margin-bottom: 3rem;
-										margin-left: 1rem;
-										margin-right: 1rem;
-										height: 200px;
-										width: 300px;
-								}
-								`}</style>
-				</Layout>
-		)
+  return (
+    <Layout user={user}>
+      <h1>Courses</h1>
+      <div className='row'>
+      {courses.map(({image},index) => (
+        <div className='course' key={index}>
+          <ModalImage
+          small={image}
+          large={image}
+          />
+        </div>
+      ))}
+      </div>
+      <style jsx>{`
+        .row{
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin: 0px;
+        }
+        .course{
+          margin-bottom: 3rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          height: 200px;
+          width: 300px;
+        }
+      `}</style>
+    </Layout>
+  )
 }
 export default Courses;

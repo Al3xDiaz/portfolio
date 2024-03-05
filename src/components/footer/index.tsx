@@ -93,13 +93,13 @@ footer > div > h4	{
   margin-left: -1rem;
 }
 footer{
-  background-color: #000;
   color: white;
   position: relative;
   z-index: 1;
   display: grid;
 
-  padding: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 @media (min-width: 769px){
   footer{
