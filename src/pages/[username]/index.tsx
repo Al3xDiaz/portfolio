@@ -85,24 +85,27 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
       <div style={{
         display:'grid',
         width:"100%",
-        gridTemplateColumns:"1fr 1.5fr",
-        alignItems:"center",
+        gridTemplateColumns:"10rem 1fr",
+        alignItems:"start",
         paddingTop:"25px",
         paddingBottom:"25px",
       }}>
         <div style={{
           backgroundImage: `url(${user.profile.photo})`,
-          height:"200px",
-          width:"200px",
           backgroundSize:"cover",
           backgroundRepeat:"no-repeat",
           backgroundPosition: "top center",
           borderRadius:"50%",
+          padding:"1rem",
+          aspectRatio:"1/1",
         }}>
         </div>
         <div>
         {user.profile.bio.split("\n").map(text=>(
-          <p>{text}</p>
+          <p style={{
+            textAlign:"start",
+            marginLeft:"1rem"
+          }}>{text}</p>
         ))}
         </div>
       </div>
@@ -138,21 +141,20 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
       </Modal>
       <Commentaries unAuthorized={handleOpen}/>
       <style jsx>{`
-        .course-row{
-          margin: 1rem 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          overflow: scroll;
-          width: 59rem;
-        }
-        .course-card{
-          margin-bottom: 3rem;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          height: 200px;
-          width: 300px;
-        }
+      .course-row{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        height: 10rem;
+        margin: 2rem 0;
+      }
+      .course-card{
+        width: 100%;
+        height: 100%;
+        padding: 0px 1rem;
+      }
       .content{
         display: grid;
         grid-template-columns: 1fr 1fr;

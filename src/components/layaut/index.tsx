@@ -13,8 +13,8 @@ interface LayoutProps {
 const Layout= ({ children,user }:LayoutProps) => {
 	return (
 		<StyledJsxRegistry>
-      <Navbar user={user}	/>
       <div className="layout">
+        <Navbar user={user}	/>
         <main className="main">{children}</main>
       </div>
       <Footer user={user} />

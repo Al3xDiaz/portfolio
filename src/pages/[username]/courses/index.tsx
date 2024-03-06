@@ -55,6 +55,8 @@ export const Courses = ({courses,user}:ICoursesProps) => {
           <ModalImage
           small={image}
           large={image}
+          width={300}
+          height={200}
           />
         </div>
       ))}

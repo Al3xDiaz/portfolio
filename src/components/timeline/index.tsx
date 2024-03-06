@@ -12,12 +12,10 @@ const TimeLine = ({data}:iprops) => {
     return <div></div>
   }
   return (
-    <div>
-      <div className={styles.container}>
-        {data.map((item,index)=>(
-          <Row key={index} item={item} reverse={index%2==0}/>
-        ))}
-      </div>
+    <div className={styles.container}>
+      {data.map((item,index)=>(
+        <Row key={index} item={item} reverse={index%2==0}/>
+      ))}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { Modal,Box } from '@mui/material';
-import { useState } from 'react';
-interface ModalImageProps{
+import { useState,CSSProperties } from 'react';
+interface ModalImageProps extends CSSProperties {
   small:string;
   large:string;
 }
@@ -9,27 +9,27 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '40vw',
-  height: '70vh',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
  };
-export const ModalImage = ({small,large}:ModalImageProps) => {
+export const ModalImage = (props:ModalImageProps) => {
+  const {small,large,...styleProps} = props
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
+    <>
       <div
         onClick={() => setIsOpen(true)}
         style={{
           backgroundImage:`url(${small})`,
-          height:"9rem",
-          width:"11rem",
           backgroundSize:"contain",
           backgroundRepeat:"no-repeat",
           backgroundPosition: "center center",
           cursor:'pointer',
+          width: '100%',
+          height: '100%',
+          ...styleProps,
         }}>
       </div>
       <Modal
@@ -41,9 +41,11 @@ export const ModalImage = ({small,large}:ModalImageProps) => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
+            width: '100%',
+            height: '100%'
           }}>
           </Box>
       </Modal>
-    </div>
+    </>
   )
 }
