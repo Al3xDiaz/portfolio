@@ -7,6 +7,7 @@ import getConfig from "next/config";
 import { Course, IUser } from '@/src/models';
 import Layout from '@/src/components/layaut';
 import { SiteService } from '@/src/services';
+import Head from 'next/head';
 
 interface ICoursesProps{
   courses: Course[];
@@ -47,7 +48,7 @@ export const getStaticProps = (async ({params}) => {
 export const Courses = ({courses,user}:ICoursesProps) => {
   return (
     <Layout user={user}>
-      <h1>Courses</h1>
+      <Head><title>Courses - {user.profile.firstName} {user.profile.lastName}</title></Head>
       <div className='row'>
       {courses.map(({image},index) => (
         <div className='course' key={index}>
@@ -63,14 +64,10 @@ export const Courses = ({courses,user}:ICoursesProps) => {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          margin: 0px;
+          margin: 1rem 0px;
         }
         .course{
-          margin-bottom: 3rem;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          height: 200px;
-          width: 300px;
+          margin: .5rem;
         }
       `}</style>
     </Layout>

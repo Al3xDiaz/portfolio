@@ -128,7 +128,7 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
                   backgroundRepeat:"no-repeat",
                   backgroundPosition: "center center",
                 }}>
-              </div>
+            </div>
               <p><a target='_black' href="https://www.freepik.es/vector-gratis/concepto-abstracto-sistema-control-acceso_12085707.htm">Imagen de vectorjuice</a> en Freepik</p>
             </div>
           <div>
