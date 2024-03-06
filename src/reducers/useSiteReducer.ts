@@ -50,6 +50,16 @@ export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
 					header: true,
 					footer: true,
 				}
+      case "SET_AXIOS_INSTANCE":
+        state.axiosInstance && state.axiosInstance.interceptors.request.use(function (config) {
+          if (config.headers){
+            config.headers.Authorization =	action.payload ? `Bearer ${action.payload}` : ''
+            config.headers.Accept = 'application/json'
+            config.headers['Content-Type'] = 'application/json'
+          }
+          return config;
+        });
+        return state;
 			case "ERROR":
 				return {
 					...state,

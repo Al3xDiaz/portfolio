@@ -17,11 +17,15 @@ interface ISetVisitorAction {
 	type: "SET_VISITOR";
 	payload: IUser;
 }
+interface ISetAxiosAction {
+	type: "SET_AXIOS_INSTANCE";
+	payload: string | null;
+}
 interface IErrorAction {
 	type: "ERROR";
 	payload: any;
 }
 
 
-export type IAction = ISetSiteAction | ISetStatusAction	| ISetVisitorAction | IErrorAction | IHiddenHeaderNFooter | IDisplayHeaderNFooter;
+export type IAction = ISetSiteAction | ISetStatusAction	| ISetVisitorAction | IErrorAction | IHiddenHeaderNFooter | IDisplayHeaderNFooter | ISetAxiosAction;
 export default IAction;

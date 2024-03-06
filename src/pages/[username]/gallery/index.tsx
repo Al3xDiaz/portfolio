@@ -7,9 +7,9 @@ import getConfig from "next/config";
 import { Course, IUser } from '@/src/models';
 import Layout from '@/src/components/layaut';
 import { SiteService } from '@/src/services';
+import Carrusel from '@/src/components/carrusel';
 
 interface ICoursesProps{
-  courses: Course[];
   user:IUser;
 }
 
@@ -33,47 +33,21 @@ export const getStaticProps = (async ({params}) => {
   const username = params && params["username"]?.toString() || ""
   const service = new SiteService(API_URL);
 
-  const {data} =await axios.get(`${API_URL}/courses`,{
-    params:{
-      username,
-    }
-  })
   const user = await service.getSlugName(username)
   return { props: {
-    courses:data,
     user} }
 }) satisfies GetStaticProps<ICoursesProps>
 
-export const Courses = ({courses,user}:ICoursesProps) => {
+export const Gallery = ({user}:ICoursesProps) => {
+	let images: string[]=[user.profile.photo,];
   return (
     <Layout user={user}>
-      <h1>Courses</h1>
-      <div className='row'>
-      {courses.map(({image},index) => (
-        <div className='course' key={index}>
-          <ModalImage
-          small={image}
-          large={image}
-          />
-        </div>
-      ))}
+      <div style={{display:'flex',width:"100%"}}>
+      <Carrusel images={images} />
       </div>
       <style jsx>{`
-        .row{
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          margin: 0px;
-        }
-        .course{
-          margin-bottom: 3rem;
-          margin-left: 1rem;
-          margin-right: 1rem;
-          height: 200px;
-          width: 300px;
-        }
       `}</style>
     </Layout>
   )
 }
-export default Courses;
+export default Gallery;

@@ -72,6 +72,8 @@ jobs:
       packages: write
       contents: read
     needs: [calculate-version]
+    env:
+      BASE_URL: "http://portfolio.chaoticteam.com"
     steps:
       - name: Checkout
         uses: actions/checkout@v4

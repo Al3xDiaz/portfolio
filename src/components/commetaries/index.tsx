@@ -37,9 +37,6 @@ export const Commentaries = ({unAuthorized}:IProps) => {
 		},[state])
 
 		return(<div>
-						<div className="commentaries-title">
-								<h2>Commentaries</h2>
-						</div>
 						<div className="commentaries-body">
 								{commentaries.map((item,i)=>(<div className="commentary" key={item.id}>
 										<RxAvatar size={50}/>
@@ -48,13 +45,6 @@ export const Commentaries = ({unAuthorized}:IProps) => {
 						</div>
 						<CreateCommentary postCommentary={postCommentary} />
 				<style jsx>{`
-						.commentaries-title{
-								background-color: var(--primary);
-								display: flex;
-						}
-						.commentaries-title h2 {
-								margin: 1rem;
-						}
 						.commentaries-body{
 								display: flex;
 								flex-direction: column;

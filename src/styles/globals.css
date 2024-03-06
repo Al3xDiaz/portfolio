@@ -72,16 +72,18 @@ a {
 	align-items: center;
 }
 .page{
-  position: sticky;
+  position: relative;
   color:#fff;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 .layout{
   z-index: 1;
 	display: grid;
 	grid-template-columns: auto;
-	grid-template-rows: 51px 1fr auto;
 	flex-direction: column;
-	min-height: 100vh;
+  margin-left: 15vw;
+  margin-right: 15vw;
 }
 footer{
 	align-self: end;

@@ -13,9 +13,6 @@ const TimeLine = ({data}:iprops) => {
   }
   return (
     <div>
-      <div className={styles["timeline-title"]}>
-        <h2>Achievements</h2>
-      </div>
       <div className={styles.container}>
         {data.map((item,index)=>(
           <Row key={index} item={item} reverse={index%2==0}/>

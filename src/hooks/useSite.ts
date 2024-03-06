@@ -15,6 +15,7 @@ export const useSite = () => {
 		try{
 			const resp = await authService.login(username,password);
 			dispatch({type:"SET_VISITOR",payload:resp.user})
+      dispatch({type:"SET_AXIOS_INSTANCE",payload:resp.token})
 			localStorage.setItem("access_token",resp.token)
 		}catch(error){
 			dispatch({type:"ERROR",payload:error});
@@ -25,6 +26,7 @@ export const useSite = () => {
 		try{
 			const resp = await authService.signUp(data);
 			dispatch({type:"SET_VISITOR",payload:resp.user})
+      dispatch({type:"SET_AXIOS_INSTANCE",payload:resp.token})
 			localStorage.setItem("access_token",resp.token)
 		}catch(error){
 			dispatch({type:"ERROR",payload:error});
@@ -41,15 +43,8 @@ export const useSite = () => {
 		})
 	},[])
 	useEffect(()=>{
-		const token = localStorage.getItem("access_token")
-		state.axiosInstance && state.axiosInstance.interceptors.request.use(function (config) {
-			if (config.headers){
-				config.headers.Authorization =	token ? `Bearer ${token}` : ''
-				config.headers.Accept = 'application/json'
-				config.headers['Content-Type'] = 'application/json'
-			}
-			return config;
-		});
+		const token = localStorage.getItem("access_token") || ""
+    dispatch && dispatch({type:"SET_AXIOS_INSTANCE",payload:token})
 		token && getUserData()
 	},[getUserData])
 	return {

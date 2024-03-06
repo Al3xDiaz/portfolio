@@ -7,11 +7,13 @@ interface props{
 		reverse?:boolean
 }
 export const Row= ({item,reverse}:props)=>(
-		<div className={reverse?styles.reverse:styles.row} data-year={item.year} >
+		<div className={`${styles.row} ${reverse?styles.reverse:''}`} >
 				<div className={styles.description}>
 						{item.comment}
+            <span />
 				</div>
 				<div className={styles.title}>{item.title}</div>
+        <span className={styles.year}>{item.year}</span>
 		</div>
 )
 export default Row;
