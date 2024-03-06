@@ -39,7 +39,7 @@ env:
   GIT_DEPTH: 0
   IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
   API_URL: https://api.chaoticteam.com
-# BASE_URL: /portfolio
+  BASE_URL: http://portfolio.chaoticteam.com
 
 jobs:
   calculate-version:
@@ -72,8 +72,6 @@ jobs:
       packages: write
       contents: read
     needs: [calculate-version]
-    env:
-      BASE_URL: "http://portfolio.chaoticteam.com"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
