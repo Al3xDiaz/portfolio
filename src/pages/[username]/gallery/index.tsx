@@ -19,7 +19,7 @@ const API_URL = publicRuntimeConfig.API_URL;
 export const getStaticPaths = (async () => {
 	// ...
 	const service = new UserService()
-	const userNames = await service.getUserNames()
+	const userNames = await service.getUserNames();
 	return {
 		paths: userNames.map((userName) => ({
 			params: {
