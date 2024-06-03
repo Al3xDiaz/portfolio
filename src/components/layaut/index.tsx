@@ -1,9 +1,7 @@
 import React from 'react';
 import Navbar from "@/src/components/navbar";
 import	Footer	from "@/src/components/footer";
-import StyledJsxRegistry from "@/src/components/jsxStyleRegistry"
-import { Metadata } from 'next';
-import Head from 'next/head';
+import StyledJsxRegistry from "@/src/components/jsxStyleRegistry";
 import { IUser } from '@/src/models';
 
 interface LayoutProps {

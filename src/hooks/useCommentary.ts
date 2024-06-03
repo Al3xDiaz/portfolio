@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState} from "react";
 import { ICommentary } from "@/src/models"
 import {CommentaryService} from "@/src/services/commentaryService"
 import {useSite} from "@/src/hooks/useSite";
-import axios from "axios";
 
 const useCommentary = () => {
 		const {state:{axiosInstance}} = useSite()
@@ -19,7 +18,11 @@ const useCommentary = () => {
 				}
 		},[setCommentaries])
 		const createCommentary = useCallback(async (content: string)=>{
+      try {
 				await service.create({comment:content,})
+      } catch (error) {
+        console.log(error)
+      }
 		},[commentaries])
 
 		const deleteCommentary = useCallback(async (id:number)=>{
