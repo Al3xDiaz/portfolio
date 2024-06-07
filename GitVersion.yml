@@ -1,5 +1,5 @@
 ---
-mode: Mainline
+mode: ContinuousDelivery
 branches:
   main:
     regex: ^master$|^main$
@@ -50,7 +50,7 @@ branches:
     is-mainline: false
     pre-release-weight: 30000
   hotfix:
-    regex: ^hotfix(es)?[/-]\w
+    regex: ^hotfix(es)?[/-][\w-]+
     mode: ContinuousDelivery
     tag: beta
     increment: Patch
