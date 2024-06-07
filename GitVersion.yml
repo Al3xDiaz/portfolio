@@ -1,5 +1,5 @@
 ---
-mode: s
+mode: Mainline
 branches:
   main:
     regex: ^master$|^main$
@@ -53,7 +53,7 @@ branches:
     regex: ^hotfix(es)?[/-]\w
     mode: ContinuousDelivery
     tag: beta
-    increment: Patch
+    increment: Inherit
     prevent-increment-of-merged-branch-version: false
     track-merge-target: false
     source-branches: []
@@ -65,7 +65,7 @@ branches:
     regex: ^support[/-]\w
     mode: ContinuousDelivery
     tag: ""
-    increment: Patch
+    increment: Inherit
     prevent-increment-of-merged-branch-version: true
     track-merge-target: false
     source-branches: []
