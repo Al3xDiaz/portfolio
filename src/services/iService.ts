@@ -16,4 +16,5 @@ export interface IServiceAuth{
 		login(username: string,password: string):Promise<IUserAuth>;
 		getData():Promise<IUser>;
 		signUp(data:IUser):Promise<IUserAuth>;
+    logout(): Promise<void>;
 }

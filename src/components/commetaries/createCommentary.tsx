@@ -4,26 +4,27 @@ interface iformdata{
 		content:string;
 }
 interface iprops {
-	postCommentary:(formdata:any)=>Promise<boolean>;
+	postCommentary:(formdata:any)=>Promise<void>;
 }
 export const CreateCommentary = ({postCommentary}:iprops)=>{
   const [error,setError] = useState("");
-  const handlePost = useCallback(async(formData:any,formdata:any)=>{
+  const handlePost = useCallback(async(data:any)=>{
     setError("")
     try {
-      const data =await postCommentary(formData);
-      data?setError(""):setError("Error: contact to administrator")
-    } catch (err) {
-      setError(String(err))
+      await postCommentary(data);
+    } catch (error) {
+      setError("Error: contact to administrator");
     }
   },[])
   return (
   <div>
     <div className="content">
-      <Form onSubmit={handlePost} initialState={{}}>
-        <span style={{color:"red"}}>{error}</span>
-        <Form.TextArea required name="content" />
-        <Form.Submit name='send' style={{backgroundColor:"var(--primary)",width:100}} />
+      <Form initialState={{}} onSubmit={handlePost} persistData>
+        <>
+          <span style={{color:"red"}}>{error}</span>
+          <Form.TextArea required name="content" />
+          <Form.Submit name="send" label='send' style={{backgroundColor:"var(--primary)",width:100}} />
+        </>
       </Form>
     </div>
     <style jsx>{`

@@ -1,25 +1,17 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import TimeLine from '@/src/components/timeline';
-import Commentaries from '@/src/components/commetaries';
-import { Modal } from '@/src/components/Modal';
 import UserService from '@/src/services/userService';
 import Layout from '@/src/components/layaut';
-import { SiteService } from '@/src/services';
 import getConfig from 'next/config';
 import { Course, IUser, TimeLineProfile } from '@/src/models';
-import AchievementsService from '@/src/services/timelineService';
-import { useState } from 'react';
 import Head from 'next/head';
 import { ModalImage } from '@/src/utils'
-import axios from 'axios';
-type modalType = "login" | "signup";
 interface iprops{
   user:IUser;
   timeline:TimeLineProfile[];
   courses: Course[];
 }
 const { publicRuntimeConfig } = getConfig();
-const API_URL = publicRuntimeConfig.API_URL;
 const BASE_URL = publicRuntimeConfig.BASE_URL;
 export const getStaticPaths = (async () => {
 	// ...
@@ -35,30 +27,14 @@ export const getStaticPaths = (async () => {
 	};
 }) satisfies GetStaticPaths
 export const getStaticProps = (async ({params}) => {
-  const username = params && params["username"]?.toString() || ""
-  const srcSite = new SiteService(API_URL)
-  const srcAchivement = new AchievementsService(API_URL)
-  const user = await srcSite.getSlugName(username);
-  const timeline = await srcAchivement.list(username);
-  const response =await axios.get(`${API_URL}/courses`,{
-    params:{
-      username,
-      limit:3,
+  await setTimeout(console.log,1)
+  return {
+    props: {
+      example:"hello"
     }
-  })
-  const courses = response.data
-  return { props: {
-    user,
-    timeline,
-    courses
-  }}
-}) satisfies GetStaticProps<iprops>
+  }
+}) satisfies GetStaticProps<{example:string}>
 const Home: NextPage<iprops> = ({user,timeline,courses}) => {
-  const [open, setOpen] = useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
-
-	const [modal,setModal] = useState<modalType>("login");
   if (!user)
     return <div>not found</div>
   return (
@@ -100,8 +76,8 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
         }}>
         </div>
         <div>
-        {user.profile.bio.split("\n").map(text=>(
-          <p style={{
+        {user.profile.bio.split("\n").map((text,i)=>(
+          <p key={i} style={{
             textAlign:"start",
             marginLeft:"1rem"
           }}>{text}</p>
@@ -119,7 +95,6 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
         </div>
       ))}
       </div>
-      <Commentaries unAuthorized={handleOpen}/>
       <style jsx>{`
       .course-row{
         display: grid;

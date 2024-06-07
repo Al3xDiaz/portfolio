@@ -14,6 +14,9 @@ export class authService implements IServiceAuth{
 		})
 		return response.data;
 	}
+  async logout(): Promise<void> {
+    await axios.delete(`/auth/logout`)
+  }
 	async getData(): Promise<IUser> {
 		const response = await this.axios.get(`/auth/userdata`)
 		return response.data;

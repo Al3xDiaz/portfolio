@@ -20,7 +20,7 @@ export const useSite = () => {
 		}catch(error){
 			dispatch({type:"ERROR",payload:error});
 		}
-	},[])
+	},[]);
 	const signUp= useCallback(async (data: IUser)=>{
 		if (!dispatch) return
 		try{
@@ -31,7 +31,15 @@ export const useSite = () => {
 		}catch(error){
 			dispatch({type:"ERROR",payload:error});
 		}
-	},[])
+	},[]);
+  const logout= useCallback(async ()=>{
+		try{
+      await authService.logout();
+      dispatch && dispatch({type:"SET_VISITOR"});
+		}catch(error){
+      console.log(error)
+		}
+	},[authService,dispatch]);
 	const getUserData= useCallback(async ()=>{
 		return new Promise((resolve,reject)=>{
 			authService.getData().then(resp=>{
@@ -51,4 +59,5 @@ export const useSite = () => {
 			state,
 			login,
 			signUp,
+      logout,
 	}}

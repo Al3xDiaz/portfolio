@@ -15,7 +15,7 @@ interface IDisplayHeaderNFooter{
 }
 interface ISetVisitorAction {
 	type: "SET_VISITOR";
-	payload: IUser;
+	payload?: IUser;
 }
 interface ISetAxiosAction {
 	type: "SET_AXIOS_INSTANCE";

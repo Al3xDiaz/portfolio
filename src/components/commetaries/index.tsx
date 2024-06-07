@@ -5,28 +5,20 @@ import {useSite} from "@/src/hooks/useSite";
 import { CreateCommentary } from "./createCommentary";
 
 interface IProps {
-		unAuthorized?:()=>void
 }
 
-export const Commentaries = ({unAuthorized}:IProps) => {
+export const Commentaries = ({}:IProps) => {
 		const {commentaries,getCommentaries} = useCommentary();
 		const {createCommentary,deleteCommentary} = useCommentary()
 		const {state} = useSite()
 		const stateRef = useRef(state)
 		const postCommentary = useCallback(async(formData:{content:string}) =>{
-				if (!stateRef.current.visitor){
-						unAuthorized && unAuthorized();
-						return false
-				}
-				else
-						try {
-								await createCommentary(formData.content);
-								await getCommentaries()
-						} catch {
-								console.log("error: send comentary")
-						}
-
-						return true
+      try {
+          await createCommentary(formData.content);
+          await getCommentaries()
+      } catch {
+          console.log("error: send comentary")
+      }
 		},[stateRef])
 		const handleDelete = useCallback(async (id?:number)=>{
 				id && await deleteCommentary(id);
