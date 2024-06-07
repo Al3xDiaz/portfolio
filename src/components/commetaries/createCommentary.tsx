@@ -8,7 +8,7 @@ interface iprops {
 }
 export const CreateCommentary = ({postCommentary}:iprops)=>{
   const [error,setError] = useState("");
-  const handlePost = useCallback(async(formData:iformdata)=>{
+  const handlePost = useCallback(async(formData:any,formdata:any)=>{
     setError("")
     try {
       const data =await postCommentary(formData);
@@ -20,10 +20,10 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
   return (
   <div>
     <div className="content">
-      <Form onSubmit={handlePost}>
+      <Form onSubmit={handlePost} initialState={{}}>
         <span style={{color:"red"}}>{error}</span>
         <Form.TextArea required name="content" />
-        <Form.Submit label='send' style={{backgroundColor:"var(--primary)",width:100}} />
+        <Form.Submit name='send' style={{backgroundColor:"var(--primary)",width:100}} />
       </Form>
     </div>
     <style jsx>{`

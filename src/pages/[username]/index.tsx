@@ -1,7 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import TimeLine from '@/src/components/timeline';
 import Commentaries from '@/src/components/commetaries';
-import {Login,SignUp} from '@/src/components/auth/';
 import { Modal } from '@/src/components/Modal';
 import UserService from '@/src/services/userService';
 import Layout from '@/src/components/layaut';
@@ -120,25 +119,6 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
         </div>
       ))}
       </div>
-      <Modal show={open} onClose={handleClose} title='Authentication'>
-        <div className='content'>
-          <div className='panel'>
-            <div style={{
-                  backgroundImage:"url(https://res.cloudinary.com/dd7jrtxu5/image/upload/v1696992603/login_svg.svg)",
-                  height:"100%",
-                  width:"100%",
-                  backgroundSize:"contain",
-                  backgroundRepeat:"no-repeat",
-                  backgroundPosition: "center center",
-                }}>
-            </div>
-              <p><a target='_black' href="https://www.freepik.es/vector-gratis/concepto-abstracto-sistema-control-acceso_12085707.htm">Imagen de vectorjuice</a> en Freepik</p>
-            </div>
-          <div>
-            {modal == "login" && <Login onLoged={()=>setOpen(false)} onSignUp={()=>setModal('signup')} /> || <SignUp onLoged={()=>setOpen(false)} onLogin={()=>setModal('login')}/>}
-          </div>
-        </div>
-      </Modal>
       <Commentaries unAuthorized={handleOpen}/>
       <style jsx>{`
       .course-row{
