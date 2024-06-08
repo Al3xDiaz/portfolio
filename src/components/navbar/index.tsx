@@ -5,6 +5,11 @@ import { useSite } from "@/src/hooks";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import axios from "axios";
+import getConfig from "next/config";
+
+const { publicRuntimeConfig } = getConfig();
+const baseURL = publicRuntimeConfig.API_URL;
 
 interface iprops{
   user?: IUser;
@@ -17,13 +22,17 @@ export const Navbar = ({user}:iprops) => {
   useEffect(()=>{
     const token = params.get("token");
     if (!!token){
-      state.axiosInstance?.post("auth/validatecredetial",{},{
+      axios.post(`${baseURL}/auth/validatecredetial`,{},{
         headers:{
           "Authorization":`Bearer ${token}`
         }
       })
       .then(()=>{
-        router.replace(router.pathname, undefined, { shallow: true });
+        router.replace({
+          query: {
+            username : router.query.username,
+          }
+        })
       })
       .catch(console.log)
     }

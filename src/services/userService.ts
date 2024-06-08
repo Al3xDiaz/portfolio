@@ -9,7 +9,7 @@ export class UserService implements IService<ICommentary> {
 				this.axios =axiosInstance
 			else
 				this.axios = axios.create({
-					baseURL: "https://api.chaoticteam.com",
+					baseURL: process.env.API_URL || "",
 				})
 		}
 		async list(): Promise<ICommentary[]> {

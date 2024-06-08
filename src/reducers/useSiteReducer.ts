@@ -53,7 +53,7 @@ export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
       case "SET_AXIOS_INSTANCE":
         state.axiosInstance && state.axiosInstance.interceptors.request.use(function (config) {
           if (config.headers){
-            config.headers.Authorization =	action.payload ? `Bearer ${action.payload}` : ''
+            // config.headers.Authorization =	action.payload ? `Bearer ${action.payload}` : ''
             config.headers.Accept = 'application/json'
             config.headers['Content-Type'] = 'application/json'
           }
