@@ -66,7 +66,7 @@ export interface IOwnerSite{
 		visitor?: IUser;
 		status: ISiteStateStatus;
 		msgError?: any;
-		axiosInstance?: AxiosInstance;
+		axiosInstance: AxiosInstance;
 		header: boolean;
 		footer: boolean;
 }

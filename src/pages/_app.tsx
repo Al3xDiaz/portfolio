@@ -14,7 +14,6 @@ const API_URL = publicRuntimeConfig.API_URL;
 interface AppOwnProps extends AppProps{
 }
 function CustomApp({ Component, pageProps }: AppProps) {
-
 	const [state,dispatch]= useReducer(reducer,initialState);
 	useMemo(()=>{
 		return {state,dispatch}

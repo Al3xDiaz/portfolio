@@ -40,6 +40,7 @@ env:
   IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
   API_URL: https://api.chaoticteam.com
   BASE_URL: http://portfolio.chaoticteam.com
+  DASH_URL: http://dash.chaoticteam.com
 
 jobs:
   calculate-version:

@@ -3,13 +3,11 @@ import Link from "next/link";
 import Avatar from "@/src/components/Avatar";
 import { useSite } from "@/src/hooks";
 import { useRouter } from "next/router";
-import { useCallback, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import axios from "axios";
+import { useCallback} from "react";
 import getConfig from "next/config";
-
 const { publicRuntimeConfig } = getConfig();
-const baseURL = publicRuntimeConfig.API_URL;
+const DASH_URL = publicRuntimeConfig.DASH_URL;
+
 
 interface iprops{
   user?: IUser;
@@ -17,29 +15,8 @@ interface iprops{
 export const Navbar = ({user}:iprops) => {
   const router = useRouter();
   const {state,logout} = useSite();
-
-  const params = useSearchParams();
-  useEffect(()=>{
-    const token = params.get("token");
-    if (!!token){
-      axios.post(`${baseURL}/auth/validatecredetial`,{},{
-        headers:{
-          "Authorization":`Bearer ${token}`
-        }
-      })
-      .then(()=>{
-        router.replace({
-          query: {
-            username : router.query.username,
-          }
-        })
-      })
-      .catch(console.log)
-    }
-  },[params,router]);
-
   const HandleLogin = useCallback(()=>{
-    router.replace(`https://dash.chaoticteam.com/login/?redirect=${location.href}`)
+    router.replace(`${DASH_URL}/login/?redirect=${location.href}`)
   },[router])
 
   const photo = state.visitor?.profile.photo;
@@ -70,11 +47,12 @@ export const Navbar = ({user}:iprops) => {
 			</menu>
       <Avatar photo={photo}>
         {!!state.visitor?<ul>
-          <li><Link href="https://dash.chaoticteam.com/profile">Profile</Link></li>
+          <li><Link href={`${DASH_URL}/profile`}>Profile</Link></li>
           <li onClick={logout}>Sign out</li>
         </ul>:
         <ul>
           <li><a onClick={HandleLogin}>Sign in</a></li>
+          <li onClick={logout}>Sign out</li>
         </ul>}
       </Avatar>
       <style jsx>{`

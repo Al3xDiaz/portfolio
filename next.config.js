@@ -12,6 +12,7 @@ const nextConfig = {
 	publicRuntimeConfig: {
 		API_URL: process.env.API_URL,
 		BASE_URL: process.env.BASE_URL || "",
+		DASH_URL: process.env.DASH_URL || "",
 	},
 	output: 'export',
 	trailingSlash: true,

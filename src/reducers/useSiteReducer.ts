@@ -4,7 +4,7 @@ import axios from "axios";
 import getConfig from "next/config";
 
 const { publicRuntimeConfig } = getConfig();
-const baseURL = publicRuntimeConfig.API_URL;
+const API_URL = publicRuntimeConfig.API_URL;
 
 export const initialState: ISiteState = {
 		status: "loading",
@@ -13,7 +13,7 @@ export const initialState: ISiteState = {
 		header: true,
 		footer: true,
 		axiosInstance: axios.create({
-				baseURL:baseURL,
+				baseURL:API_URL,
 		}),
 };
 export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
@@ -53,9 +53,10 @@ export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
       case "SET_AXIOS_INSTANCE":
         state.axiosInstance && state.axiosInstance.interceptors.request.use(function (config) {
           if (config.headers){
-            // config.headers.Authorization =	action.payload ? `Bearer ${action.payload}` : ''
-            config.headers.Accept = 'application/json'
-            config.headers['Content-Type'] = 'application/json'
+            config.baseURL = API_URL;
+            config.headers.Accept = 'application/json';
+            config.headers['Content-Type'] = 'application/json';
+            config.withCredentials = true;
           }
           return config;
         });

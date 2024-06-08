@@ -1,63 +1,60 @@
 import { useCallback, useContext, useEffect, useRef } from "react";
 import {authService as AuthService } from "@/src/services";
-import { IUser } from "@/src/models";
 import context from "@/src/context/siteContext";
 
+import { useRouter } from "next/router";
+import getConfig from "next/config";
+import { useSearchParams } from "next/navigation";
+
+const { publicRuntimeConfig } = getConfig();
+const baseURL = publicRuntimeConfig.API_URL;
 
 export const useSite = () => {
-	const {state,dispatch} = useContext(context)
-
-
-	const authService	= useRef<AuthService>(new AuthService(state.axiosInstance)).current
-
-	const login= useCallback(async ({username,password}:{username: string,password: string})=>{
-		if (!dispatch) return
-		try{
-			const resp = await authService.login(username,password);
-			dispatch({type:"SET_VISITOR",payload:resp.user})
-      dispatch({type:"SET_AXIOS_INSTANCE",payload:resp.token})
-			localStorage.setItem("access_token",resp.token)
-		}catch(error){
-			dispatch({type:"ERROR",payload:error});
-		}
-	},[]);
-	const signUp= useCallback(async (data: IUser)=>{
-		if (!dispatch) return
-		try{
-			const resp = await authService.signUp(data);
-			dispatch({type:"SET_VISITOR",payload:resp.user})
-      dispatch({type:"SET_AXIOS_INSTANCE",payload:resp.token})
-			localStorage.setItem("access_token",resp.token)
-		}catch(error){
-			dispatch({type:"ERROR",payload:error});
-		}
-	},[]);
+	const {state,dispatch} = useContext(context);
+  const router = useRouter();
+  const params = useSearchParams();
   const logout= useCallback(async ()=>{
+    const service = new AuthService(state.axiosInstance);
 		try{
-      await authService.logout();
+      await service.logout();
       dispatch && dispatch({type:"SET_VISITOR"});
 		}catch(error){
       console.log(error)
 		}
-	},[authService,dispatch]);
+	},[dispatch,state.axiosInstance]);
 	const getUserData= useCallback(async ()=>{
+    const service = new AuthService(state.axiosInstance);
 		return new Promise((resolve,reject)=>{
-			authService.getData().then(resp=>{
-				dispatch && dispatch({type:"SET_VISITOR",payload:resp})
+      service.getData().then(resp=>{
+        dispatch && dispatch({type:"SET_VISITOR",payload:resp})
 				resolve(resp)
 			}).catch(error=>{
-				resolve(null)
+        resolve(null)
 			})
 		})
-	},[])
-	useEffect(()=>{
-		const token = localStorage.getItem("access_token") || ""
-    dispatch && dispatch({type:"SET_AXIOS_INSTANCE",payload:token})
-		token && getUserData()
-	},[getUserData])
+	},[state.axiosInstance])
+  const validateCredential = useCallback(async(token:string)=>{
+    const service = new AuthService(state.axiosInstance);
+    try {
+      await service.validatecredetial(token);
+    } catch (error) {
+      console.log(error)
+    }
+    router.replace({
+      query: {
+        username : router.query.username,
+      }
+    })
+    getUserData();
+  },[router,getUserData])
+
+  useEffect(()=>{
+    const token = params.get("token");
+    if (!!token){
+     validateCredential(token)
+    }
+  },[params,validateCredential]);
 	return {
 			state,
-			login,
-			signUp,
       logout,
 	}}

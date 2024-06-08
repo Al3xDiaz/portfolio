@@ -4,8 +4,8 @@ import axios,{ AxiosInstance } from "axios";
 
 export class CommentaryService implements IService<ICommentary> {
 		axios: AxiosInstance;
-		constructor(axiosInstance?: AxiosInstance) {
-				this.axios =axiosInstance || axios.create()
+		constructor(axiosInstance: AxiosInstance) {
+				this.axios =axiosInstance;
 		}
 		async list(): Promise<ICommentary[]> {
 				const response = await	this.axios.get(`/commentaries`)

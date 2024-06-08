@@ -13,8 +13,7 @@ export	interface IService<T> {
 }
 export interface IServiceAuth{
 		axios: AxiosInstance;
-		login(username: string,password: string):Promise<IUserAuth>;
 		getData():Promise<IUser>;
-		signUp(data:IUser):Promise<IUserAuth>;
+    validatecredetial(token:string): Promise<void>;
     logout(): Promise<void>;
 }
