@@ -14,6 +14,11 @@ export const initialState: ISiteState = {
 		footer: true,
 		axiosInstance: axios.create({
 				baseURL:API_URL,
+        headers:{
+          "Accept" : 'application/json',
+          'Content-Type' : 'application/json',
+        },
+        withCredentials: true,
 		}),
 };
 export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
