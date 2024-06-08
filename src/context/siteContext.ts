@@ -1,11 +1,12 @@
 import React	from "react";
-import { ISiteState, IUser } from "@/src/models/user";
+import { ISiteState } from "@/src/models/user";
 import IAction from "@/src/reducers/types";
+import { initialState } from "@/src/reducers";
 interface IContextState{
-		state: ISiteState;
-		dispatch?: React.Dispatch<IAction>
+  state: ISiteState;
+  dispatch?: React.Dispatch<IAction>
 }
 
-const siteContex =React.createContext<IContextState>({state:{status: "loading",header:true,footer:true}});
+const siteContex =React.createContext<IContextState>({state:initialState});
 
 export default siteContex;
