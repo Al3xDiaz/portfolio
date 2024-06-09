@@ -33,26 +33,26 @@ export const useSite = () => {
 			})
 		})
 	},[state.axiosInstance])
-  const validateCredential = useCallback(async(token:string)=>{
+  const validateCredential = useCallback(async(token:string | null)=>{
     const service = new AuthService(state.axiosInstance);
-    try {
-      await service.validatecredetial(token);
-    } catch (error) {
-      console.log(error)
-    }
-    router.replace({
-      query: {
-        username : router.query.username,
+    if (!!token){
+      try {
+        await service.validatecredetial(token);
+      } catch (error) {
+        console.log(error)
       }
-    })
+      router.replace({
+        query: {
+          username : router.query.username,
+        }
+      })
+    }
     getUserData();
   },[router,getUserData])
 
   useEffect(()=>{
     const token = params.get("token");
-    if (!!token){
-     validateCredential(token)
-    }
+    validateCredential(token)
   },[params,validateCredential]);
 	return {
 			state,
