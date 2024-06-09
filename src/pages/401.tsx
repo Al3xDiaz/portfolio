@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation"
-import { useRouter } from "next/router";
 import styled from "styled-components";
 
-export default function NotFound() {
-  const {} = useRouter();
+export default function UnAuthorized() {
+  const params = useSearchParams();
+  const returnUrl = params.get("returnUrl")
 	return (<Div>
     <ErrorImage />
-    <h4>Ops!!! resource not found</h4>
+    <h4>Please log in</h4>
     <h4 className="subtitle">please try again later.</h4>
-    <Link className="buton" href="/">Refresh</Link>
+    <Link className="buton" href={returnUrl||"/"}>Refresh</Link>
   </Div>);
 }
 const Div = styled.div`

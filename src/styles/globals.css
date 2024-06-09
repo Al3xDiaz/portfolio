@@ -104,6 +104,7 @@ a {
 	color: white;
 	z-index: 1;
   height: 5rem;
+  margin-bottom: 1rem;
 }
 .page{
   position: relative;
@@ -115,7 +116,8 @@ a {
   z-index: 1;
   display: grid;
   grid-template-rows: auto 1fr;
-  margin: 0 5rem;
+  margin: auto;
+  width: 1000px;
   min-height: 79vh;
 }
 footer{
@@ -126,7 +128,6 @@ footer{
 .main{
 	display: flex;
 	flex-direction: column;
-	/* min-height: 70vh; */
 }
 .navbar .navbar__logo{
 	font-size: 1.5rem;

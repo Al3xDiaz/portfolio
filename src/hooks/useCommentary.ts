@@ -2,10 +2,17 @@ import { useCallback, useEffect, useRef, useState} from "react";
 import { ICommentary } from "@/src/models"
 import {CommentaryService} from "@/src/services/commentaryService"
 import {useSite} from "@/src/hooks/useSite";
+import { useRouter } from "next/router";
+import axios, { AxiosError } from "axios";
+
+interface ICommentaryResponseError {
+  msg:string;
+}
 
 const useCommentary = () => {
 		const {state:{axiosInstance}} = useSite()
 		const [commentaries,setCommentaries] = useState<ICommentary[]>([])
+    const router = useRouter();
 
 		const service = useRef<CommentaryService>(new CommentaryService(axiosInstance)).current
 
@@ -21,9 +28,12 @@ const useCommentary = () => {
       try {
 				await service.create({comment:content,})
       } catch (error) {
-        console.log(error)
+        if (axios.isAxiosError(error)){
+          console.log(error.response?.status)
+          router.replace(`/${error.response?.status}`,{query:{returnUrl:location.href}})
+        }
       }
-		},[commentaries])
+		},[commentaries,router])
 
 		const deleteCommentary = useCallback(async (id:number)=>{
 			 await service.delete(id);

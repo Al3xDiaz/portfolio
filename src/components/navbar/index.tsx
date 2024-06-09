@@ -48,11 +48,10 @@ export const Navbar = ({user}:iprops) => {
       <Avatar photo={photo}>
         {!!state.visitor?<ul>
           <li><Link href={`${DASH_URL}/profile`}>Profile</Link></li>
-          <li onClick={logout}>Sign out</li>
+          <li onClick={logout}><a>Sign out</a></li>
         </ul>:
         <ul>
           <li><a onClick={HandleLogin}>Sign in</a></li>
-          <li onClick={logout}>Sign out</li>
         </ul>}
       </Avatar>
       <style jsx>{`

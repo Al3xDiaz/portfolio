@@ -19,7 +19,7 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
   return (
   <div>
     <div className="content">
-      <Form initialState={{}} onSubmit={handlePost} persistData>
+      <Form initialState={{}} onSubmit={handlePost}>
         <>
           <span style={{color:"red"}}>{error}</span>
           <Form.TextArea required name="content" />
