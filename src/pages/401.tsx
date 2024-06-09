@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation"
-import styled from "styled-components";
 
 export default function UnAuthorized() {
   const params = useSearchParams();
