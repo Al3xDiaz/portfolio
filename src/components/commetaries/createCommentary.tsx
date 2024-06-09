@@ -15,7 +15,7 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
     } catch (error) {
       setError("Error: contact to administrator");
     }
-  },[])
+  },[postCommentary])
   return (
   <div>
     <div className="content">

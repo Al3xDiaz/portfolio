@@ -11,7 +11,7 @@ export const CopyToClipBoard = ({text,children}:IProps)=>{
 		navigator.clipboard.writeText(text)
 		setSpanStatus(true)
 		setInterval(()=>{setSpanStatus(false)},3000)
-	},[])
+	},[text])
 	return (
 		<>
 			<a onClick={()=>!spanStatus && handlerClick()}>

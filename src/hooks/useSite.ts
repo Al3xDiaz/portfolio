@@ -32,7 +32,7 @@ export const useSite = () => {
         resolve(null)
 			})
 		})
-	},[state.axiosInstance])
+	},[state.axiosInstance,dispatch])
   const validateCredential = useCallback(async(token:string | null)=>{
     const service = new AuthService(state.axiosInstance);
     if (!!token){
@@ -48,7 +48,7 @@ export const useSite = () => {
       })
     }
     getUserData();
-  },[router,getUserData])
+  },[router,getUserData,state.axiosInstance])
 
   useEffect(()=>{
     const token = params.get("token");

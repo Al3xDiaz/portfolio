@@ -19,11 +19,11 @@ export const Commentaries = ({}:IProps) => {
       } catch {
           console.log("error: send comentary")
       }
-		},[stateRef])
+		},[createCommentary,getCommentaries])
 		const handleDelete = useCallback(async (id?:number)=>{
 				id && await deleteCommentary(id);
 				await getCommentaries()
-		},[stateRef])
+		},[deleteCommentary,getCommentaries])
 		useEffect(()=>{
 				stateRef.current = state
 		},[state])

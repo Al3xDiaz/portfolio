@@ -23,7 +23,7 @@ const useCommentary = () => {
 				}catch(error){
 						setCommentaries([])
 				}
-		},[setCommentaries])
+		},[setCommentaries,service])
 		const createCommentary = useCallback(async (content: string)=>{
       try {
 				await service.create({comment:content,})
@@ -33,11 +33,11 @@ const useCommentary = () => {
           router.replace(`/${error.response?.status}`,{query:{returnUrl:location.href}})
         }
       }
-		},[commentaries,router])
+		},[router,service])
 
 		const deleteCommentary = useCallback(async (id:number)=>{
 			 await service.delete(id);
-		},[commentaries])
+		},[service])
 
 		useEffect(()=>{
 				getCommentaries()
