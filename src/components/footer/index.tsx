@@ -2,10 +2,8 @@ import React from 'react';
 import {
 	FaHeart
 } from "react-icons/fa";
-import { IoMail } from "react-icons/io5";
 import packageInfo from '../../../package.json'
-import {useSite} from '@/src/hooks';
-import { Twitter, MdiLinkedin, MdiYoutube, MdiWhatsapp } from '@/src/components/socialMedia';
+import { Twitter, MdiLinkedin, MdiYoutube, } from '@/src/components/socialMedia';
 import { IUser } from '@/src/models';
 
 interface iprops{
@@ -22,14 +20,8 @@ export const Footer= ({user}:iprops) => {
 				<div className='social'>
 				<h4>Contact me</h4>
 				<p>
-					{user.email && (<a href={`mailto:${user.email}`}
-					target="_blank"
-					rel="noopener noreferrer">
-					<IoMail	size={20}/>
-					</a>)}
-					<Twitter userName={user.profile.twitter}/>
 					<MdiLinkedin userName={user.profile.linkedin} />
-					<MdiYoutube userName={user.profile.youtube} />
+					<Twitter userName={user.profile.twitter}/>
 				</p>
 				</div>
 				<div className="specialties">

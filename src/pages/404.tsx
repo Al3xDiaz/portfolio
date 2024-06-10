@@ -12,7 +12,7 @@ export default function NotFound() {
     <div className="error-image error-image-404" data-image="404" />
     <h4>Ops!!! resource not found</h4>
     <h4 className="subtitle">please try again later.</h4>
-    <a className="buton" onClick={handlePreviewPage}>Refresh</a>
+    <a className="buton" onClick={handlePreviewPage}>Back</a>
   </div>
   );
 }
