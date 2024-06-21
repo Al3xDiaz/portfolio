@@ -4,13 +4,13 @@ import UserService from '@/src/services/userService';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
 import getConfig from "next/config";
-import { Course, IUser } from '@/src/models';
+import { IProject, IUser } from '@/src/models';
 import Layout from '@/src/components/layaut';
-import { SiteService } from '@/src/services';
+import { ProjectsService, SiteService } from '@/src/services';
 import Head from 'next/head';
 
-interface ICoursesProps{
-  courses: Course[];
+interface IProjectsProps{
+  projects: IProject[];
   user:IUser;
 }
 
@@ -32,35 +32,32 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 export const getStaticProps = (async ({params}) => {
   const username = params && params["username"]?.toString() || ""
-  const service = new SiteService(API_URL);
+  const projectService = new ProjectsService(API_URL)
 
-  const {data} =await axios.get(`${API_URL}/courses`,{
-    params:{
-      username,
-    }
-  })
+  const projects =await projectService.list(username);
+  const service = new SiteService(API_URL);
   const user = await service.getSlugName(username)
   return { props: {
-    courses:data,
+    projects,
     user} }
-}) satisfies GetStaticProps<ICoursesProps>
+}) satisfies GetStaticProps<IProjectsProps>
 
-export const Courses = ({courses,user}:ICoursesProps) => {
+export const ProjectsPage = ({projects,user}:IProjectsProps) => {
   return (
     <Layout user={user}>
-      <Head><title>Courses - {user.profile.firstName} {user.profile.lastName}</title></Head>
+      <Head><title>Projects - {user.profile.firstName} {user.profile.lastName}</title></Head>
       <div className='row'>
-      {courses.map(({image},index) => (
+      {projects.map((project,index) => (
         <div className='course' key={index}>
           <ModalImage
-          small={image}
-          large={image}
+          small={project.image}
+          large={project.image}
           width={300}
           height={200}
           />
         </div>
       ))}
-      {courses.length==0&&<div>there are no courses yet</div>}
+      {projects.length==0&&<div>there are no projects yet</div>}
       </div>
       <style jsx>{`
         .row{
@@ -76,4 +73,4 @@ export const Courses = ({courses,user}:ICoursesProps) => {
     </Layout>
   )
 }
-export default Courses;
+export default ProjectsPage;

@@ -55,19 +55,22 @@ export interface IUserAuth{
 		token: string;
 }
 export interface IOwnerSite{
-		username: string;
-		email: string;
-		profile: Profile;
-		courses: string[];
-	}
-	export type ISiteStateStatus ="loading" | "loaded" | "error";
-	export interface ISiteState {
-		ownerSite?: IUser;
-		visitor?: IUser;
-		status: ISiteStateStatus;
-		msgError?: any;
-		axiosInstance: AxiosInstance;
-		header: boolean;
-		footer: boolean;
+  username: string;
+  email: string;
+  profile: Profile;
+  courses: string[];
+}
+export type ISiteStateStatus ="loading" | "loaded" | "error";
+export interface ISiteState {
+  ownerSite?: IUser;
+  visitor?: IUser;
+  status: ISiteStateStatus;
+  msgError?: any;
+  axiosInstance: AxiosInstance;
+  header: boolean;
+  footer: boolean;
+}
+export interface IGallery {
+  image: string;
 }
 
