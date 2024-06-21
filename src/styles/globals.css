@@ -338,3 +338,7 @@ input,.MuiFormControl-root {
 .error-image-500 {
   background-image: url(/assets/500.svg);
 }
+
+form {
+  gap: 1rem;
+}

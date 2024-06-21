@@ -19,7 +19,7 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
   return (
   <div>
     <div className="content">
-      <Form initialState={{}} onSubmit={handlePost}>
+      <Form className="form-content" initialState={{}} onSubmit={handlePost}>
         <>
           <span style={{color:"red"}}>{error}</span>
           <Form.TextArea required name="content" />
@@ -27,13 +27,17 @@ export const CreateCommentary = ({postCommentary}:iprops)=>{
         </>
       </Form>
     </div>
-    <style jsx>{`
-    .content{
+    <style>{`
+      .content{
         margin: 1rem;
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
-    }
+      }
+      .form-content {
+        display: grid;
+        grid-template-areas: "content content content content content" "send . . . .";
+      }
     `}</style>
   </div>
 );
