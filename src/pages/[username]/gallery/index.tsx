@@ -1,16 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { ModalImage } from '@/src/utils'
+import React from 'react';
 import UserService from '@/src/services/userService';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import axios from 'axios';
 import getConfig from "next/config";
-import { Course, IUser } from '@/src/models';
+import { IGallery, IUser } from '@/src/models';
 import Layout from '@/src/components/layaut';
-import { SiteService } from '@/src/services';
+import { GalleriesService, SiteService } from '@/src/services';
 import Carrusel from '@/src/components/carrusel';
 
-interface ICoursesProps{
+interface IGalleryProps{
   user:IUser;
+  images: IGallery[]
 }
 
 const { publicRuntimeConfig } = getConfig();
@@ -31,19 +30,23 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 export const getStaticProps = (async ({params}) => {
   const username = params && params["username"]?.toString() || ""
-  const service = new SiteService(API_URL);
 
+  const galleryService = new GalleriesService(API_URL);
+  const images = await galleryService.list(username)
+
+  const service = new SiteService(API_URL);
   const user = await service.getSlugName(username)
   return { props: {
-    user} }
-}) satisfies GetStaticProps<ICoursesProps>
+    user,
+    images,
+  } }
+}) satisfies GetStaticProps<IGalleryProps>
 
-export const Gallery = ({user}:ICoursesProps) => {
-	let images: string[]=[user.profile.photo,];
+export const Gallery = ({user,images}:IGalleryProps) => {
   return (
     <Layout user={user}>
       <div style={{display:'flex',width:"100%"}}>
-      <Carrusel images={images} />
+      <Carrusel images={images.map(image=>image.image)} />
       </div>
       <style jsx>{`
       `}</style>

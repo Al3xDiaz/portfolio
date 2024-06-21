@@ -11,8 +11,8 @@ on:
     branches: [main]
   # Allows you to run this workflow manually from the Actions tab
 
-  pull_request:
-    types: [opened,reopened]
+  # pull_request:
+  #   types: [opened,reopened]
 
   workflow_dispatch:
     inputs:
@@ -66,13 +66,28 @@ jobs:
       - name: Set Outputs full version
         id: set-outputs-full
         run: echo "FullSemVer=${{ steps.gitversion.outputs.fullSemVer }}" >> $GITHUB_OUTPUT
+  repo:
+    runs-on: ubuntu-latest
+    needs: [calculate-version,]
+    concurrency: deploy-group    # optional: ensure only one action runs at a time
+    steps:
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ needs.calculate-version.outputs.MajorMinorPatch }}',
+              sha: context.sha
+            })
   # Build job
   build:
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
-    needs: [calculate-version]
+    needs: [calculate-version,repo]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
