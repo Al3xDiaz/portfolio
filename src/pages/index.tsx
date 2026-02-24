@@ -1,42 +1,76 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import TimeLine from '@/src/components/timeline';
-import UserService from '@/src/services/userService';
 import Layout from '@/src/components/layaut';
-import getConfig from 'next/config';
 import { Course, IUser, TimeLineProfile } from '@/src/models';
 import Head from 'next/head';
 import { ModalImage } from '@/src/utils'
+import portfolioData from '@/src/data/portfolio.json';
+import { useSite } from '@/src/hooks/useSite';
+
 interface iprops{
   user:IUser;
   timeline:TimeLineProfile[];
   courses: Course[];
 }
-const { publicRuntimeConfig } = getConfig();
-const BASE_URL = publicRuntimeConfig.BASE_URL;
-export const getStaticPaths = (async () => {
-	// ...
-	const service = new UserService()
-	const userNames = await service.getUserNames()
-	return {
-		paths: userNames.map((userName) => ({
-			params: {
-				username: userName,
-			},
-		})),
-		fallback: false,
-	};
-}) satisfies GetStaticPaths
-export const getStaticProps = (async ({params}) => {
-  await setTimeout(console.log,1)
+
+export const getStaticProps = (async () => {
+  const data = portfolioData as any;
+  const { profile } = data;
+  
+  const user: IUser = {
+    id: 1,
+    userName: 'al3xdiaz',
+    email: profile.email,
+    verified: true,
+    profile: {
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      photo: profile.photo,
+      bio: profile.bio,
+      jobs: profile.jobs,
+      linkedin: profile.linkedin,
+      github: profile.github,
+      gitlab: profile.gitlab,
+      discord: profile.discord,
+      twitter: profile.twitter,
+      facebook: profile.facebook,
+      instagram: profile.instagram,
+      youtube: profile.youtube,
+      website: profile.website,
+      images: [],
+      time_line_profile: [],
+      specialties: profile.specialties,
+      skills: profile.skills,
+      Languages: profile.languages,
+      Hobbies: profile.hobbies,
+      telephone: profile.telephone,
+    }
+  };
+  
+  const timeline = data.timeline.map((item: any) => ({
+    ...item,
+    profile: 1
+  }));
+  
+  const courses = data.courses.slice(0, 3);
+
   return {
     props: {
-      example:"hello"
+      user,
+      timeline,
+      courses
     }
   }
-}) satisfies GetStaticProps<{example:string}>
+}) satisfies GetStaticProps<iprops>
+
 const Home: NextPage<iprops> = ({user,timeline,courses}) => {
+  const { getLocalizedValue } = useSite();
+  
   if (!user)
     return <div>not found</div>
+    
+  const localizedBio = getLocalizedValue(user.profile.bio);
+  
   return (
     <Layout user={user}>
 			<Head>
@@ -52,10 +86,10 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
 				<meta property="og:site_name" content="website" />
 				<meta property="og:title" name="twitter:title" content={`web portfolio - ${user.profile.firstName} ${user.profile.lastName}`} />
 				<meta property="og:description" name="twitter:description"
-					content={user.profile.bio} />
+					content={typeof user.profile.bio === 'string' ? user.profile.bio : user.profile.bio['es-LA']} />
 				<meta property="og:image" name="twitter:image"
 					content={user.profile.photo} />
-				<meta property="og:url" name="twitter:url" content={`${BASE_URL}/${user.userName}`}></meta>
+				<meta property="og:url" name="twitter:url" content={user.profile.website}></meta>
 			</Head>
       <div style={{
         display:'grid',
@@ -76,7 +110,7 @@ const Home: NextPage<iprops> = ({user,timeline,courses}) => {
         }}>
         </div>
         <div>
-        {user.profile.bio.split("\n").map((text,i)=>(
+        {localizedBio.split("\n").map((text: string, i: number)=>(
           <p key={i} style={{
             textAlign:"start",
             marginLeft:"1rem"

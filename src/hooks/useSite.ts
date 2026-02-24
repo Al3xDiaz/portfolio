@@ -1,7 +1,8 @@
 import { useCallback, useContext, useEffect, useRef } from "react";
 import {authService as AuthService } from "@/src/services";
 import context from "@/src/context/siteContext";
-
+import translations from "@/src/data/translations.json";
+import { Language } from "@/src/models/user";
 import { useRouter } from "next/router";
 import getConfig from "next/config";
 import { useSearchParams } from "next/navigation";
@@ -13,6 +14,27 @@ export const useSite = () => {
 	const {state,dispatch} = useContext(context);
   const router = useRouter();
   const params = useSearchParams();
+  
+  const setLanguage = useCallback((lang: Language) => {
+    dispatch && dispatch({type: "SET_LANGUAGE", payload: lang});
+  }, [dispatch]);
+
+  const t = useCallback((key: string) => {
+    const keys = key.split('.');
+    let value: any = translations[state.lang];
+    for (const k of keys) {
+      value = value?.[k];
+    }
+    return value || key;
+  }, [state.lang]);
+
+  const getLocalizedValue = useCallback((obj: any) => {
+    if (typeof obj === 'object' && obj !== null && ('es-LA' in obj || 'en-US' in obj)) {
+      return obj[state.lang] || obj['es-LA'] || obj['en-US'] || '';
+    }
+    return obj;
+  }, [state.lang]);
+
   const logout= useCallback(async ()=>{
     const service = new AuthService(state.axiosInstance);
 		try{
@@ -55,6 +77,9 @@ export const useSite = () => {
     validateCredential(token)
   },[params,validateCredential]);
 	return {
-			state,
+		state,
       logout,
+      setLanguage,
+      t,
+      getLocalizedValue,
 	}}

@@ -1,12 +1,10 @@
-import { useEffect } from 'react';
-import useSiteCLI from '@/src/hooks/useVCard';
-import UserService from '@/src/services/userService';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import {Twitter,MdiLinkedin,MdiYoutube, MdiWhatsapp, Telephone,Email, WebSite} from "@/src/components/socialMedia"
 import getConfig from "next/config";
 import { VCardDownload } from '@/src/components/socialMedia/vcardDownload';
-import { SiteService } from '@/src/services';
 import { IUser } from '@/src/models';
+import portfolioData from '@/src/data/portfolio.json';
+import { useSite } from '@/src/hooks/useSite';
 
 const { publicRuntimeConfig } = getConfig();
 const API_URL = publicRuntimeConfig.API_URL;
@@ -14,29 +12,50 @@ const API_URL = publicRuntimeConfig.API_URL;
 interface iprops{
   user:IUser;
 }
-export const getStaticPaths = (async () => {
-	// ...
-	const service = new UserService()
-	const userNames = await service.getUserNames()
-	return {
-		paths: userNames.map((userName) => ({
-			params: {
-				username: userName,
-			},
-		})),
-		fallback: false,
-	};
-}) satisfies GetStaticPaths
-export const getStaticProps = (async ({params}) => {
-  const username = params && params["username"]?.toString() || ""
-  const service = new SiteService(API_URL)
-  const user = await service.getSlugName(username)
+
+export const getStaticProps = (async () => {
+  const data = portfolioData as any;
+  const { profile } = data;
+  
+  const user: IUser = {
+    id: 1,
+    userName: 'al3xdiaz',
+    email: profile.email,
+    verified: true,
+    profile: {
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      photo: profile.photo,
+      bio: profile.bio,
+      jobs: profile.jobs,
+      linkedin: profile.linkedin,
+      github: profile.github,
+      gitlab: profile.gitlab,
+      discord: profile.discord,
+      twitter: profile.twitter,
+      facebook: profile.facebook,
+      instagram: profile.instagram,
+      youtube: profile.youtube,
+      website: profile.website,
+      images: [],
+      time_line_profile: [],
+      specialties: profile.specialties,
+      skills: profile.skills,
+      Languages: profile.languages,
+      Hobbies: profile.hobbies,
+      telephone: profile.telephone,
+    }
+  };
+  
   return { props: {
     user,
   }}
 }) satisfies GetStaticProps<iprops>
 
 export const VCard:NextPage<iprops> =({user})=> {
+  const { t, getLocalizedValue } = useSite();
+  const localizedBio = getLocalizedValue(user.profile.bio);
+  
   return (
 		<div className='conteiner'>
 			<header className='header'>
@@ -55,18 +74,18 @@ export const VCard:NextPage<iprops> =({user})=> {
 				</div>
 			</header>
 			<div className='personal-info'>
-				{user.profile.bio && (
+				{localizedBio && (
 				<div>
-					{user.profile.bio.split("\n").map((line,i)=>
+					{localizedBio.split("\n").map((line: string, i: number)=>
 					<p key={i}>{line}</p>
 					)}
 				</div>)}
-				{user.profile.telephone.map(({countryCode,phoneNumber},i)=><div>
+				{user.profile.telephone.map(({countryCode,phoneNumber},i)=><div key={i}>
 					<div>
-						<Telephone key={i} />
+						<Telephone />
 					</div>
 					<div>
-						<p>Phone (Mobile)</p>
+						<p>{t('vcard.phone')}</p>
 						<p>{`+${countryCode} ${phoneNumber}`}</p>
 					</div>
 				</div>)}
@@ -75,7 +94,7 @@ export const VCard:NextPage<iprops> =({user})=> {
 						<Email />
 					</div>
 					<div>
-						<p>E-mail</p>
+						<p>{t('vcard.email')}</p>
 						<p>{user.email}</p>
 					</div>
 				</div>)}
@@ -84,7 +103,7 @@ export const VCard:NextPage<iprops> =({user})=> {
 						<WebSite />
 					</div>
 					<div>
-						<p>Web Site</p>
+						<p>{t('vcard.website')}</p>
 						<p>{user.profile.website}</p>
 					</div>
 				</div>)}

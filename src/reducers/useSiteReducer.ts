@@ -12,6 +12,7 @@ export const initialState: ISiteState = {
 		visitor: undefined,
 		header: true,
 		footer: true,
+		lang: "es-LA",
 		axiosInstance: axios.create({
 				baseURL:API_URL,
         headers:{
@@ -66,6 +67,11 @@ export const reducer = (state: ISiteState, action:IAction ):ISiteState => {
           return config;
         });
         return state;
+      case "SET_LANGUAGE":
+        return {
+          ...state,
+          lang: action.payload,
+        };
 			case "ERROR":
 				return {
 					...state,

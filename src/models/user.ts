@@ -61,6 +61,7 @@ export interface IOwnerSite{
   courses: string[];
 }
 export type ISiteStateStatus ="loading" | "loaded" | "error";
+export type Language = "es-LA" | "en-US";
 export interface ISiteState {
   ownerSite?: IUser;
   visitor?: IUser;
@@ -69,6 +70,7 @@ export interface ISiteState {
   axiosInstance: AxiosInstance;
   header: boolean;
   footer: boolean;
+  lang: Language;
 }
 export interface IGallery {
   image: string;

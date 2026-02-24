@@ -25,7 +25,11 @@ interface IErrorAction {
 	type: "ERROR";
 	payload: any;
 }
+interface ISetLanguageAction {
+	type: "SET_LANGUAGE";
+	payload: "es-LA" | "en-US";
+}
 
 
-export type IAction = ISetSiteAction | ISetStatusAction	| ISetVisitorAction | IErrorAction | IHiddenHeaderNFooter | IDisplayHeaderNFooter | ISetAxiosAction;
+export type IAction = ISetSiteAction | ISetStatusAction	| ISetVisitorAction | IErrorAction | IHiddenHeaderNFooter | IDisplayHeaderNFooter | ISetAxiosAction | ISetLanguageAction;
 export default IAction;
