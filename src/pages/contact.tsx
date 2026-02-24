@@ -2,38 +2,52 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '@/src/components/layaut';
 import { IUser } from '@/src/models';
-import { SiteService } from '@/src/services';
-import UserService from '@/src/services/userService';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import getConfig from 'next/config';
+import { GetStaticProps } from 'next';
 import Commentaries from '@/src/components/commetaries';
+import portfolioData from '@/src/data/portfolio.json';
+import { useSite } from '@/src/hooks/useSite';
 
 interface IContactProps{
   user: IUser;
 }
 
-const { publicRuntimeConfig } = getConfig();
-const API_URL = publicRuntimeConfig.API_URL;
-
-export const getStaticPaths = (async () => {
-	// ...
-	const service = new UserService()
-	const userNames = await service.getUserNames()
-	return {
-		paths: userNames.map((userName) => ({
-			params: {
-				username: userName,
-			},
-		})),
-		fallback: false,
-	};
-}) satisfies GetStaticPaths
-export const getStaticProps = (async ({params}) => {
-  const username = params && params["username"]?.toString() || ""
-  const service = new SiteService(API_URL);
-  const user = await service.getSlugName(username)
+export const getStaticProps = (async () => {
+  const data = portfolioData as any;
+  const { profile } = data;
+  
+  const user: IUser = {
+    id: 1,
+    userName: 'al3xdiaz',
+    email: profile.email,
+    verified: true,
+    profile: {
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      photo: profile.photo,
+      bio: profile.bio,
+      jobs: profile.jobs,
+      linkedin: profile.linkedin,
+      github: profile.github,
+      gitlab: profile.gitlab,
+      discord: profile.discord,
+      twitter: profile.twitter,
+      facebook: profile.facebook,
+      instagram: profile.instagram,
+      youtube: profile.youtube,
+      website: profile.website,
+      images: [],
+      time_line_profile: [],
+      specialties: profile.specialties,
+      skills: profile.skills,
+      Languages: profile.languages,
+      Hobbies: profile.hobbies,
+      telephone: profile.telephone,
+    }
+  };
+  
   return { props: {user}  }
 }) satisfies GetStaticProps<IContactProps>
+
 export const ContactPage = (props:IContactProps)=>{
   const {user} = props
   return <Layout user={user}>

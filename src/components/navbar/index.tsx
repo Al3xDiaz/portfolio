@@ -32,17 +32,17 @@ export const Navbar = ({user}:iprops) => {
 		<nav className="navbar">
 			<div className="navbar__logo">
 				{user.profile && (
-					<Link legacyBehavior href={`/${user.userName}/`}>
+					<Link legacyBehavior href={`/`}>
 					<a style={{textTransform:"capitalize"}}>{user.profile.firstName} {user.profile.lastName}</a>
 				</Link>
 				)}
 			</div>
 			<menu>
 			{user.profile && (<>
-				<Link legacyBehavior href={`/${user.userName}/courses`}><a>Courses</a></Link>
-				<Link legacyBehavior href={`/${user.userName}/gallery`}><a>Gallery</a></Link>
-				<Link legacyBehavior href={`/${user.userName}/projects`}><a>Projects</a></Link>
-				<Link legacyBehavior href={`/${user.userName}/contact`}><a>Contact</a></Link>
+				<Link legacyBehavior href={`/courses`}><a>Courses</a></Link>
+				<Link legacyBehavior href={`/gallery`}><a>Gallery</a></Link>
+				<Link legacyBehavior href={`/projects`}><a>Projects</a></Link>
+				<Link legacyBehavior href={`/contact`}><a>Contact</a></Link>
 			</>)}
 			</menu>
       <Avatar photo={photo}>

@@ -1,0 +1,118 @@
+{
+  "es-LA": {
+    "nav": {
+      "home": "Inicio",
+      "courses": "Cursos",
+      "gallery": "Galería",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    },
+    "home": {
+      "title": "Portafolio",
+      "timeline": "Línea de Tiempo"
+    },
+    "courses": {
+      "title": "Cursos",
+      "empty": "Aún no hay cursos"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "empty": "Aún no hay proyectos"
+    },
+    "gallery": {
+      "title": "Galería"
+    },
+    "contact": {
+      "title": "Contacto",
+      "social": "Redes Sociales"
+    },
+    "vcard": {
+      "title": "Tarjeta de Contacto",
+      "phone": "Teléfono (Móvil)",
+      "email": "Correo Electrónico",
+      "website": "Sitio Web"
+    },
+    "footer": {
+      "language": "Idioma",
+      "changeLanguage": "Cambiar idioma",
+      "specialties": "Especialidades",
+      "madeFor": "Hecho para",
+      "madeForText": "Ayudar a cualquier ser humano.",
+      "orContactMe": "o para contactarme"
+    },
+    "comments": {
+      "title": "Comentarios",
+      "write": "Escribe un comentario",
+      "send": "Enviar",
+      "signIn": "Iniciar sesión para comentar",
+      "delete": "Eliminar",
+      "empty": "No hay comentarios aún"
+    },
+    "timeline": {
+      "gotJob": "Conseguí trabajo como"
+    },
+    "common": {
+      "loading": "Cargando...",
+      "error": "Error",
+      "notFound": "No encontrado"
+    }
+  },
+  "en-US": {
+    "nav": {
+      "home": "Home",
+      "courses": "Courses",
+      "gallery": "Gallery",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "home": {
+      "title": "Portfolio",
+      "timeline": "Timeline"
+    },
+    "courses": {
+      "title": "Courses",
+      "empty": "There are no courses yet"
+    },
+    "projects": {
+      "title": "Projects",
+      "empty": "There are no projects yet"
+    },
+    "gallery": {
+      "title": "Gallery"
+    },
+    "contact": {
+      "title": "Contact",
+      "social": "Social Media"
+    },
+    "vcard": {
+      "title": "Contact Card",
+      "phone": "Phone (Mobile)",
+      "email": "E-mail",
+      "website": "Web Site"
+    },
+    "footer": {
+      "language": "Language",
+      "changeLanguage": "Change language",
+      "specialties": "Specialties",
+      "madeFor": "Made for",
+      "madeForText": "Help to any human being.",
+      "orContactMe": "or to contact me"
+    },
+    "comments": {
+      "title": "Comments",
+      "write": "Write a comment",
+      "send": "Send",
+      "signIn": "Sign in to comment",
+      "delete": "Delete",
+      "empty": "No comments yet"
+    },
+    "timeline": {
+      "gotJob": "I got a job as"
+    },
+    "common": {
+      "loading": "Loading...",
+      "error": "Error",
+      "notFound": "Not found"
+    }
+  }
+}
