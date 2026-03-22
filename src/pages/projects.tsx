@@ -109,7 +109,7 @@ export const ProjectsPage = ({projects, user}: IProjectsProps) => {
                   <div className="card__footer">
                     {project.startDate && (
                       <span className="card__date">
-                        {project.startDate}{project.endDate ? ` — ${project.endDate}` : ''}
+                        {`${project.startDate}${project.endDate ? ` — ${project.endDate}` : ''}`}
                       </span>
                     )}
                     {project.url && (
