@@ -28,8 +28,8 @@
     {
       "year": 2024,
       "comment": {
-        "es-LA": "Conseguí trabajo como Ingeniero DevOps",
-        "en-US": "I got a job as DevOps Engineer"
+        "es-LA": "Me incorporé como Ingeniero DevOps, liderando infraestructura cloud y pipelines de CI/CD",
+        "en-US": "Joined as a DevOps Engineer, leading cloud infrastructure and CI/CD pipeline automation"
       },
       "title": "Creative Information Technologies",
       "icon": ""
@@ -37,8 +37,8 @@
     {
       "year": 2023,
       "comment": {
-        "es-LA": "Conseguí trabajo como Ingeniero DevOps",
-        "en-US": "I got a job as DevOps Engineer"
+        "es-LA": "Asumí el rol de Ingeniero DevOps, gestionando entornos Kubernetes y procesos de automatización",
+        "en-US": "Took on a DevOps Engineer role, managing Kubernetes environments and automation workflows"
       },
       "title": "Abstract Development Studio SA",
       "icon": ""
@@ -46,8 +46,8 @@
     {
       "year": 2021,
       "comment": {
-        "es-LA": "Conseguí trabajo como Desarrollador Backend",
-        "en-US": "I got a job as Backend Developer"
+        "es-LA": "Me uní como Desarrollador Backend, construyendo APIs REST y servicios escalables en producción",
+        "en-US": "Joined as a Backend Developer, building REST APIs and production-grade scalable services"
       },
       "title": "SignsCloud",
       "icon": ""
@@ -55,8 +55,8 @@
     {
       "year": 2020,
       "comment": {
-        "es-LA": "Conseguí trabajo como Desarrollador Backend",
-        "en-US": "I got a job as Backend Developer"
+        "es-LA": "Desarrollé soluciones backend para clientes locales, mejorando procesos y rendimiento de sistemas",
+        "en-US": "Developed backend solutions for local clients, improving processes and system performance"
       },
       "title": "Agencia Global Honduras",
       "icon": ""
@@ -64,8 +64,8 @@
     {
       "year": 2019,
       "comment": {
-        "es-LA": "Conseguí trabajo como Desarrollador de Software .NET Jr",
-        "en-US": "I got a job as .NET Software Developer Jr"
+        "es-LA": "Inicié mi carrera profesional como Desarrollador .NET Jr, creando aplicaciones empresariales desde cero",
+        "en-US": "Launched my professional career as a .NET Jr Developer, building enterprise applications from the ground up"
       },
       "title": "BIDSS-Technologie",
       "icon": ""
@@ -75,17 +75,29 @@
     {
       "id": 1,
       "name": "Terminal y Línea de Comandos",
-      "image": "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668757/Courses/Terminal_y_L%C3%ADnea_de_Comandos.png"
+      "image": "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668757/Courses/Terminal_y_L%C3%ADnea_de_Comandos.png",
+      "description": {
+        "es-LA": "Dominio del terminal y automatización de tareas en entornos Unix/Linux mediante scripts de shell.",
+        "en-US": "Mastery of the terminal and task automation in Unix/Linux environments using shell scripts."
+      }
     },
     {
       "id": 2,
       "name": "Jenkins",
-      "image": "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Jenkins.png"
+      "image": "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Jenkins.png",
+      "description": {
+        "es-LA": "Diseño e implementación de pipelines de integración y entrega continua (CI/CD) con Jenkins.",
+        "en-US": "Design and implementation of continuous integration and delivery (CI/CD) pipelines with Jenkins."
+      }
     },
     {
       "id": 3,
       "name": "Docker",
-      "image": "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Docker.png"
+      "image": "https://res.cloudinary.com/dd7jrtxu5/image/upload/v1628668392/Courses/Docker.png",
+      "description": {
+        "es-LA": "Contenerización de aplicaciones y orquestación de servicios con Docker y Docker Compose.",
+        "en-US": "Application containerization and service orchestration with Docker and Docker Compose."
+      }
     },
     {
       "id": 4,

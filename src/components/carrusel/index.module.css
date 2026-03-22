@@ -1,14 +1,22 @@
 .image {
-	position: relative;
-	height: 400px;
+  position: relative;
+  height: 420px;
+  overflow: hidden;
 }
 
 .background {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: -1;
-	filter:	brightness(0.1) ;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  filter: brightness(0.12) blur(2px);
+  transform: scale(1.05);
+}
+
+.stepper {
+  background: rgba(6, 11, 23, 0.9) !important;
+  border-top: 1px solid rgba(99, 102, 241, 0.15) !important;
+  padding: 0.5rem 1rem !important;
 }

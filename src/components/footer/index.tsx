@@ -62,102 +62,102 @@ export const Footer= ({user}:iprops) => {
 .social > p {
   display: flex;
   flex-direction: row;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 .specialties ul {
   display: flex;
   flex-wrap: wrap;
-  list-style-type: disclosure-closed;
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 0px;
-  li {
-  margin: .2rem;
-  margin-left: 2rem;
-  width: fit-content;
-  }
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  gap: 0.4rem;
 }
-.about > div {
-  flex-direction: row;
+.specialties ul li {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.78rem;
+  color: #a5b4fc;
+  font-weight: 500;
 }
-.social{
+.social {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
+  gap: 0.25rem;
 }
 .language-selector {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 0.25rem;
 }
 .language-buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
 }
 .language-buttons button {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  font-size: 0.82rem;
+  font-weight: 500;
 }
 .language-buttons button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #e2e8f0;
 }
 .language-buttons button.active {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: white;
-  font-weight: bold;
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.6);
+  color: #a5b4fc;
+  font-weight: 600;
 }
-a{
+a {
   display: flex;
   flex-direction: row;
-  align-items: center;]
+  align-items: center;
 }
-a :global(svg){
+a :global(svg) {
   margin: 0px 5px;
 }
-footer > div > div {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin-left: 1rem;
-}
-footer > div > h4	{
-  margin-left: -1rem;
-}
-footer{
+footer {
   color: white;
   position: relative;
   z-index: 1;
   display: grid;
-
   padding-top: 2rem;
   padding-bottom: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(6, 11, 23, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-@media (min-width: 769px){
-  footer{
-  grid-template-columns: 1fr 1fr 1fr 1fr .5fr;
-  justify-items: center;
-  align-items: start;
+@media (min-width: 769px) {
+  footer {
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr;
+    justify-items: start;
+    align-items: start;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
-@media (max-width: 770px){
-  footer{
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  align-items: center;
-  padding-left: 5rem;
+@media (max-width: 770px) {
+  footer {
+    grid-template-rows: auto auto auto auto auto;
+    align-items: center;
+    padding-left: 2rem;
+    gap: 1.5rem;
   }
-}
-.specialties ul li{
-  margin-left: 2rem;
 }
 `}</style>
 		</footer>

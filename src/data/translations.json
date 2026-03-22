@@ -9,7 +9,10 @@
     },
     "home": {
       "title": "Portafolio",
-      "timeline": "Línea de Tiempo"
+      "timeline": "Línea de Tiempo",
+      "featuredCourses": "Certificaciones Destacadas",
+      "featuredCoursesDesc": "Algunos de los cursos y certificaciones que completé en mi camino como ingeniero de software.",
+      "timelineDesc": "Un recorrido por las empresas y roles que marcaron mi trayectoria profesional."
     },
     "courses": {
       "title": "Cursos",
@@ -17,14 +20,16 @@
     },
     "projects": {
       "title": "Proyectos",
-      "empty": "Aún no hay proyectos"
+      "empty": "Aún no hay proyectos",
+      "viewProject": "Ver proyecto ↗"
     },
     "gallery": {
       "title": "Galería"
     },
     "contact": {
       "title": "Contacto",
-      "social": "Redes Sociales"
+      "social": "Redes Sociales",
+      "cta": "Contáctame"
     },
     "vcard": {
       "title": "Tarjeta de Contacto",
@@ -67,7 +72,10 @@
     },
     "home": {
       "title": "Portfolio",
-      "timeline": "Timeline"
+      "timeline": "Timeline",
+      "featuredCourses": "Featured Certifications",
+      "featuredCoursesDesc": "Some of the courses and certifications I've completed along my journey as a software engineer.",
+      "timelineDesc": "A walkthrough of the companies and roles that shaped my professional career."
     },
     "courses": {
       "title": "Courses",
@@ -75,14 +83,16 @@
     },
     "projects": {
       "title": "Projects",
-      "empty": "There are no projects yet"
+      "empty": "There are no projects yet",
+      "viewProject": "View project ↗"
     },
     "gallery": {
       "title": "Gallery"
     },
     "contact": {
       "title": "Contact",
-      "social": "Social Media"
+      "social": "Social Media",
+      "cta": "Contact me"
     },
     "vcard": {
       "title": "Contact Card",
